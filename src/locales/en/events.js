@@ -1,0 +1,51 @@
+export const events = {
+  title: 'Events',
+  subtitle: 'Upcoming Cricket Events and Tournaments',
+  upcoming: 'Upcoming Events',
+  past: 'Past Events',
+  register: 'Register',
+  details: 'Details',
+  venue: 'Venue',
+  date: 'Date',
+  time: 'Time',
+  type: 'Type',
+  types: {
+    international: 'International',
+    domestic: 'Domestic',
+    training: 'Training',
+    women: 'Women',
+  },
+  // Event detail page
+  eventInformation: 'Event Information',
+  matchSchedule: 'Match Schedule',
+  trainingSchedule: 'Training Schedule',
+  highlights: 'Highlights',
+  registration: 'Registration',
+  capacity: 'Capacity',
+  registered: 'Registered',
+  available: 'Available Spots',
+  registerNow: 'Register Now',
+  location: 'Location',
+  backToEvents: 'Back to Events',
+  // Event data
+  eventTitles: {
+    'afghanistanVsPakistanT20': 'Afghanistan vs Pakistan T20 Series',
+    'nationalCricketChampionship': 'National Cricket Championship',
+    'youthCricketCamp': 'Youth Cricket Camp',
+  },
+  eventDescriptions: {
+    'afghanistanVsPakistanT20': 'Exciting bilateral series between Afghanistan and Pakistan. Three T20 matches scheduled.',
+    'nationalCricketChampionship': 'Annual national championship featuring teams from all provinces of Afghanistan.',
+    'youthCricketCamp': 'Training camp for young cricketers aged 12-18. Focus on skill development.',
+  },
+  eventVenues: {
+    'sharjahCricketStadium': 'Sharjah Cricket Stadium',
+    'kabulCricketGround': 'Kabul Cricket Ground', 
+    'kandaharCricketAcademy': 'Kandahar Cricket Academy',
+  },
+  eventLocations: {
+    'sharjahUAE': 'Sharjah, UAE',
+    'kabulAfghanistan': 'Kabul, Afghanistan',
+    'kandaharAfghanistan': 'Kandahar, Afghanistan',
+  },
+}

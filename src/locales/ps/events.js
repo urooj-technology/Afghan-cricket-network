@@ -1,0 +1,51 @@
+export const events = {
+  title: 'پیښې',
+  subtitle: 'راتلونکي کرکټ پیښې او مسابقات',
+  upcoming: 'راتلونکي پیښې',
+  past: 'تیر پیښې',
+  register: 'نوم لیکنه',
+  details: 'تفصیلات',
+  venue: 'ځای',
+  date: 'نیټه',
+  time: 'وخت',
+  type: 'ډول',
+  types: {
+    international: 'نړیوال',
+    domestic: 'کورني',
+    training: 'روزنه',
+    women: 'ښځې',
+  },
+  // Event detail page
+  eventInformation: 'د لوبې معلومات',
+  matchSchedule: 'د لوبو پروګرام',
+  trainingSchedule: 'د روزنې پروګرام',
+  highlights: 'ځانګړتیاوې',
+  registration: 'نوم لیکنه',
+  capacity: 'ظرفیت',
+  registered: 'نوم لیکل شوي',
+  available: 'شته ځایونه',
+  registerNow: 'اوس نوم لیکنه وکړئ',
+  location: 'ځای',
+  backToEvents: 'لوبو ته وګرځئ',
+  // Event data
+  eventTitles: {
+    'afghanistanVsPakistanT20': 'د افغانستان او پاکستان T20 سلسله',
+    'nationalCricketChampionship': 'د ملي کرکټ مسابقات',
+    'youthCricketCamp': 'د ځوانانو کرکټ کمپ',
+  },
+  eventDescriptions: {
+    'afghanistanVsPakistanT20': 'د افغانستان او پاکستان ترمنځ هیجان لرونکی T20 سلسله. درې T20 لوبې برنامه شوي.',
+    'nationalCricketChampionship': 'د افغانستان د ټولو ولایتونو د ټیمونو په ګډون کلني ملي مسابقات.',
+    'youthCricketCamp': 'د 12-18 کلنو ځوان کرکټ لوبغاړو لپاره روزنې کمپ. د مهارتونو د پراختیا په تمرکز.',
+  },
+  eventVenues: {
+    'sharjahCricketStadium': 'د شارجہ کرکټ سټیډیم',
+    'kabulCricketGround': 'د کابل کرکټ ډګر',
+    'kandaharCricketAcademy': 'د کندهار کرکټ اکاډمۍ',
+  },
+  eventLocations: {
+    'sharjahUAE': 'شارجہ، متحده عربي امارات',
+    'kabulAfghanistan': 'کابل، افغانستان',
+    'kandaharAfghanistan': 'کندهار، افغانستان',
+  },
+}

@@ -1,0 +1,72 @@
+import { Inter } from 'next/font/google'
+import './globals.css'
+import { LanguageProvider } from '../contexts/LanguageContext'
+import DynamicLayout from '../components/layout/DynamicLayout'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata = {
+  title: 'Afghan Cricket Network - د افغانستان کرکټ شبکه',
+  description: 'Official website of Afghan Cricket Network - featuring news, rankings, events, and media coverage of cricket in Afghanistan',
+  keywords: 'Afghanistan, Cricket, Afghan Cricket, Cricket Network, Cricket News, Cricket Rankings',
+  authors: [{ name: 'Afghan Cricket Network' }],
+  openGraph: {
+    title: 'Afghan Cricket Network - د افغانستان کرکټ شبکه',
+    description: 'Official website of Afghan Cricket Network',
+    url: 'https://afghancricketnetwork.com',
+    siteName: 'Afghan Cricket Network',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Afghan Cricket Network',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Afghan Cricket Network - د افغانستان کرکټ شبکه',
+    description: 'Official website of Afghan Cricket Network',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+  },
+}
+
+export default function RootLayout({ children }) {
+  return (
+    <html>
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#1e40af" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
+      <body className={inter.className}>
+        <LanguageProvider>
+          <DynamicLayout>
+            {children}
+          </DynamicLayout>
+        </LanguageProvider>
+      </body>
+    </html>
+  )
+}
+
+

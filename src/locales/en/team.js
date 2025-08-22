@@ -1,0 +1,56 @@
+export const team = {
+  title: 'Our Team',
+  subtitle: 'Afghan Cricket Network Members',
+  staff: 'Staff',
+  players: 'Players',
+  coaches: 'Coaches',
+  management: 'Management',
+  // Team member detail page
+  biography: 'Biography',
+  achievements: 'Achievements',
+  memberInfo: 'Member Information',
+  position: 'Position',
+  experience: 'Experience',
+  category: 'Category',
+  socialMedia: 'Social Media',
+  backToTeam: 'Back to Team',
+  memberNotFound: 'Team member not found',
+  viewProfile: 'View Profile',
+  categories: {
+    management: 'Management',
+    staff: 'Staff',
+    coaches: 'Coaches',
+    players: 'Players',
+  },
+  // Team members data
+  members: {
+    ahmadShah: {
+      name: 'Ahmad Shah Abdullah',
+      position: 'Cricket Network Director',
+      bio: '15 years of experience in promoting cricket in Afghanistan',
+      detailsBio: 'Ahmad Shah Abdullah has been instrumental in developing cricket infrastructure in Afghanistan. His vision and leadership have helped establish cricket as a major sport in the country.',
+      achievements: 'Founded multiple cricket academies, established international partnerships, led Afghanistan cricket development programs.',
+    },
+    fatimaAhmadi: {
+      name: 'Fatima Ahmadi',
+      position: 'Women\'s Cricket Coordinator',
+      bio: 'Works to promote women\'s cricket',
+      detailsBio: 'Fatima Ahmadi is a pioneer in women\'s cricket development in Afghanistan. She has worked tirelessly to create opportunities for female cricketers and establish women\'s cricket programs.',
+      achievements: 'Established first women\'s cricket league, trained over 200 female cricketers, advocated for women\'s sports rights.',
+    },
+    mohammadKarim: {
+      name: 'Mohammad Karim',
+      position: 'Training Coordinator',
+      bio: 'Responsible for training the next generation of players',
+      detailsBio: 'Mohammad Karim oversees all training programs and ensures that young cricketers receive world-class coaching and development opportunities.',
+      achievements: 'Developed national training curriculum, coached 50+ professional players, established youth development programs.',
+    },
+    rashidKhan: {
+      name: 'Rashid Khan',
+      position: 'Afghanistan Cricket Team Captain',
+      bio: 'Most famous player in Afghanistan cricket history',
+      detailsBio: 'Rashid Khan is Afghanistan\'s premier cricket star and has represented the country in international cricket with distinction. His leadership on and off the field inspires the next generation.',
+      achievements: 'ICC Player of the Year nominee, 400+ international wickets, led Afghanistan to World Cup qualification.',
+    },
+  },
+}
