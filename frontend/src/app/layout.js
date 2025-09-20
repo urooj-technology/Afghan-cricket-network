@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '../contexts/LanguageContext'
 import DynamicLayout from '../components/layout/DynamicLayout'
+import QueryProvider from '../providers/QueryProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -62,11 +63,13 @@ export default function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className={`${inter.className} font-en`} suppressHydrationWarning>
-        <LanguageProvider>
-          <DynamicLayout>
-            {children}
-          </DynamicLayout>
-        </LanguageProvider>
+        <QueryProvider>
+          <LanguageProvider>
+            <DynamicLayout>
+              {children}
+            </DynamicLayout>
+          </LanguageProvider>
+        </QueryProvider>
       </body>
     </html>
   )
