@@ -19,7 +19,7 @@ const navigation = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { language, toggleLanguage } = useLanguage()
+  const { language, setLanguage, isRTL } = useLanguage()
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
@@ -62,17 +62,47 @@ export default function Header() {
           ))}
         </div>
         
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center space-x-4">
+        <div className={`hidden lg:flex lg:flex-1 lg:justify-end items-center ${isRTL ? 'space-x-reverse space-x-4' : 'space-x-4'}`}>
           <button className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors duration-200">
             {getTranslation(language, 'common.nav.search')}
           </button>
-          <button
-            onClick={toggleLanguage}
-            className="flex items-center space-x-1 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors duration-200"
+          <Link
+            href="/admin"
+            className="text-sm font-semibold leading-6 text-red-600 hover:text-red-800 transition-colors duration-200"
           >
-            <GlobeAltIcon className="w-4 h-4" />
-            <span>{language === 'ps' ? 'EN' : 'پښ'}</span>
-          </button>
+            Admin
+          </Link>
+          <div className="relative group">
+            <button className="flex items-center space-x-1 text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors duration-200 px-3 py-2 rounded-lg hover:bg-gray-50">
+              <GlobeAltIcon className="w-4 h-4" />
+              <span>{language === 'en' ? 'English' : language === 'ps' ? 'پښتو' : 'فارسی'}</span>
+              <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div className="absolute right-0 mt-2 w-40 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="py-2">
+                <button
+                  onClick={() => setLanguage('en')}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${language === 'en' ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'}`}
+                >
+                  🇺🇸 English
+                </button>
+                <button
+                  onClick={() => setLanguage('ps')}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${language === 'ps' ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'}`}
+                >
+                  🇦🇫 پښتو
+                </button>
+                <button
+                  onClick={() => setLanguage('fa')}
+                  className={`w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors ${language === 'fa' ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'}`}
+                >
+                  🇮🇷 فارسی
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
       
@@ -110,12 +140,36 @@ export default function Header() {
                     {getTranslation(language, `common.nav.${item.key}`)}
                   </Link>
                 ))}
-                <button
-                  onClick={toggleLanguage}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 w-full text-right"
+                <Link
+                  href="/admin"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-red-600 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
-                  {language === 'ps' ? 'English' : 'پښتو'}
-                </button>
+                  Admin Portal
+                </Link>
+                <div className="-mx-3 px-3 py-2">
+                  <p className="text-sm font-medium text-gray-500 mb-2">Language</p>
+                  <div className="space-y-1">
+                    <button
+                      onClick={() => setLanguage('en')}
+                      className={`w-full text-left px-3 py-2 text-base font-semibold leading-7 rounded-lg transition-colors ${language === 'en' ? 'bg-blue-50 text-blue-600' : 'text-gray-900 hover:bg-gray-50'}`}
+                    >
+                      🇺🇸 English
+                    </button>
+                    <button
+                      onClick={() => setLanguage('ps')}
+                      className={`w-full text-left px-3 py-2 text-base font-semibold leading-7 rounded-lg transition-colors ${language === 'ps' ? 'bg-blue-50 text-blue-600' : 'text-gray-900 hover:bg-gray-50'}`}
+                    >
+                      🇦🇫 پښتو
+                    </button>
+                    <button
+                      onClick={() => setLanguage('fa')}
+                      className={`w-full text-left px-3 py-2 text-base font-semibold leading-7 rounded-lg transition-colors ${language === 'fa' ? 'bg-blue-50 text-blue-600' : 'text-gray-900 hover:bg-gray-50'}`}
+                    >
+                      🇮🇷 فارسی
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

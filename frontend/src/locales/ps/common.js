@@ -5,9 +5,9 @@ export const common = {
     news: 'خبرونه',
     rankings: 'درجه بندي',
     events: 'پیښې',
-    media: 'ګالری',
+    media: 'رسنۍ',
     about: 'زموږ په اړه',
-    team: 'زموږه ټیم',
+    team: 'ټیم',
     contact: 'اړیکه',
     search: 'لټون',
   },
@@ -38,7 +38,7 @@ export const common = {
 
   // Language
   language: {
-    english: 'English',
+    english: 'انګلیسي',
     pashto: 'پښتو',
     en: 'EN',
     ps: 'پښ',
