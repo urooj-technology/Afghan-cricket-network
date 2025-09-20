@@ -1,10 +1,19 @@
 from django.urls import path, include
-from rest_framework import routers
+from rest_framework.routers import DefaultRouter
+from api.views.data.viewsets import (
+    NewsViewSet, PlayerViewSet, TeamRankingViewSet, 
+    PlayerRankingViewSet, EventViewSet, MediaViewSet
+)
 
-# Create a router and register your viewsets with it.
-router = routers.DefaultRouter()
-
+# Create router for API endpoints
+router = DefaultRouter()
+router.register(r'news', NewsViewSet, basename='news')
+router.register(r'players', PlayerViewSet, basename='players')
+router.register(r'team-rankings', TeamRankingViewSet, basename='team-rankings')
+router.register(r'player-rankings', PlayerRankingViewSet, basename='player-rankings')
+router.register(r'events', EventViewSet, basename='events')
+router.register(r'media', MediaViewSet, basename='media')
 
 urlpatterns = [
-    path("", include(router.urls)),  # Include the router URLs   
+    path('v1/', include(router.urls)),
 ]

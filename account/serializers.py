@@ -1,5 +1,5 @@
 from account.models import User
-from api.serializers.base import DataRootSerializer
+from api.serializers.data.base import DataRootSerializer
 from rest_framework import serializers
 from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
