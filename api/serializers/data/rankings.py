@@ -16,8 +16,6 @@ class TeamRankingSerializer(DataRootSerializer):
 
 
 class PlayerRankingSerializer(DataRootSerializer):
-    player_name = serializers.CharField(source='player.name', read_only=True)
-    
     class Meta:
         model = PlayerRanking
         fields = '__all__'

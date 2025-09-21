@@ -29,6 +29,9 @@ export const common = {
     back: 'شاته',
     close: 'تړل'
   },
+  loading: 'پورته کیږي...',
+  notAvailable: 'شتون نلري',
+  backToTeam: 'ټیم ته وګرځئ',
   status: {
     loading: 'پورته کیږي...',
     error: 'تېروتنه',
@@ -116,5 +119,34 @@ export const common = {
   },
   admin: {
     dashboard: 'اډمین'
-  }
+  },
+  pagination: {
+    previous: 'مخکینی',
+    next: 'راتلونکی',
+    page: 'مخ',
+    of: 'د',
+    showing: 'ښودل',
+    results: 'پایلې'
+  },
+  error: {
+    title: 'یوه ستونزه پیښ شوه',
+    message: 'د محتوا د بارولو په وخت کې خرابۍ پیښ شوې. مهرباني وروسته بیا هڅه وکړئ.',
+    retry: 'بیا هڅه وکړئ',
+    goHome: 'کور ته لاړ شه'
+  },
+  // Additional common terms
+  description: 'تشریح',
+  published: 'خپور شوی',
+  views: 'لیدنې',
+  type: 'ډول',
+  category: 'کټګوري',
+  fileSize: 'د فایل اندازه',
+  duration: 'موده',
+  backToMedia: 'رسنیو ته وګرځئ',
+  viewDocument: 'سند وګورئ',
+  viewDetails: 'تفصیلات وګورئ',
+  endOfResults: 'تاسو د پایلو پای ته ورسیدلاست',
+  selected: 'غوره شوی',
+  entries: 'ننوتلې',
+  noChange: 'بدلون نشته'
 }

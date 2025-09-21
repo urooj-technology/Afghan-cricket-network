@@ -29,6 +29,9 @@ export const common = {
     back: 'Back',
     close: 'Close'
   },
+  loading: 'Loading...',
+  notAvailable: 'Not available',
+  backToTeam: 'Back to Team',
   status: {
     loading: 'Loading...',
     error: 'Error',
@@ -116,5 +119,34 @@ export const common = {
   },
   admin: {
     dashboard: 'Admin'
-  }
+  },
+  pagination: {
+    previous: 'Previous',
+    next: 'Next',
+    page: 'Page',
+    of: 'of',
+    showing: 'Showing',
+    results: 'results'
+  },
+  error: {
+    title: 'Something went wrong',
+    message: 'An error occurred while loading the content. Please try again later.',
+    retry: 'Try Again',
+    goHome: 'Go Home'
+  },
+  // Additional common terms
+  description: 'Description',
+  published: 'Published',
+  views: 'Views',
+  type: 'Type',
+  category: 'Category',
+  fileSize: 'File Size',
+  duration: 'Duration',
+  backToMedia: 'Back to Media',
+  viewDocument: 'View Document',
+  viewDetails: 'View Details',
+  endOfResults: 'You\'ve reached the end of the results',
+  selected: 'Selected',
+  entries: 'entries',
+  noChange: 'No change'
 }

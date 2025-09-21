@@ -2,13 +2,17 @@
 
 import Header from '../../components/layout/Header'
 import Footer from '../../components/layout/Footer'
+import RTLWrapper from '../../components/ui/RTLWrapper'
+import { RTLHeading, RTLParagraph } from '../../components/ui/RTLText'
+import { RTLFlex } from '../../components/ui/RTLContainer'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
 import { useState } from 'react'
 import { MapPinIcon, PhoneIcon, EnvelopeIcon, ClockIcon, BuildingOfficeIcon } from '@heroicons/react/24/outline'
+import { getTextAlign, getFontClass, getFlexDirection, getIconSpacing } from '../../utils/rtl'
 
 export default function Contact() {
-  const { language } = useLanguage()
+  const { language, isRTL } = useLanguage()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,22 +34,30 @@ export default function Contact() {
   }
 
   return (
-    <main className="min-h-screen">
-      <Header />
+    <RTLWrapper>
+      <main className="min-h-screen bg-gray-50">
+        <Header />
       
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              {getTranslation(language, 'contact.title')}
-            </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              {getTranslation(language, 'contact.subtitle')}
-            </p>
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <RTLHeading 
+                level="h1" 
+                className="text-4xl md:text-5xl font-bold mb-6"
+                align="center"
+              >
+                {getTranslation(language, 'contact.title')}
+              </RTLHeading>
+              <RTLParagraph 
+                className="text-xl text-blue-100 max-w-3xl mx-auto"
+                align="center"
+              >
+                {getTranslation(language, 'contact.subtitle')}
+              </RTLParagraph>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Contact Content */}
       <section className="py-16 bg-gray-50">
@@ -54,12 +66,15 @@ export default function Contact() {
             
             {/* Contact Form */}
             <div className="bg-white rounded-xl shadow-lg p-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
-                {getTranslation(language, 'contact.form.title') || 'Send us a Message'}
-              </h2>
+              <RTLHeading 
+                level="h2" 
+                className="text-3xl font-bold text-gray-900 mb-6"
+              >
+                {getTranslation(language, 'contact.form.title')}
+              </RTLHeading>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label htmlFor="name" className={`block text-sm font-medium text-gray-700 mb-2 ${getTextAlign(isRTL)} ${getFontClass(isRTL)}`}>
                     {getTranslation(language, 'contact.form.name')}
                   </label>
                   <input
@@ -69,7 +84,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     placeholder={getTranslation(language, 'contact.form.namePlaceholder')}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${getTextAlign(isRTL)} ${getFontClass(isRTL)}`}
                     required
                   />
                 </div>
@@ -240,7 +255,8 @@ export default function Contact() {
         </div>
       </section>
 
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </RTLWrapper>
   )
 }

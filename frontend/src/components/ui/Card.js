@@ -1,6 +1,7 @@
 'use client'
 
 import { forwardRef } from 'react'
+import { useLanguage } from '../../contexts/LanguageContext'
 
 const Card = forwardRef(({ 
   children, 
@@ -10,18 +11,28 @@ const Card = forwardRef(({
   rounded = 'rounded-xl', 
   shadow = 'shadow-md',
   background = 'bg-white',
-  border = 'border border-gray-200',
+  border = 'border-0',
   ...props 
 }, ref) => {
-  const hoverEffect = hover ? 'hover:shadow-lg hover:-translate-y-1 transition-all duration-300' : ''
+  const { isRTL } = useLanguage()
+  const hoverEffect = hover ? 'hover:shadow-xl hover:-translate-y-2 transition-all duration-300 transform' : ''
+  const rtlClass = isRTL ? 'rtl-card' : 'ltr-card'
   
   return (
     <div
       ref={ref}
-      className={`${background} ${rounded} ${shadow} ${border} ${padding} ${hoverEffect} ${className}`}
+      className={`${background} ${rounded} ${shadow} ${border} ${padding} ${hoverEffect} ${rtlClass} ${className}`}
       {...props}
     >
       {children}
+      <style jsx>{`
+        .rtl-card {
+          direction: rtl;
+        }
+        .ltr-card {
+          direction: ltr;
+        }
+      `}</style>
     </div>
   )
 })
@@ -34,17 +45,35 @@ const CardHeader = ({ children, className = '' }) => (
   </div>
 )
 
-const CardTitle = ({ children, className = '', size = 'text-xl' }) => (
-  <h3 className={`font-bold text-gray-900 ${size} ${className}`}>
-    {children}
-  </h3>
-)
+const CardTitle = ({ children, className = '', size = 'text-xl' }) => {
+  const { isRTL } = useLanguage()
+  
+  // Ensure children is always a string
+  const safeChildren = typeof children === 'string' ? children : 
+                      typeof children === 'object' && children?.title ? children.title :
+                      String(children || '')
+  
+  return (
+    <h3 className={`font-bold text-gray-900 ${size} ${isRTL ? 'font-arabic text-right' : ''} ${className}`}>
+      {safeChildren}
+    </h3>
+  )
+}
 
-const CardDescription = ({ children, className = '' }) => (
-  <p className={`text-gray-600 ${className}`}>
-    {children}
-  </p>
-)
+const CardDescription = ({ children, className = '' }) => {
+  const { isRTL } = useLanguage()
+  
+  // Ensure children is always a string
+  const safeChildren = typeof children === 'string' ? children : 
+                      typeof children === 'object' && children?.description ? children.description :
+                      String(children || '')
+  
+  return (
+    <p className={`text-gray-600 ${isRTL ? 'font-arabic text-right' : ''} ${className}`}>
+      {safeChildren}
+    </p>
+  )
+}
 
 const CardContent = ({ children, className = '' }) => (
   <div className={className}>
@@ -69,18 +98,24 @@ const CardImage = ({ src, alt, className = '', aspectRatio = 'aspect-video' }) =
 )
 
 const CardBadge = ({ children, variant = 'primary', className = '' }) => {
+  const { isRTL } = useLanguage()
   const variants = {
-    primary: 'bg-blue-100 text-blue-800',
-    secondary: 'bg-gray-100 text-gray-800',
-    success: 'bg-green-100 text-green-800',
-    warning: 'bg-yellow-100 text-yellow-800',
-    danger: 'bg-red-100 text-red-800',
-    info: 'bg-cyan-100 text-cyan-800',
+    primary: 'bg-blue-500 text-white shadow-lg',
+    secondary: 'bg-gray-500 text-white shadow-lg',
+    success: 'bg-green-500 text-white shadow-lg',
+    warning: 'bg-yellow-500 text-white shadow-lg',
+    danger: 'bg-red-500 text-white shadow-lg',
+    info: 'bg-cyan-500 text-white shadow-lg',
   }
   
+  // Ensure children is always a string
+  const safeChildren = typeof children === 'string' ? children : 
+                      typeof children === 'object' && children?.title ? children.title :
+                      String(children || '')
+  
   return (
-    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${variants[variant]} ${className}`}>
-      {children}
+    <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold ${variants[variant]} ${isRTL ? 'font-arabic' : ''} ${className}`}>
+      {safeChildren}
     </span>
   )
 }

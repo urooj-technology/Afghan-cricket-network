@@ -7,6 +7,7 @@ from api.views.data.viewsets import (
     TeamRankingViewSet, PlayerRankingViewSet, GeneralRankingViewSet, RankingCategoryViewSet,
     MediaViewSet, MediaCategoryViewSet, MediaGalleryViewSet
 )
+from api.views.test import test_rankings
 
 # Create router for API endpoints
 router = DefaultRouter()
@@ -38,4 +39,5 @@ router.register(r'media-galleries', MediaGalleryViewSet, basename='media-galleri
 
 urlpatterns = [
     path('v1/', include(router.urls)),
+    path('v1/test-rankings/', test_rankings, name='test-rankings'),
 ]

@@ -23,7 +23,7 @@ class TeamRankingViewSet(DataRootViewSet):
     serializer_class = TeamRankingSerializer
     permission_classes = [AllowAny]
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ['format', 'country_code']
+    filterset_fields = ['format', 'country_code', 'is_published']
     ordering_fields = ['rank', 'rating', 'points']
     ordering = ['format', 'rank']
 
@@ -39,7 +39,7 @@ class TeamRankingViewSet(DataRootViewSet):
 class PlayerRankingViewSet(DataRootViewSet):
     permission_classes = [AllowAny]
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ['category', 'format', 'country']
+    filterset_fields = ['category', 'format', 'country', 'is_published']
     ordering_fields = ['rank', 'rating', 'points']
     ordering = ['category', 'format', 'rank']
 

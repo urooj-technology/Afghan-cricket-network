@@ -2,30 +2,41 @@
 
 import Header from '../../components/layout/Header'
 import Footer from '../../components/layout/Footer'
+import RTLWrapper from '../../components/ui/RTLWrapper'
+import { RTLHeading, RTLParagraph } from '../../components/ui/RTLText'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
 import { TrophyIcon, UsersIcon, GlobeAltIcon, HeartIcon, StarIcon, FlagIcon } from '@heroicons/react/24/outline'
+import { getTextAlign, getFontClass } from '../../utils/rtl'
 
 export default function About() {
-  const { language } = useLanguage()
+  const { language, isRTL } = useLanguage()
 
   return (
-    <main className="min-h-screen">
-      <Header />
+    <RTLWrapper>
+      <main className="min-h-screen bg-gray-50">
+        <Header />
       
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              {getTranslation(language, 'about.title')}
-            </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              {getTranslation(language, 'about.subtitle')}
-            </p>
+        {/* Hero Section */}
+        <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <RTLHeading 
+                level="h1" 
+                className="text-4xl md:text-5xl font-bold mb-6"
+                align="center"
+              >
+                {getTranslation(language, 'about.title')}
+              </RTLHeading>
+              <RTLParagraph 
+                className="text-xl text-blue-100 max-w-3xl mx-auto"
+                align="center"
+              >
+                {getTranslation(language, 'about.subtitle')}
+              </RTLParagraph>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Mission, Vision, Values */}
       <section className="py-16 bg-white">
@@ -35,36 +46,57 @@ export default function About() {
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <TrophyIcon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <RTLHeading 
+                level="h3" 
+                className="text-2xl font-bold text-gray-900 mb-4"
+                align="center"
+              >
                 {getTranslation(language, 'about.mission')}
-              </h3>
-              <p className="text-gray-700 leading-relaxed">
+              </RTLHeading>
+              <RTLParagraph 
+                className="text-gray-700 leading-relaxed"
+                align="center"
+              >
                 {getTranslation(language, 'about.missionText')}
-              </p>
+              </RTLParagraph>
             </div>
 
             <div className="text-center p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-lg">
               <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <GlobeAltIcon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <RTLHeading 
+                level="h3" 
+                className="text-2xl font-bold text-gray-900 mb-4"
+                align="center"
+              >
                 {getTranslation(language, 'about.vision')}
-              </h3>
-              <p className="text-gray-700 leading-relaxed">
+              </RTLHeading>
+              <RTLParagraph 
+                className="text-gray-700 leading-relaxed"
+                align="center"
+              >
                 {getTranslation(language, 'about.visionText')}
-              </p>
+              </RTLParagraph>
             </div>
 
             <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-lg">
               <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <HeartIcon className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                {getTranslation(language, 'about.values') || 'Our Values'}
-              </h3>
-              <p className="text-gray-700 leading-relaxed">
-                {getTranslation(language, 'about.valuesText') || 'Excellence, Integrity, Unity, and Passion for cricket development in Afghanistan.'}
-              </p>
+              <RTLHeading 
+                level="h3" 
+                className="text-2xl font-bold text-gray-900 mb-4"
+                align="center"
+              >
+                {getTranslation(language, 'about.values')}
+              </RTLHeading>
+              <RTLParagraph 
+                className="text-gray-700 leading-relaxed"
+                align="center"
+              >
+                {getTranslation(language, 'about.valuesText')}
+              </RTLParagraph>
             </div>
           </div>
 
@@ -286,7 +318,8 @@ export default function About() {
         </div>
       </section>
 
-      <Footer />
-    </main>
+        <Footer />
+      </main>
+    </RTLWrapper>
   )
 }

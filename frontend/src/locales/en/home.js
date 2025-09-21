@@ -96,5 +96,19 @@ export const home = {
   welcome: {
     title: 'Welcome to Afghanistan Cricket Network',
     description: 'Your comprehensive source for all things related to Afghan cricket. From breaking news to in-depth analysis, we bring you closer to the game you love.'
+  },
+  features: {
+    liveScores: {
+      title: 'Live Scores & Updates',
+      description: 'Get real-time match scores, ball-by-ball commentary, and instant updates from all cricket formats.'
+    },
+    news: {
+      title: 'Latest Cricket News',
+      description: 'Stay informed with breaking news, match reports, player interviews, and expert analysis.'
+    },
+    community: {
+      title: 'Cricket Community',
+      description: 'Connect with fellow cricket enthusiasts, share your passion, and celebrate Afghan cricket together.'
+    }
   }
 }

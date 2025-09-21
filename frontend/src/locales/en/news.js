@@ -5,6 +5,12 @@ export const news = {
   tryAdjusting: 'Try adjusting your search or filter criteria.',
   checkBackLater: 'Check back later for the latest cricket news.',
   showing: 'Showing',
+  noImage: 'News Article',
+  noNews: {
+    title: 'No News Found',
+    description: 'No news articles match your current search criteria. Try adjusting your filters or check back later for new content.'
+  },
+  searchPlaceholder: 'Search news articles...',
   categories: {
     all: 'All Categories',
     international: 'International Cricket',

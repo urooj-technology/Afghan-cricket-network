@@ -9,6 +9,20 @@ export const common = {
     about: 'درباره ما',
     contact: 'تماس'
   },
+  pagination: {
+    previous: 'قبلی',
+    next: 'بعدی',
+    page: 'صفحه',
+    of: 'از',
+    showing: 'نمایش',
+    results: 'نتایج'
+  },
+  error: {
+    title: 'مشکلی پیش آمده',
+    message: 'خطایی در بارگذاری محتوا رخ داده است. لطفاً بعداً دوباره تلاش کنید.',
+    retry: 'تلاش مجدد',
+    goHome: 'برو به خانه'
+  },
   buttons: {
     readMore: 'بیشتر بخوانید',
     viewAll: 'مشاهده همه',
@@ -29,6 +43,9 @@ export const common = {
     back: 'بازگشت',
     close: 'بستن'
   },
+  loading: 'در حال بارگذاری...',
+  notAvailable: 'در دسترس نیست',
+  backToTeam: 'بازگشت به تیم',
   status: {
     loading: 'در حال بارگذاری...',
     error: 'خطا',
@@ -116,5 +133,20 @@ export const common = {
   },
   admin: {
     dashboard: 'مدیریت'
-  }
+  },
+  // Additional common terms
+  description: 'توضیح',
+  published: 'منتشر شده',
+  views: 'بازدیدها',
+  type: 'نوع',
+  category: 'دستهبندی',
+  fileSize: 'اندازه فایل',
+  duration: 'مدت',
+  backToMedia: 'بازگشت به رسانه',
+  viewDocument: 'مشاهده سند',
+  viewDetails: 'مشاهده جزئیات',
+  endOfResults: 'به پایان نتایج رسیدهاید',
+  selected: 'انتخاب شده',
+  entries: 'ورودیها',
+  noChange: 'بدون تغییر'
 }
