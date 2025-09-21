@@ -7,6 +7,7 @@ import Footer from '../../../components/layout/Footer'
 import LoadingSpinner from '../../../components/ui/LoadingSpinner'
 import RTLWrapper from '../../../components/ui/RTLWrapper'
 import { useLanguage } from '../../../contexts/LanguageContext'
+import { getTranslation } from '../../../lib/translations'
 import { useFetchData } from '../../../hooks'
 import { 
   CalendarIcon, 
