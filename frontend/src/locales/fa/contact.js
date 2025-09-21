@@ -1,20 +1,44 @@
 export const contact = {
   title: 'تماس با ما',
   subtitle: 'با ما در ارتباط باشید',
+  description: 'ما دوست داریم از شما بشنویم. برای هر گونه سؤال در مورد شبکه کریکت افغانستان با ما تماس بگیرید.',
   form: {
+    title: 'پیام خود را برای ما ارسال کنید',
     name: 'نام',
     email: 'ایمیل',
     subject: 'موضوع',
     message: 'پیام',
-    send: 'ارسال پیام',
-    sending: 'در حال ارسال...',
-    success: 'پیام شما با موفقیت ارسال شد',
-    error: 'خطا در ارسال پیام'
+    send: 'ارسال',
+    namePlaceholder: 'نام خود را وارد کنید',
+    emailPlaceholder: 'ایمیل خود را وارد کنید',
+    subjectPlaceholder: 'موضوع پیام',
+    messagePlaceholder: 'پیام خود را اینجا بنویسید...',
   },
   info: {
     address: 'آدرس',
     phone: 'تلفن',
     email: 'ایمیل',
-    hours: 'ساعات کاری'
-  }
+    officeHours: 'ساعات اداری',
+  },
+  contactInfo: 'اطلاعات تماس',
+  officeHours: 'ساعات اداری',
+  address: 'آدرس:',
+  phone: 'تلفن:',
+  email: 'ایمیل:',
+  officeHoursText: 'شنبه - پنجشنبه: ۸:۰۰ - ۱۷:۰۰',
+  addressText: 'کابل، افغانستان',
+  phoneText: '+93 70 123 4567',
+  emailText: 'info@afghancricketnetwork.com',
+  emergency: {
+    title: 'تماس اضطراری',
+    description: 'برای مسائل فوری خارج از ساعات اداری',
+    phone: '+93 70 999 9999',
+  },
+  location: {
+    title: 'ما را پیدا کنید',
+    description: 'از دفتر ما در کابل دیدن کنید',
+  },
+  map: {
+    placeholder: 'نقشه تعاملی اینجا نمایش داده خواهد شد',
+  },
 }

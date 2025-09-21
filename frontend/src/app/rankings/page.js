@@ -301,21 +301,20 @@ export default function RankingsPage() {
                       ? 'border-blue-500 ring-4 ring-blue-100' 
                       : 'border-gray-100 hover:border-gray-200'
                   }`}
-                  dir={isRTL ? 'rtl' : 'ltr'}
                 >
-                  <div className={`relative p-8 text-center bg-gradient-to-br ${format.color} text-white`}>
+                  <div className={`relative p-8 bg-gradient-to-br ${format.color} text-white`}>
                     <div className="absolute inset-0 bg-black/10"></div>
-                    <div className="relative z-10">
+                    <div className="relative z-10 text-center">
                       <IconComponent className="w-12 h-12 mx-auto mb-4" />
-                      <h3 className={`text-2xl font-bold mb-2 ${isRTL ? 'font-arabic' : ''}`}>
+                      <h3 className={`text-2xl font-bold mb-2 text-center ${isRTL ? 'font-arabic' : ''}`}>
                         {format.display}
                       </h3>
-                      <p className={`text-sm opacity-90 ${isRTL ? 'font-arabic' : ''}`}>
+                      <p className={`text-sm opacity-90 text-center ${isRTL ? 'font-arabic' : ''}`}>
                         {format.description}
                       </p>
                     </div>
                     {selectedFormat === format.key && (
-                      <div className="absolute top-4 right-4">
+                      <div className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'}`}>
                         <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
                           <TrophySolidIcon className="w-5 h-5 text-white" />
                         </div>
@@ -350,22 +349,21 @@ export default function RankingsPage() {
                       ? 'border-blue-500 ring-4 ring-blue-100' 
                       : 'border-gray-100 hover:border-gray-200'
                   }`}
-                  dir={isRTL ? 'rtl' : 'ltr'}
                 >
                   <div className="p-6 text-center">
                     <div className={`w-16 h-16 ${category.bgColor} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
                       <IconComponent className={`w-8 h-8 ${category.textColor}`} />
                     </div>
-                    <h3 className={`text-lg font-bold text-gray-900 mb-2 ${isRTL ? 'font-arabic' : ''}`}>
+                    <h3 className={`text-lg font-bold text-gray-900 mb-2 text-center ${isRTL ? 'font-arabic' : ''}`}>
                       {String(getTranslation(language, `rankings.categories.${category.key}`) || category.display)}
                     </h3>
-                    <p className={`text-sm text-gray-600 ${isRTL ? 'font-arabic' : ''}`}>
+                    <p className={`text-sm text-gray-600 text-center ${isRTL ? 'font-arabic' : ''}`}>
                       {category.description}
                     </p>
                     {selectedCategory === category.key && (
                       <div className="mt-4">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-medium">
-                          <TrophySolidIcon className="w-4 h-4 mr-1" />
+                        <div className={`inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-sm font-medium ${isRTL ? 'flex-row-reverse' : ''}`}>
+                          <TrophySolidIcon className={`w-4 h-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                           {String(getTranslation(language, 'common.selected') || 'Selected')}
                         </div>
                       </div>

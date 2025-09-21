@@ -121,11 +121,11 @@ export default function RTLWrapper({ children, className = '' }) {
         }
         
         .rtl-content h1, .rtl-content h2, .rtl-content h3, .rtl-content h4, .rtl-content h5, .rtl-content h6 {
-          text-align: center !important;
+          text-align: right !important;
         }
         
         .rtl-content p {
-          text-align: center !important;
+          text-align: right !important;
         }
         
         .rtl-content input, .rtl-content select, .rtl-content textarea {
@@ -142,6 +142,14 @@ export default function RTLWrapper({ children, className = '' }) {
         
         .rtl-content .text-left {
           text-align: left !important;
+        }
+        
+        .rtl-content .hero-title {
+          text-align: center !important;
+        }
+        
+        .rtl-content .hero-subtitle {
+          text-align: center !important;
         }
       `}</style>
     </div>

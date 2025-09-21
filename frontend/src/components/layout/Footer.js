@@ -47,7 +47,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white" dir={direction}>
+    <footer className="bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white" dir={direction}>
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
@@ -85,7 +85,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-blue-400">
+            <h4 className="text-lg font-semibold mb-6 text-indigo-300">
               {getTranslation(language, 'common.footer.quickLinks')}
             </h4>
             <ul className="space-y-3">
@@ -95,7 +95,7 @@ export default function Footer() {
                     href={link.href}
                     className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group"
                   >
-                    <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="w-2 h-2 bg-indigo-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {getTranslation(language, `common.nav.${link.key}`)}
                   </Link>
                 </li>
@@ -105,7 +105,7 @@ export default function Footer() {
 
           {/* Cricket Section */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-emerald-400">
+            <h4 className="text-lg font-semibold mb-6 text-purple-300">
               {getTranslation(language, 'common.footer.cricket')}
             </h4>
             <ul className="space-y-3">
@@ -115,7 +115,7 @@ export default function Footer() {
                     href={link.href}
                     className="text-gray-300 hover:text-white transition-colors duration-200 flex items-center group"
                   >
-                    <span className="w-2 h-2 bg-emerald-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="w-2 h-2 bg-purple-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {getTranslation(language, `common.nav.${link.key}`)}
                   </Link>
                 </li>
@@ -125,23 +125,23 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-purple-400">
+            <h4 className="text-lg font-semibold mb-6 text-pink-300">
               {getTranslation(language, 'common.footer.contact')}
             </h4>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <MapPinIcon className="w-5 h-5 text-purple-400 mt-1 flex-shrink-0" />
+                <MapPinIcon className="w-5 h-5 text-pink-400 mt-1 flex-shrink-0" />
                 <div className="text-gray-300 text-sm">
                   <p>Kabul Cricket Stadium</p>
                   <p>Kabul, Afghanistan</p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
-                <PhoneIcon className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                <PhoneIcon className="w-5 h-5 text-pink-400 flex-shrink-0" />
                 <span className="text-gray-300 text-sm">+93 (0) 20 123 4567</span>
               </div>
               <div className="flex items-center space-x-3">
-                <EnvelopeIcon className="w-5 h-5 text-purple-400 flex-shrink-0" />
+                <EnvelopeIcon className="w-5 h-5 text-pink-400 flex-shrink-0" />
                 <span className="text-gray-300 text-sm">info@afghancricket.af</span>
               </div>
             </div>
@@ -155,9 +155,9 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder={getTranslation(language, 'common.footer.emailPlaceholder')}
-                  className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-lg text-sm focus:outline-none focus:border-purple-500 transition-colors"
+                  className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-lg text-sm focus:outline-none focus:border-pink-500 transition-colors"
                 />
-                <button className="px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-r-lg transition-colors">
+                <button className="px-4 py-2 bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 rounded-r-lg transition-colors">
                   <EnvelopeIcon className="w-4 h-4" />
                 </button>
               </div>
@@ -167,7 +167,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-purple-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             {/* Copyright */}
@@ -196,7 +196,7 @@ export default function Footer() {
             {/* Scroll to Top */}
             <button
               onClick={scrollToTop}
-              className="p-2 bg-gray-800 hover:bg-gray-700 rounded-full transition-all duration-300 transform hover:scale-110 group"
+              className="p-2 bg-gradient-to-r from-indigo-800 to-purple-800 hover:from-indigo-700 hover:to-purple-700 rounded-full transition-all duration-300 transform hover:scale-110 group"
               aria-label="Scroll to top"
             >
               <ArrowUpIcon className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />

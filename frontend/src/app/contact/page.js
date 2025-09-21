@@ -39,18 +39,18 @@ export default function Contact() {
         <Header />
       
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
+        <section className="bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 text-white py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <RTLHeading 
                 level="h1" 
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-pink-200 bg-clip-text text-transparent"
                 align="center"
               >
                 {getTranslation(language, 'contact.title')}
               </RTLHeading>
               <RTLParagraph 
-                className="text-xl text-blue-100 max-w-3xl mx-auto"
+                className="text-xl text-purple-100 max-w-3xl mx-auto leading-relaxed"
                 align="center"
               >
                 {getTranslation(language, 'contact.subtitle')}
@@ -65,10 +65,10 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
             {/* Contact Form */}
-            <div className="bg-white rounded-xl shadow-lg p-8">
+            <div className="bg-white rounded-xl shadow-lg p-8 h-full">
               <RTLHeading 
                 level="h2" 
-                className="text-3xl font-bold text-gray-900 mb-6"
+                className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-6"
               >
                 {getTranslation(language, 'contact.form.title')}
               </RTLHeading>
@@ -139,7 +139,7 @@ export default function Contact() {
                 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 transform hover:scale-105"
+                  className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 shadow-lg"
                 >
                   {getTranslation(language, 'contact.form.send')}
                 </button>
@@ -149,7 +149,7 @@ export default function Contact() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-6">
                   {getTranslation(language, 'contact.contactInfo')}
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
@@ -158,9 +158,9 @@ export default function Contact() {
               </div>
 
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
+                <div className={`flex items-start ${isRTL ? 'space-x-reverse' : ''} space-x-4`}>
                   <div className="flex-shrink-0">
-                    <BuildingOfficeIcon className="w-6 h-6 text-blue-600" />
+                    <BuildingOfficeIcon className="w-6 h-6 text-indigo-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
@@ -172,9 +172,9 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className={`flex items-start ${isRTL ? 'space-x-reverse' : ''} space-x-4`}>
                   <div className="flex-shrink-0">
-                    <PhoneIcon className="w-6 h-6 text-blue-600" />
+                    <PhoneIcon className="w-6 h-6 text-purple-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
@@ -186,9 +186,9 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className={`flex items-start ${isRTL ? 'space-x-reverse' : ''} space-x-4`}>
                   <div className="flex-shrink-0">
-                    <EnvelopeIcon className="w-6 h-6 text-blue-600" />
+                    <EnvelopeIcon className="w-6 h-6 text-pink-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
@@ -200,9 +200,9 @@ export default function Contact() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className={`flex items-start ${isRTL ? 'space-x-reverse' : ''} space-x-4`}>
                   <div className="flex-shrink-0">
-                    <ClockIcon className="w-6 h-6 text-blue-600" />
+                    <ClockIcon className="w-6 h-6 text-indigo-600" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
@@ -216,14 +216,14 @@ export default function Contact() {
               </div>
 
               {/* Additional Info */}
-              <div className="bg-blue-50 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-900 mb-3">
+              <div className="bg-gradient-to-br from-indigo-50 to-purple-100 rounded-lg p-6">
+                <h3 className="text-lg font-semibold bg-gradient-to-r from-indigo-700 to-purple-700 bg-clip-text text-transparent mb-3">
                   {getTranslation(language, 'contact.emergency.title') || 'Emergency Contact'}
                 </h3>
-                <p className="text-blue-800 text-sm mb-3">
+                <p className="text-indigo-700 text-sm mb-3">
                   {getTranslation(language, 'contact.emergency.description') || 'For urgent matters outside office hours'}
                 </p>
-                <p className="text-blue-900 font-semibold">
+                <p className="text-purple-800 font-semibold">
                   {getTranslation(language, 'contact.emergency.phone') || '+93 70 999 9999'}
                 </p>
               </div>
@@ -236,7 +236,7 @@ export default function Contact() {
       <section className="py-16 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
               {getTranslation(language, 'contact.location.title') || 'Find Us'}
             </h2>
             <p className="text-lg text-gray-600">

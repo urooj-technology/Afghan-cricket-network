@@ -124,7 +124,7 @@ export default function PlayerDetailPage() {
         <Header />
         
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white overflow-hidden">
+        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
@@ -142,8 +142,8 @@ export default function PlayerDetailPage() {
               ) : (
                 <ArrowLeftIcon className="w-5 h-5 mr-2" />
               )}
-              <span className={getFontClass(isRTL)}>
-                {getTranslation(language, 'common.backToTeam') || 'Back to Team'}
+              <span className={isRTL ? 'font-arabic' : ''}>
+                {getTranslation(language, 'team.backToTeam') || 'Back to Team'}
               </span>
             </Link>
             
@@ -180,12 +180,9 @@ export default function PlayerDetailPage() {
               </div>
               
               <div className={`lg:col-span-2 ${isRTL ? 'lg:order-1 text-right' : 'text-left'}`}>
-                <RTLHeading 
-                  level="h1" 
-                  className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
-                >
+                <h1 className={`text-4xl md:text-6xl font-bold mb-6 leading-tight ${isRTL ? 'font-arabic text-right' : ''}`}>
                   {data.name}
-                </RTLHeading>
+                </h1>
                 
                 <div className={`flex items-center gap-4 mb-8 ${isRTL ? 'flex-row-reverse justify-end' : 'justify-start'}`}>
                   <span className={`bg-gradient-to-r ${getRoleColor(data.role || data.position)} text-white px-6 py-3 rounded-full text-lg font-semibold shadow-lg`}>
@@ -197,9 +194,9 @@ export default function PlayerDetailPage() {
                     </span>
                   )}
                   {data.is_captain && (
-                    <span className="bg-yellow-600 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2">
+                    <span className={`bg-yellow-600 text-white px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 ${isRTL ? 'font-arabic' : ''}`}>
                       <TrophyIcon className="w-4 h-4" />
-                      Captain
+                      {getTranslation(language, 'team.captain') || 'Captain'}
                     </span>
                   )}
                 </div>
@@ -207,25 +204,25 @@ export default function PlayerDetailPage() {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                   <div className={`text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 ${getTextAlign(isRTL, 'center')}`}>
                     <div className="text-3xl font-bold mb-1">{data.age || 'N/A'}</div>
-                    <div className={`text-blue-200 text-sm ${getFontClass(isRTL)}`}>
+                    <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>
                       {getTranslation(language, 'team.age') || 'Age'}
                     </div>
                   </div>
                   <div className={`text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 ${getTextAlign(isRTL, 'center')}`}>
                     <div className="text-3xl font-bold mb-1">{data.matches_played || 0}</div>
-                    <div className={`text-blue-200 text-sm ${getFontClass(isRTL)}`}>
+                    <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>
                       {getTranslation(language, 'team.matches') || 'Matches'}
                     </div>
                   </div>
                   <div className={`text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 ${getTextAlign(isRTL, 'center')}`}>
                     <div className="text-3xl font-bold mb-1">{data.runs_scored || 0}</div>
-                    <div className={`text-blue-200 text-sm ${getFontClass(isRTL)}`}>
+                    <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>
                       {getTranslation(language, 'team.runs') || 'Runs'}
                     </div>
                   </div>
                   <div className={`text-center bg-white/10 backdrop-blur-sm rounded-2xl p-4 ${getTextAlign(isRTL, 'center')}`}>
                     <div className="text-3xl font-bold mb-1">{data.wickets_taken || 0}</div>
-                    <div className={`text-blue-200 text-sm ${getFontClass(isRTL)}`}>
+                    <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>
                       {getTranslation(language, 'team.wickets') || 'Wickets'}
                     </div>
                   </div>

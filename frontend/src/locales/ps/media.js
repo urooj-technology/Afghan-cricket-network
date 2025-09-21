@@ -18,8 +18,10 @@ export const media = {
   allCategories: 'ټولې کټګورۍ',
   watchVideo: 'ویډیو وګورئ',
   noMediaFound: 'هیڅ رسنۍ ونه موندل شوه',
-  adjustSearchCriteria: 'د پلټنې یا فلټر معیارونه بدل کړئ.',
+  adjustSearchCriteria: 'د پلټنې معیارونه تنظیم کړئ.',
   noMediaAvailable: 'دا مهال هیڅ رسنۍ شتون نلري.',
+  allMediaLoaded: 'ټولې رسنۍ بار شوې',
+  allMediaLoadedDesc: 'تاسو ټولې شته رسنۍ لیدلي دي',
   // Media types
   photo: 'عکس',
   video: 'ویډیو',
@@ -29,7 +31,7 @@ export const media = {
   events: 'پیښې',
   training: 'روزنه',
   awards: 'جايزې',
-  behindScenes: 'د پردې شاته',
+  behind_scenes: 'د پردې شاته',
   interviews: 'مرکې',
   photoGallery: 'د عکسونو ګالري',
   // Additional translations
@@ -37,7 +39,7 @@ export const media = {
   mediaNotFoundDesc: 'غوښتل شوی رسنۍ فایل ونه موندل شو.',
   videoNotSupported: 'ستاسو براوزر د ویډیو ټګ ملاتړ نه کوي.',
   videoNotAvailable: 'ویډیو شتون نلري',
-  defaultDescription: 'د زموږ د رسنۍ ٹولګې څخه یوه زړه ایزه برخه چې د افغان کرکټ غوره برخه راډاګوي.',
+  defaultDescription: 'د زموږ د رسنۍ ټولګې څخه یوه زړه ایزه برخه چې د افغان کرکټ غوره برخه راښکاره کوي.',
   mediaInformation: 'د رسنۍ معلومات',
-  featuredMediaDesc: 'د افغان کرکټ تر ټولو مشهور او ځانګړي مطالبو وګورئ',
+  featuredMediaDesc: 'د افغان کرکټ تر ټولو مشهور او ځانګړي مطالب وګورئ',
 }

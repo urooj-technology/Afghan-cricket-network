@@ -105,33 +105,36 @@ export default function Media() {
         <Header />
       
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-24 overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
-          <div className="absolute inset-0 bg-black/10"></div>
+        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-24 overflow-hidden">
+          <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
             <div className="absolute bottom-10 right-10 w-24 h-24 bg-white/5 rounded-full animate-pulse delay-300"></div>
             <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-white/5 rounded-full animate-pulse delay-700"></div>
           </div>
           <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className={`text-center ${isRTL ? 'rtl-content' : ''}`}>
-              <h1 className={`text-5xl md:text-7xl font-bold mb-8 leading-tight ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full mb-8">
+                <PhotoIcon className="w-10 h-10 text-yellow-400" />
+              </div>
+              
+              <h1 className={`text-5xl md:text-7xl font-bold mb-6 leading-tight hero-title ${isRTL ? 'font-arabic' : ''}`}>
                 {String(getTranslation(language, 'media.title') || 'Media Gallery')}
               </h1>
-              <p className={`text-xl md:text-2xl text-blue-100 max-w-4xl mx-auto leading-relaxed mb-8 ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-12 hero-subtitle ${isRTL ? 'font-arabic' : ''}`}>
                 {String(getTranslation(language, 'media.subtitle') || 'Explore photos, videos, and exclusive content from Afghanistan cricket')}
               </p>
               
               {/* Search Field */}
-              <div className="max-w-2xl mx-auto mb-12">
+              <div className="max-w-md mx-auto mb-12">
                 <div className="relative">
-                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-6 h-6 text-blue-300 ${isRTL ? 'right-4' : 'left-4'}`} />
+                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/70 ${isRTL ? 'right-4' : 'left-4'}`} />
                   <input
                     type="text"
                     placeholder={String(getTranslation(language, 'media.searchPlaceholder') || 'Search photos, videos, galleries...')}
                     value={searchTerm}
                     onChange={(e) => handleSearch(e.target.value)}
-                    className={`w-full py-4 px-6 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200 text-lg text-white placeholder-blue-200 ${isRTL ? 'pr-14 pl-6 text-right font-arabic' : 'pl-14 pr-6 text-left'}`}
-                    dir={isRTL ? 'rtl' : 'ltr'}
+                    className={`w-full py-4 px-12 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200 text-white placeholder-white/70 ${isRTL ? 'text-right font-arabic' : ''}`}
                   />
                 </div>
               </div>
@@ -139,24 +142,24 @@ export default function Media() {
               {/* Stats Cards */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <PhotoIcon className="w-8 h-8 mx-auto mb-2 text-blue-200" />
-                  <div className="text-2xl font-bold mb-1">500+</div>
-                  <div className={`text-blue-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'media.photos') || 'Photos')}</div>
+                  <PhotoIcon className="w-8 h-8 mx-auto mb-2 text-blue-400" />
+                  <div className="text-2xl font-bold mb-1">{media.filter(m => m.media_type === 'photo').length || '500+'}</div>
+                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'media.photos') || 'Photos')}</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <VideoCameraIcon className="w-8 h-8 mx-auto mb-2 text-blue-200" />
-                  <div className="text-2xl font-bold mb-1">100+</div>
-                  <div className={`text-blue-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'media.videos') || 'Videos')}</div>
+                  <VideoCameraIcon className="w-8 h-8 mx-auto mb-2 text-red-400" />
+                  <div className="text-2xl font-bold mb-1">{media.filter(m => m.media_type === 'video').length || '100+'}</div>
+                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'media.videos') || 'Videos')}</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <StarIcon className="w-8 h-8 mx-auto mb-2 text-blue-200" />
-                  <div className="text-2xl font-bold mb-1">50+</div>
-                  <div className={`text-blue-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'media.featured') || 'Featured')}</div>
+                  <StarIcon className="w-8 h-8 mx-auto mb-2 text-yellow-400" />
+                  <div className="text-2xl font-bold mb-1">{featuredMedia?.length || '50+'}</div>
+                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'media.featured') || 'Featured')}</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <EyeIcon className="w-8 h-8 mx-auto mb-2 text-blue-200" />
+                  <EyeIcon className="w-8 h-8 mx-auto mb-2 text-green-400" />
                   <div className="text-2xl font-bold mb-1">1M+</div>
-                  <div className={`text-blue-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'common.views') || 'Views')}</div>
+                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'common.views') || 'Views')}</div>
                 </div>
               </div>
             </div>
@@ -165,16 +168,16 @@ export default function Media() {
 
       {/* Featured Media */}
       {featuredMedia && featuredMedia.length > 0 && (
-        <section className="py-16 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <section className="py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-16">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mb-6">
                 <StarIcon className="w-8 h-8 text-yellow-600" />
               </div>
-              <h2 className={`text-4xl font-bold text-gray-900 mb-4 ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+              <h2 className={`text-4xl md:text-5xl font-bold text-gray-900 mb-6 ${isRTL ? 'font-arabic' : ''}`}>
                 {String(getTranslation(language, 'media.featuredMedia') || 'Featured Media')}
               </h2>
-              <p className={`text-lg text-gray-600 max-w-2xl mx-auto ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+              <p className={`text-xl text-gray-600 max-w-3xl mx-auto ${isRTL ? 'font-arabic' : ''}`}>
                 {String(getTranslation(language, 'media.featuredMediaDesc') || 'Discover the most popular and exclusive content from Afghanistan cricket')}
               </p>
             </div>
@@ -182,8 +185,8 @@ export default function Media() {
               {featuredMedia.slice(0, 3).map((item) => {
                 const IconComponent = getMediaIcon(item.media_type)
                 return (
-                  <div key={item.id} className="group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full flex flex-col min-h-[500px]" dir={isRTL ? 'rtl' : 'ltr'}>
-                    <div className="relative aspect-[4/3] bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 flex items-center justify-center overflow-hidden flex-shrink-0">
+                  <div key={item.id} className="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full flex flex-col">
+                    <div className="relative aspect-[4/3] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center overflow-hidden flex-shrink-0">
                       <div className="absolute inset-0 bg-black/10"></div>
                       {item.image || item.thumbnail ? (
                         <img 
@@ -239,12 +242,12 @@ export default function Media() {
                     </div>
                     
                     <div className="p-5 sm:p-6 flex-1 flex flex-col">
-                      <h3 className={`font-bold text-lg sm:text-xl mb-4 text-gray-900 line-clamp-2 leading-tight ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+                      <h3 className={`font-bold text-xl mb-4 text-gray-900 line-clamp-2 leading-tight ${isRTL ? 'font-arabic text-right' : ''}`}>
                         {item.title}
                       </h3>
                       
                       {item.description && (
-                        <p className={`text-sm text-gray-600 mb-4 line-clamp-2 leading-relaxed flex-1 ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+                        <p className={`text-gray-600 mb-4 line-clamp-3 leading-relaxed flex-1 ${isRTL ? 'font-arabic text-right' : ''}`}>
                           {item.description}
                         </p>
                       )}
@@ -252,7 +255,7 @@ export default function Media() {
                       <div className="mt-auto">
                         <Link
                           href={`/media/${item.slug}`}
-                          className={`block w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg ${isRTL ? 'font-arabic' : ''}`}
+                          className={`block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${isRTL ? 'font-arabic' : ''}`}
                         >
                           {item.media_type === 'video' ? (
                             <span className={`flex items-center justify-center ${isRTL ? 'flex-row-reverse gap-2' : 'gap-2'}`}>
@@ -304,7 +307,7 @@ export default function Media() {
                 {media.map((item) => {
                   const IconComponent = getMediaIcon(item.media_type)
                   return (
-                    <div key={item.id} className="group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 h-full flex flex-col min-h-[450px]" dir={isRTL ? 'rtl' : 'ltr'}>
+                    <div key={item.id} className="group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full flex flex-col">
                       <div className="relative aspect-[4/3] bg-gradient-to-br from-blue-500 via-purple-500 to-blue-600 flex items-center justify-center overflow-hidden flex-shrink-0">
                         <div className="absolute inset-0 bg-black/10"></div>
                         {item.image || item.thumbnail ? (
@@ -371,13 +374,13 @@ export default function Media() {
                         </div>
                         
                         {/* Title */}
-                        <h3 className={`font-bold text-base sm:text-lg mb-3 text-gray-900 line-clamp-2 leading-tight flex-shrink-0 ${isRTL ? 'font-arabic text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+                        <h3 className={`font-bold text-lg mb-3 text-gray-900 line-clamp-2 leading-tight flex-shrink-0 ${isRTL ? 'font-arabic text-right' : ''}`}>
                           {item.title}
                         </h3>
                         
                         {/* Description */}
                         {item.description && (
-                          <p className={`text-sm text-gray-600 mb-4 line-clamp-2 leading-relaxed flex-1 ${isRTL ? 'font-arabic text-right' : 'text-left'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+                          <p className={`text-gray-600 mb-4 line-clamp-2 leading-relaxed flex-1 ${isRTL ? 'font-arabic text-right' : ''}`}>
                             {item.description}
                           </p>
                         )}
@@ -386,7 +389,7 @@ export default function Media() {
                         <div className="mt-auto pt-2">
                           <Link
                             href={`/media/${item.slug}`}
-                            className={`block w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center py-2.5 sm:py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-lg text-sm sm:text-base ${isRTL ? 'font-arabic' : ''}`}
+                            className={`block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${isRTL ? 'font-arabic' : ''}`}
                           >
                             {item.media_type === 'video' ? (
                               <span className={`flex items-center justify-center ${isRTL ? 'flex-row-reverse gap-2' : 'gap-2'}`}>
@@ -411,10 +414,10 @@ export default function Media() {
 
               {/* Loading More Indicator */}
               {isLoadingMore && (
-                <div className="flex justify-center mt-12">
-                  <div className="bg-white rounded-2xl shadow-lg p-6">
+                <div className="flex justify-center mt-16">
+                  <div className="bg-white rounded-3xl shadow-xl p-8">
                     <div className="flex items-center gap-4">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600"></div>
                       <span className={`text-gray-600 font-medium ${isRTL ? 'font-arabic' : ''}`}>
                         {String(getTranslation(language, 'common.loading') || 'Loading more...')}
                       </span>
@@ -425,13 +428,16 @@ export default function Media() {
 
               {/* End of Results */}
               {!hasMore && media.length > 0 && (
-                <div className="text-center mt-12">
-                  <div className="bg-gray-50 rounded-2xl p-8 max-w-md mx-auto">
-                    <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <PhotoIcon className="w-8 h-8 text-gray-400" />
+                <div className="text-center mt-16">
+                  <div className="bg-white rounded-3xl shadow-xl p-8 max-w-md mx-auto">
+                    <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <PhotoIcon className="w-8 h-8 text-white" />
                     </div>
-                    <p className={`text-gray-600 font-medium ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
-                      {String(getTranslation(language, 'common.endOfResults') || 'You\'ve reached the end of the results')}
+                    <h3 className={`text-xl font-bold text-gray-900 mb-2 text-center ${isRTL ? 'font-arabic' : ''}`}>
+                      {String(getTranslation(language, 'media.allMediaLoaded') || 'All Media Loaded')}
+                    </h3>
+                    <p className={`text-gray-600 text-center ${isRTL ? 'font-arabic' : ''}`}>
+                      {String(getTranslation(language, 'media.allMediaLoadedDesc') || "You've seen all available media")}
                     </p>
                   </div>
                 </div>
@@ -440,14 +446,14 @@ export default function Media() {
               {/* Empty State */}
               {media.length === 0 && (
                 <div className="text-center py-20">
-                  <div className="bg-gray-50 rounded-2xl p-12 max-w-lg mx-auto">
-                    <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <PhotoIcon className="w-12 h-12 text-gray-400" />
+                  <div className="bg-white rounded-3xl shadow-xl p-12 max-w-lg mx-auto">
+                    <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                      <PhotoIcon className="w-16 h-16 text-gray-400" />
                     </div>
-                    <h3 className={`text-2xl font-bold text-gray-900 mb-4 ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+                    <h3 className={`text-2xl font-bold text-gray-900 mb-4 text-center ${isRTL ? 'font-arabic' : ''}`}>
                       {String(getTranslation(language, 'media.noMediaFound') || 'No Media Found')}
                     </h3>
-                    <p className={`text-gray-600 leading-relaxed ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+                    <p className={`text-lg text-gray-600 leading-relaxed text-center ${isRTL ? 'font-arabic' : ''}`}>
                       {String(searchTerm 
                         ? (getTranslation(language, 'media.adjustSearchCriteria') || 'Try adjusting your search criteria.')
                         : (getTranslation(language, 'media.noMediaAvailable') || 'No media files are currently available.'))}

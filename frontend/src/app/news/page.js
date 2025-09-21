@@ -92,12 +92,26 @@ export default function NewsPage() {
               <h1 className={`text-5xl md:text-7xl font-bold mb-6 leading-tight ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
                 {String(getTranslation(language, 'news.title') || 'Latest Cricket News')}
               </h1>
-              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-12 ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-8 ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
                 {String(getTranslation(language, 'news.subtitle') || 'Stay updated with the latest news and insights from Afghan cricket')}
               </p>
               
+              {/* Search in Hero */}
+              <div className="max-w-xl mx-auto mb-8">
+                <div className="relative">
+                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/60 ${isRTL ? 'right-4' : 'left-4'}`} />
+                  <input
+                    type="text"
+                    placeholder={getTranslation(language, 'news.searchPlaceholder') || 'Search news articles...'}
+                    value={searchTerm}
+                    onChange={(e) => handleSearch(e.target.value)}
+                    className={`w-full py-3 bg-white/15 backdrop-blur-md border border-white/30 rounded-full focus:ring-2 focus:ring-white/40 focus:border-white/40 transition-all duration-200 text-white placeholder-white/60 ${isRTL ? 'pr-12 pl-4 text-right font-arabic' : 'pl-12 pr-4'}`}
+                  />
+                </div>
+              </div>
+              
               {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
                   <FireSolidIcon className="w-8 h-8 mx-auto mb-2 text-orange-400" />
                   <div className="text-2xl font-bold mb-1">{news?.length || 0}</div>
@@ -124,51 +138,6 @@ export default function NewsPage() {
         </section>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          {/* Search and Filters */}
-          <section className="mb-16">
-            <div className="bg-white rounded-3xl shadow-xl border border-gray-100">
-              <div className="p-8">
-                <div className={`flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-6 lg:space-y-0 lg:space-x-8 ${isRTL ? 'lg:flex-row-reverse lg:space-x-reverse' : ''}`}>
-                  <div className="flex-1 max-w-lg">
-                    <label className={`block text-sm font-semibold text-gray-700 mb-3 ${isRTL ? 'text-right font-arabic' : ''}`}>
-                      {getTranslation(language, 'common.buttons.search') || 'Search'}
-                    </label>
-                    <div className="relative">
-                      <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400 ${isRTL ? 'right-4' : 'left-4'}`} />
-                      <input
-                        type="text"
-                        placeholder={getTranslation(language, 'news.searchPlaceholder') || 'Search news articles...'}
-                        value={searchTerm}
-                        onChange={(e) => handleSearch(e.target.value)}
-                        className={`w-full py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 text-lg ${isRTL ? 'pr-12 pl-4 text-right font-arabic' : 'pl-12 pr-4'}`}
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="flex-shrink-0 min-w-64">
-                    <label className={`block text-sm font-semibold text-gray-700 mb-3 ${isRTL ? 'text-right font-arabic' : ''}`}>
-                      {getTranslation(language, 'common.categories.all') || 'Categories'}
-                    </label>
-                    <div className="relative">
-                      <FunnelIcon className={`absolute top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400 ${isRTL ? 'right-4' : 'left-4'}`} />
-                      <select
-                        value={filterCategory}
-                        onChange={(e) => handleCategoryChange(e.target.value)}
-                        className={`w-full appearance-none py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white text-lg ${isRTL ? 'pr-12 pl-4 text-right font-arabic' : 'pl-12 pr-4'}`}
-                      >
-                        <option value="">{getTranslation(language, 'news.categories.all') || 'All Categories'}</option>
-                        {Array.isArray(categories) && categories.map((category) => (
-                          <option key={category.id} value={category.slug}>
-                            {category.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
 
           {/* News Grid */}
           <section>

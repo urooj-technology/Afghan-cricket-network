@@ -57,7 +57,7 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-100" dir={direction}>
+    <header className="bg-gradient-to-r from-indigo-50 via-white to-purple-50 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-purple-100" dir={direction}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
         {/* Logo */}
         <div className="flex items-center">
@@ -87,12 +87,12 @@ export default function Header() {
                 href={item.href}
                 className={`relative text-sm font-medium transition-all duration-200 py-2 px-3 rounded-lg group ${
                   isActive 
-                    ? 'text-blue-600 bg-blue-50 font-semibold' 
-                    : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                    ? 'text-indigo-600 bg-gradient-to-r from-indigo-50 to-purple-50 font-semibold' 
+                    : 'text-gray-700 hover:text-indigo-600 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50'
                 }`}
               >
                 {getTranslation(language, `common.nav.${item.key}`)}
-                <span className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-blue-600 transition-all duration-200 ${
+                <span className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-200 ${
                   isActive ? 'w-6' : 'w-0 group-hover:w-6'
                 }`}></span>
               </Link>
@@ -103,7 +103,7 @@ export default function Header() {
         {/* Desktop Actions */}
         <div className="hidden lg:flex lg:items-center lg:space-x-4">
           {/* Search */}
-          <button className="p-2 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200">
+          <button className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 rounded-lg transition-all duration-200">
             <MagnifyingGlassIcon className="w-5 h-5" />
           </button>
           
@@ -112,8 +112,8 @@ export default function Header() {
             href="/admin"
             className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
               pathname.startsWith('/admin')
-                ? 'text-red-700 bg-red-50 font-semibold'
-                : 'text-red-600 hover:text-red-700 hover:bg-red-50'
+                ? 'text-red-700 bg-gradient-to-r from-red-50 to-pink-50 font-semibold'
+                : 'text-red-600 hover:text-red-700 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50'
             }`}
           >
             {getTranslation(language, 'admin.nav.dashboard')}

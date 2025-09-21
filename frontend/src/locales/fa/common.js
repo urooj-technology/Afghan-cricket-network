@@ -9,22 +9,8 @@ export const common = {
     about: 'درباره ما',
     contact: 'تماس'
   },
-  pagination: {
-    previous: 'قبلی',
-    next: 'بعدی',
-    page: 'صفحه',
-    of: 'از',
-    showing: 'نمایش',
-    results: 'نتایج'
-  },
-  error: {
-    title: 'مشکلی پیش آمده',
-    message: 'خطایی در بارگذاری محتوا رخ داده است. لطفاً بعداً دوباره تلاش کنید.',
-    retry: 'تلاش مجدد',
-    goHome: 'برو به خانه'
-  },
   buttons: {
-    readMore: 'بیشتر بخوانید',
+    readMore: 'ادامه مطلب',
     viewAll: 'مشاهده همه',
     viewDetails: 'مشاهده جزئیات',
     loadMore: 'بارگذاری بیشتر',
@@ -34,7 +20,7 @@ export const common = {
     filter: 'فیلتر',
     clear: 'پاک کردن',
     clearFilters: 'پاک کردن فیلترها',
-    tryAgain: 'دوباره تلاش کنید',
+    tryAgain: 'تلاش مجدد',
     submit: 'ارسال',
     cancel: 'لغو',
     save: 'ذخیره',
@@ -50,7 +36,7 @@ export const common = {
     loading: 'در حال بارگذاری...',
     error: 'خطا',
     success: 'موفقیت',
-    noData: 'هیچ داده‌ای موجود نیست',
+    noData: 'داده‌ای موجود نیست',
     notFound: 'یافت نشد',
     upcoming: 'آینده',
     ongoing: 'در حال انجام',
@@ -79,8 +65,8 @@ export const common = {
     international: 'بین‌المللی',
     domestic: 'داخلی',
     teamNews: 'اخبار تیم',
-    playerUpdates: 'به‌روزرسانی بازیکنان',
-    matchReports: 'گزارش مسابقات',
+    playerUpdates: 'بروزرسانی بازیکنان',
+    matchReports: 'گزارش بازی‌ها',
     training: 'تمرین',
     awards: 'جوایز',
     youthCricket: 'کریکت جوانان',
@@ -97,24 +83,24 @@ export const common = {
     allRounder: 'همه‌کاره',
     wicketKeeper: 'دروازه‌بان',
     captain: 'کاپیتان',
-    viceCaptain: 'کاپیتان دوم'
+    viceCaptain: 'نایب کاپیتان'
   },
   stats: {
-    matches: 'مسابقات',
-    runs: 'دوها',
+    matches: 'بازی‌ها',
+    runs: 'امتیازات',
     wickets: 'ویکت‌ها',
     average: 'میانگین',
     strikeRate: 'نرخ ضربه',
-    economy: 'اقتصاد',
-    rating: 'رتبه‌بندی',
+    economy: 'اقتصادی',
+    rating: 'امتیاز',
     points: 'امتیازات',
     rank: 'رتبه',
-    views: 'بازدیدها',
-    registered: 'ثبت‌شده',
+    views: 'بازدید',
+    registered: 'ثبت‌نام شده',
     capacity: 'ظرفیت'
   },
   footer: {
-    description: 'مقصد اصلی شما برای اخبار کریکت افغانستان، به‌روزرسانی‌ها و بینش‌هایی از دنیای کریکت.',
+    description: 'مقصد اصلی شما برای اخبار، بروزرسانی‌ها و بینش‌های کریکت افغانستان از دنیای کریکت.',
     quickLinks: 'لینک‌های سریع',
     cricket: 'کریکت',
     contact: 'اطلاعات تماس',
@@ -134,19 +120,35 @@ export const common = {
   admin: {
     dashboard: 'مدیریت'
   },
-  // Additional common terms
-  description: 'توضیح',
+  pagination: {
+    previous: 'قبلی',
+    next: 'بعدی',
+    page: 'صفحه',
+    of: 'از',
+    showing: 'نمایش',
+    results: 'نتایج'
+  },
+  error: {
+    title: 'مشکلی پیش آمده',
+    message: 'خطایی در بارگذاری محتوا رخ داده است. لطفاً بعداً تلاش کنید.',
+    retry: 'تلاش مجدد',
+    goHome: 'برو به خانه'
+  },
+  search: {
+    placeholder: 'جستجوی اخبار کریکت، رویدادها، بازیکنان...'
+  },
+  description: 'توضیحات',
   published: 'منتشر شده',
-  views: 'بازدیدها',
+  views: 'بازدید',
   type: 'نوع',
-  category: 'دستهبندی',
+  category: 'دسته‌بندی',
   fileSize: 'اندازه فایل',
-  duration: 'مدت',
+  duration: 'مدت زمان',
   backToMedia: 'بازگشت به رسانه',
   viewDocument: 'مشاهده سند',
   viewDetails: 'مشاهده جزئیات',
-  endOfResults: 'به پایان نتایج رسیدهاید',
+  endOfResults: 'به انتهای نتایج رسیده‌اید',
   selected: 'انتخاب شده',
-  entries: 'ورودیها',
+  entries: 'ورودی‌ها',
   noChange: 'بدون تغییر'
 }

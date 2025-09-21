@@ -18,8 +18,10 @@ export const media = {
   allCategories: 'All Categories',
   watchVideo: 'Watch Video',
   noMediaFound: 'No Media Found',
-  adjustSearchCriteria: 'Try adjusting your search or filter criteria.',
+  adjustSearchCriteria: 'Try adjusting your search criteria.',
   noMediaAvailable: 'No media files are currently available.',
+  allMediaLoaded: 'All Media Loaded',
+  allMediaLoadedDesc: "You've seen all available media",
   // Media types
   photo: 'Photo',
   video: 'Video',
@@ -29,7 +31,7 @@ export const media = {
   events: 'Events',
   training: 'Training',
   awards: 'Awards',
-  behindScenes: 'Behind the Scenes',
+  behind_scenes: 'Behind the Scenes',
   interviews: 'Interviews',
   photoGallery: 'Photo Gallery',
   // Additional translations

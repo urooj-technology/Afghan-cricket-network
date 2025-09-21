@@ -18,18 +18,18 @@ export default function About() {
         <Header />
       
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white py-20">
+        <section className="bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 text-white py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <RTLHeading 
                 level="h1" 
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-pink-200 bg-clip-text text-transparent"
                 align="center"
               >
                 {getTranslation(language, 'about.title')}
               </RTLHeading>
               <RTLParagraph 
-                className="text-xl text-blue-100 max-w-3xl mx-auto"
+                className="text-xl text-purple-100 max-w-3xl mx-auto leading-relaxed"
                 align="center"
               >
                 {getTranslation(language, 'about.subtitle')}
@@ -42,8 +42,8 @@ export default function About() {
       <section className="py-16 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div className="text-center p-8 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="text-center p-8 bg-gradient-to-br from-indigo-50 to-purple-100 rounded-xl shadow-lg h-full flex flex-col">
+              <div className="w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <TrophyIcon className="w-8 h-8 text-white" />
               </div>
               <RTLHeading 
@@ -61,8 +61,8 @@ export default function About() {
               </RTLParagraph>
             </div>
 
-            <div className="text-center p-8 bg-gradient-to-br from-green-50 to-green-100 rounded-xl shadow-lg">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl shadow-lg h-full flex flex-col">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <GlobeAltIcon className="w-8 h-8 text-white" />
               </div>
               <RTLHeading 
@@ -80,8 +80,8 @@ export default function About() {
               </RTLParagraph>
             </div>
 
-            <div className="text-center p-8 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl shadow-lg">
-              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="text-center p-8 bg-gradient-to-br from-pink-50 to-indigo-100 rounded-xl shadow-lg h-full flex flex-col">
+              <div className="w-16 h-16 bg-gradient-to-r from-pink-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-6">
                 <HeartIcon className="w-8 h-8 text-white" />
               </div>
               <RTLHeading 
@@ -224,8 +224,8 @@ export default function About() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-xl">
-              <div className="text-4xl font-bold text-blue-600 mb-4">34</div>
+            <div className="bg-gradient-to-br from-indigo-50 to-purple-100 p-8 rounded-xl h-full flex flex-col">
+              <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">34</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 {getTranslation(language, 'about.achievements.provinces.title') || 'Provinces Covered'}
               </h3>
@@ -234,8 +234,8 @@ export default function About() {
               </p>
             </div>
             
-            <div className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-xl">
-              <div className="text-4xl font-bold text-green-600 mb-4">500+</div>
+            <div className="bg-gradient-to-br from-purple-50 to-pink-100 p-8 rounded-xl h-full flex flex-col">
+              <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">500+</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 {getTranslation(language, 'about.achievements.players.title') || 'Players Trained'}
               </h3>
@@ -244,8 +244,8 @@ export default function About() {
               </p>
             </div>
             
-            <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-xl">
-              <div className="text-4xl font-bold text-purple-600 mb-4">25</div>
+            <div className="bg-gradient-to-br from-pink-50 to-indigo-100 p-8 rounded-xl h-full flex flex-col">
+              <div className="text-4xl font-bold bg-gradient-to-r from-pink-600 to-indigo-600 bg-clip-text text-transparent mb-4">25</div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">
                 {getTranslation(language, 'about.achievements.academies.title') || 'Cricket Academies'}
               </h3>
@@ -270,8 +270,8 @@ export default function About() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center h-full flex flex-col">
+              <div className="w-24 h-24 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white text-2xl font-bold">AS</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -285,8 +285,8 @@ export default function About() {
               </p>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="w-24 h-24 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center h-full flex flex-col">
+              <div className="w-24 h-24 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white text-2xl font-bold">FA</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -300,8 +300,8 @@ export default function About() {
               </p>
             </div>
             
-            <div className="bg-white p-6 rounded-xl shadow-lg text-center">
-              <div className="w-24 h-24 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-white p-6 rounded-xl shadow-lg text-center h-full flex flex-col">
+              <div className="w-24 h-24 bg-gradient-to-r from-pink-600 to-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-white text-2xl font-bold">MK</span>
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-2">

@@ -74,11 +74,11 @@ export default function Hero() {
 
   return (
     <RTLWrapper>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[80vh] lg:h-[85vh] flex items-center justify-center overflow-hidden">
         {/* Background with Gradient Overlay */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${currentSlideData.gradient} transition-all duration-1000`}>
-          <div className="absolute inset-0 bg-black/30"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 transition-all duration-1000">
+          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
         </div>
 
         {/* Animated Background Pattern */}
@@ -91,50 +91,65 @@ export default function Hero() {
 
         {/* Main Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-12">
+          <div className="text-center space-y-8 lg:space-y-10">
             {/* Main Heading */}
-            <div className="space-y-6">
-              <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight tracking-tight opacity-0 animate-fade-in-up ${isRTL ? 'font-arabic' : ''}`}>
-                <span className="block">
+            <div className="space-y-4 lg:space-y-6">
+              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight opacity-0 animate-fade-in-up ${isRTL ? 'font-arabic' : ''}`}>
+                <span className="block bg-gradient-to-r from-white via-purple-100 to-pink-200 bg-clip-text text-transparent drop-shadow-lg">
                   {getTranslation(language, currentSlideData.titleKey)}
                 </span>
               </h1>
-              <p className={`text-lg sm:text-xl md:text-2xl lg:text-3xl text-blue-100 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in-up animation-delay-300 ${isRTL ? 'font-arabic' : ''}`}>
+              <p className={`text-base sm:text-lg md:text-xl lg:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in-up animation-delay-300 px-4 ${isRTL ? 'font-arabic' : ''}`}>
                 {getTranslation(language, currentSlideData.subtitleKey)}
               </p>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="opacity-0 animate-fade-in-up animation-delay-600">
-              <div className={`flex flex-col sm:flex-row gap-6 justify-center items-center ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
+            {/* Search and CTA */}
+            <div className="space-y-6 opacity-0 animate-fade-in-up animation-delay-500">
+              {/* Search */}
+              <div className="max-w-lg mx-auto">
+                <div className="relative">
+                  <svg className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/60 ${isRTL ? 'right-4' : 'left-4'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                  <input
+                    type="text"
+                    placeholder={getTranslation(language, 'common.search.placeholder') || 'Search cricket news, events, players...'}
+                    className={`w-full py-3 bg-white/15 backdrop-blur-md border border-white/30 rounded-full focus:ring-2 focus:ring-white/40 focus:border-white/40 transition-all duration-200 text-white placeholder-white/60 ${isRTL ? 'pr-12 pl-4 text-right font-arabic' : 'pl-12 pr-4'}`}
+                  />
+                </div>
+              </div>
+              
+              {/* CTA Buttons */}
+              <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center px-4 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
                 <Link
                   href="/news"
-                  className={`group inline-flex items-center px-8 py-4 bg-white text-blue-900 font-semibold rounded-full hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-lg ${isRTL ? 'flex-row-reverse' : ''}`}
+                  className={`group inline-flex items-center px-6 py-3 bg-white/90 backdrop-blur-sm text-indigo-900 font-semibold rounded-full hover:bg-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-base w-full sm:w-auto justify-center ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
-                  <span className={isRTL ? 'ml-3' : 'mr-3'}>
+                  <span className={isRTL ? 'ml-2' : 'mr-2'}>
                     {getTranslation(language, currentSlideData.ctaKey)}
                   </span>
-                  <ChevronRightIcon className={`w-5 h-5 group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
+                  <ChevronRightIcon className={`w-4 h-4 group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
                 </Link>
-                <button className={`group inline-flex items-center px-8 py-4 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-blue-900 transition-all duration-300 transform hover:scale-105 text-lg ${isRTL ? 'flex-row-reverse' : ''}`}>
-                  <PlayIcon className={`w-5 h-5 ${isRTL ? 'ml-3' : 'mr-3'}`} />
+                <button className={`group inline-flex items-center px-6 py-3 border-2 border-white/80 text-white font-semibold rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300 transform hover:scale-105 text-base w-full sm:w-auto justify-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+                  <PlayIcon className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                   <span>{getTranslation(language, 'home.hero.watchHighlights')}</span>
                 </button>
               </div>
             </div>
 
-            {/* Stats */}
-            <div className="opacity-0 animate-fade-in-up animation-delay-900">
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12 max-w-4xl mx-auto">
+            {/* Compact Stats */}
+            <div className="opacity-0 animate-fade-in-up animation-delay-700">
+              <div className="grid grid-cols-3 gap-4 lg:gap-8 max-w-3xl mx-auto px-4">
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center group">
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full mb-6 group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
-                      <stat.icon className="w-10 h-10 text-white" />
+                    <div className="inline-flex items-center justify-center w-12 h-12 lg:w-16 lg:h-16 bg-white/10 backdrop-blur-sm rounded-full mb-2 lg:mb-3 group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
+                      <stat.icon className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
                     </div>
-                    <div className="text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight">
+                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 tracking-tight">
                       {getTranslation(language, stat.valueKey)}
                     </div>
-                    <div className={`text-blue-100 text-base lg:text-lg font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                    <div className={`text-purple-100 text-xs sm:text-sm lg:text-base font-medium ${isRTL ? 'font-arabic' : ''}`}>
                       {getTranslation(language, stat.labelKey)}
                     </div>
                   </div>
@@ -145,15 +160,15 @@ export default function Hero() {
         </div>
 
         {/* Slide Indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
           {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => goToSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 index === currentSlide 
                   ? 'bg-white scale-125' 
-                  : 'bg-white/50 hover:bg-white/75'
+                  : 'bg-white/40 hover:bg-white/60'
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
@@ -161,9 +176,9 @@ export default function Hero() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className={`absolute bottom-8 animate-bounce ${isRTL ? 'left-8' : 'right-8'}`}>
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
+        <div className={`absolute bottom-6 animate-bounce ${isRTL ? 'left-6' : 'right-6'}`}>
+          <div className="w-5 h-8 border-2 border-white/40 rounded-full flex justify-center">
+            <div className="w-0.5 h-2 bg-white/40 rounded-full mt-1.5 animate-pulse"></div>
           </div>
         </div>
 
