@@ -3,8 +3,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
 
 from api.models.data.rankings import TeamRanking, PlayerRanking, GeneralRanking, RankingCategory
 from api.serializers.data.rankings import TeamRankingSerializer, PlayerRankingSerializer, GeneralRankingSerializer, RankingCategorySerializer
@@ -27,8 +25,7 @@ class TeamRankingViewSet(DataRootViewSet):
     ordering_fields = ['rank', 'rating', 'points']
     ordering = ['format', 'rank']
 
-    @method_decorator(cache_page(60 * 60))
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get'], url_path='by_format')
     def by_format(self, request):
         format_type = request.query_params.get('format', 't20i')
         queryset = self.get_queryset().filter(format=format_type)[:10]
@@ -44,13 +41,12 @@ class PlayerRankingViewSet(DataRootViewSet):
     ordering = ['category', 'format', 'rank']
 
     def get_queryset(self):
-        return PlayerRanking.objects.select_related('player').filter(is_published=True)
+        return PlayerRanking.objects.filter(is_published=True)
 
     def get_serializer_class(self):
         return PlayerRankingSerializer
 
-    @method_decorator(cache_page(60 * 60))
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get'], url_path='top_performers')
     def top_performers(self, request):
         category = request.query_params.get('category', 'batting')
         format_type = request.query_params.get('format', 't20i')

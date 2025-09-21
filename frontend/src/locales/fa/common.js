@@ -29,6 +29,9 @@ export const common = {
     back: 'بازگشت',
     close: 'بستن'
   },
+  loadingMore: 'بارگذاری بیشتر...',
+  allLoaded: 'همه موارد بارگذاری شد',
+  allNewsLoaded: 'همه اخبار بارگذاری شد',
   loading: 'در حال بارگذاری...',
   notAvailable: 'در دسترس نیست',
   backToTeam: 'بازگشت به تیم',
@@ -127,6 +130,11 @@ export const common = {
     of: 'از',
     showing: 'نمایش',
     results: 'نتایج'
+  },
+  infiniteScroll: {
+    loadingMore: 'بارگذاری بیشتر...',
+    allLoaded: 'همه موارد بارگذاری شد',
+    allNewsLoaded: 'همه اخبار بارگذاری شد'
   },
   error: {
     title: 'مشکلی پیش آمده',

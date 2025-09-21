@@ -1,74 +1,104 @@
-import { useState, useEffect, useCallback } from 'react'
-import { useFetchData } from './index'
+import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useFetchData } from './useFetchData'
 
-export default function useInfiniteScroll(endpoint, options = {}) {
+export const useInfiniteScroll = (endpoint, options = {}) => {
+  const {
+    pageSize = 12,
+    search = '',
+    filters = {},
+    ordering = '',
+    threshold = 100,
+    ...fetchOptions
+  } = options
+
+  const [page, setPage] = useState(1)
   const [allData, setAllData] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
   const [hasMore, setHasMore] = useState(true)
   const [isLoadingMore, setIsLoadingMore] = useState(false)
 
-  const { search = '', filters = {}, ordering = '-created_at', pageSize = 12 } = options
+  const params = useMemo(() => ({
+    page,
+    page_size: pageSize,
+    ...(search && { search }),
+    ...(ordering && { ordering }),
+    ...filters
+  }), [page, pageSize, search, ordering, filters])
 
-  const { data, isLoading, error } = useFetchData(endpoint, {
-    queryKey: [endpoint, 'infinite', currentPage, search, filters, ordering],
-    params: {
-      page: currentPage,
-      page_size: pageSize,
-      search,
-      ordering,
-      ...filters
-    }
+  const queryKey = [endpoint, 'infinite', page, JSON.stringify(params)]
+  
+  const { data, isLoading, error, refetch } = useFetchData(endpoint, {
+    queryKey,
+    params,
+    enabled: hasMore,
+    ...fetchOptions
   })
 
-  // Reset data when search or filters change
+  // Reset when search or filters change
   useEffect(() => {
+    setPage(1)
     setAllData([])
-    setCurrentPage(1)
     setHasMore(true)
+    setIsLoadingMore(false)
   }, [search, JSON.stringify(filters), ordering])
 
-  // Update data when new page loads
+  // Handle new data
   useEffect(() => {
-    if (data) {
-      if (currentPage === 1) {
-        setAllData(data.results || [])
+    if (data && data.results) {
+      if (page === 1) {
+        setAllData(data.results)
       } else {
-        setAllData(prev => [...prev, ...(data.results || [])])
-        setIsLoadingMore(false)
+        setAllData(prev => [...prev, ...data.results])
       }
-      
       setHasMore(!!data.next)
+      setIsLoadingMore(false)
     }
-  }, [data, currentPage])
+  }, [data, page])
 
-  const loadMore = useCallback(() => {
-    if (hasMore && !isLoading && !isLoadingMore) {
+  // Infinite scroll handler
+  const handleScroll = useCallback(() => {
+    if (isLoadingMore || !hasMore || isLoading) return
+
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    const scrollHeight = document.documentElement.scrollHeight
+    const clientHeight = window.innerHeight
+
+    if (scrollTop + clientHeight >= scrollHeight - threshold) {
       setIsLoadingMore(true)
-      setCurrentPage(prev => prev + 1)
+      setPage(prev => prev + 1)
     }
-  }, [hasMore, isLoading, isLoadingMore])
+  }, [isLoadingMore, hasMore, isLoading, threshold])
 
-  // Infinite scroll effect
+  // Attach scroll listener
   useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop
-        >= document.documentElement.offsetHeight - 1000
-      ) {
-        loadMore()
-      }
-    }
-
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [loadMore])
+  }, [handleScroll])
+
+  const loadMore = useCallback(() => {
+    if (!isLoadingMore && hasMore && !isLoading) {
+      setIsLoadingMore(true)
+      setPage(prev => prev + 1)
+    }
+  }, [isLoadingMore, hasMore, isLoading])
+
+  const reset = useCallback(() => {
+    setPage(1)
+    setAllData([])
+    setHasMore(true)
+    setIsLoadingMore(false)
+  }, [])
 
   return {
     data: allData,
-    isLoading: isLoading && currentPage === 1,
+    isLoading: isLoading && page === 1,
     isLoadingMore,
-    error,
     hasMore,
-    loadMore
+    error,
+    loadMore,
+    reset,
+    refetch,
+    totalCount: data?.count || 0
   }
 }
+
+export default useInfiniteScroll

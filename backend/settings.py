@@ -206,14 +206,15 @@ REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
     ],
-    "DEFAULT_THROTTLE_CLASSES": [
-        "rest_framework.throttling.AnonRateThrottle",
-        "rest_framework.throttling.UserRateThrottle",
-    ],
-    "DEFAULT_THROTTLE_RATES": {
-        "anon": "100/hour",
-        "user": "1000/hour",
-    },
+    # Throttling disabled for development
+    # "DEFAULT_THROTTLE_CLASSES": [
+    #     "rest_framework.throttling.AnonRateThrottle",
+    #     "rest_framework.throttling.UserRateThrottle",
+    # ],
+    # "DEFAULT_THROTTLE_RATES": {
+    #     "anon": "10000/hour",
+    #     "user": "20000/hour",
+    # },
 }
 
 # Email Configuration

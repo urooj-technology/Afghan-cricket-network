@@ -60,7 +60,7 @@ class PlayerRanking(BaseModel):
         ('test', 'Test'),
     ]
 
-    player = models.ForeignKey('Player', on_delete=models.CASCADE, blank=True, null=True, db_index=True)
+    player = models.ForeignKey('api.Player', on_delete=models.CASCADE, blank=True, null=True, db_index=True)
     player_name = models.CharField(max_length=100, db_index=True)
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, db_index=True)
     format = models.CharField(max_length=10, choices=FORMAT_CHOICES, db_index=True)

@@ -29,6 +29,9 @@ export const common = {
     back: 'بیرته',
     close: 'تړل'
   },
+  loadingMore: 'نور یې بارول...',
+  allLoaded: 'ټول مواد بار شول',
+  allNewsLoaded: 'ټول خبرونه بار شول',
   loading: 'بارېږي...',
   notAvailable: 'شتون نلري',
   backToTeam: 'ټیم ته بیرته',
@@ -127,6 +130,11 @@ export const common = {
     of: 'څخه',
     showing: 'ښودل',
     results: 'پایلې'
+  },
+  infiniteScroll: {
+    loadingMore: 'نور یې بارول...',
+    allLoaded: 'ټول مواد بار شول',
+    allNewsLoaded: 'ټول خبرونه بار شول'
   },
   error: {
     title: 'یوه ستونزه رامنځته شوه',

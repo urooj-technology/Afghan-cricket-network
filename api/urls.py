@@ -39,5 +39,4 @@ router.register(r'media-galleries', MediaGalleryViewSet, basename='media-galleri
 
 urlpatterns = [
     path('v1/', include(router.urls)),
-
 ]

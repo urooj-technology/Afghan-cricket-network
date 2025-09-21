@@ -9,7 +9,7 @@ import { RTLFlex } from '../../components/ui/RTLContainer'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
 import { useFetchData } from '../../hooks'
-import usePagination from '../../hooks/usePagination'
+import useInfiniteScroll from '../../hooks/useInfiniteScroll'
 import Link from 'next/link'
 import { 
   UserIcon, 
@@ -36,17 +36,15 @@ export default function Team() {
     is_active: true
   }), [])
 
-  // Fetch players
+  // Fetch players with infinite scroll
   const {
     data: players,
-    pagination: playerPagination,
     isLoading: playersLoading,
+    isLoadingMore: playersLoadingMore,
+    hasMore: playersHasMore,
     error: playersError,
-    goToPage: playersGoToPage,
-    nextPage: playersNextPage,
-    previousPage: playersPreviousPage,
-    resetPage: playersResetPage
-  } = usePagination('/players', {
+    reset: playersReset
+  } = useInfiniteScroll('/players', {
     search: searchTerm,
     filters: playerFilters,
     ordering: 'jersey_number',
@@ -54,17 +52,15 @@ export default function Team() {
     enabled: activeTab === 'players'
   })
 
-  // Fetch team members
+  // Fetch team members with infinite scroll
   const {
     data: teamMembers,
-    pagination: memberPagination,
     isLoading: membersLoading,
+    isLoadingMore: membersLoadingMore,
+    hasMore: membersHasMore,
     error: membersError,
-    goToPage: membersGoToPage,
-    nextPage: membersNextPage,
-    previousPage: membersPreviousPage,
-    resetPage: membersResetPage
-  } = usePagination('/team-members', {
+    reset: membersReset
+  } = useInfiniteScroll('/team-members', {
     search: searchTerm,
     filters: memberFilters,
     ordering: 'member_type,order,name',
@@ -85,9 +81,9 @@ export default function Team() {
   const handleSearch = (value) => {
     setSearchTerm(value)
     if (activeTab === 'players') {
-      playersResetPage()
+      playersReset()
     } else {
-      membersResetPage()
+      membersReset()
     }
   }
 
@@ -129,12 +125,10 @@ export default function Team() {
   }
 
   const currentData = activeTab === 'players' ? players : teamMembers
-  const currentPagination = activeTab === 'players' ? playerPagination : memberPagination
   const isLoading = activeTab === 'players' ? playersLoading : membersLoading
+  const isLoadingMore = activeTab === 'players' ? playersLoadingMore : membersLoadingMore
+  const hasMore = activeTab === 'players' ? playersHasMore : membersHasMore
   const error = activeTab === 'players' ? playersError : membersError
-  const goToPage = activeTab === 'players' ? playersGoToPage : membersGoToPage
-  const nextPage = activeTab === 'players' ? playersNextPage : membersNextPage
-  const previousPage = activeTab === 'players' ? playersPreviousPage : membersPreviousPage
 
   return (
     <RTLWrapper>
@@ -476,52 +470,38 @@ export default function Team() {
                   ))}
                 </div>
 
-                {/* Pagination */}
-                {currentPagination && currentPagination.totalPages > 1 && (
-                  <div className="flex justify-center mt-16">
-                    <div className="bg-white rounded-2xl shadow-lg p-4">
-                      <div className={`flex items-center ${isRTL ? 'flex-row-reverse space-x-reverse space-x-2' : 'space-x-2'}`}>
-                        <button
-                          onClick={previousPage}
-                          disabled={!currentPagination.hasPrevious}
-                          className={`px-6 py-3 border-2 border-gray-200 rounded-xl hover:bg-blue-50 hover:border-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-medium ${getFontClass(isRTL)}`}
-                        >
-                          {String(getTranslation(language, 'common.previous') || 'Previous')}
-                        </button>
-                        
-                        <div className={`flex items-center mx-4 ${isRTL ? 'flex-row-reverse space-x-reverse space-x-2' : 'space-x-2'}`}>
-                          {Array.from({ length: Math.min(5, currentPagination.totalPages) }, (_, i) => {
-                            const page = i + 1
-                            return (
-                              <button
-                                key={page}
-                                onClick={() => goToPage(page)}
-                                className={`w-12 h-12 rounded-xl font-bold transition-all duration-200 ${
-                                  page === currentPagination.currentPage
-                                    ? 'bg-blue-600 text-white shadow-lg transform scale-110'
-                                    : 'border-2 border-gray-200 hover:bg-blue-50 hover:border-blue-300'
-                                }`}
-                              >
-                                {page}
-                              </button>
-                            )
-                          })}
-                        </div>
-                        
-                        <button
-                          onClick={nextPage}
-                          disabled={!currentPagination.hasNext}
-                          className={`px-6 py-3 border-2 border-gray-200 rounded-xl hover:bg-blue-50 hover:border-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-medium ${getFontClass(isRTL)}`}
-                        >
-                          {String(getTranslation(language, 'common.next') || 'Next')}
-                        </button>
+                {/* Loading More Indicator */}
+                {isLoadingMore && (
+                  <div className="flex justify-center mt-12">
+                    <div className="bg-white rounded-2xl shadow-lg p-6">
+                      <div className="flex items-center space-x-3">
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                        <span className={`text-gray-600 font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                          {String(getTranslation(language, 'common.loadingMore') || 'Loading more...')}
+                        </span>
                       </div>
                     </div>
                   </div>
                 )}
 
+                {/* End of Results */}
+                {!hasMore && currentData.length > 0 && (
+                  <div className="text-center mt-12">
+                    <div className="bg-gray-50 rounded-2xl p-6 max-w-md mx-auto">
+                      <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className={`text-gray-600 font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                        {String(getTranslation(language, 'common.allLoaded') || 'All items loaded')}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Empty State */}
-                {currentData.length === 0 && (
+                {!isLoading && currentData.length === 0 && (
                   <div className="text-center py-20">
                     <div className="bg-white rounded-3xl shadow-xl p-12 max-w-lg mx-auto">
                       <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -531,7 +511,7 @@ export default function Team() {
                         {String(getTranslation(language, `team.no${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}Found`) || `No ${activeTab} Found`)}
                       </h3>
                       <p className={`text-lg text-gray-600 leading-relaxed text-center ${isRTL ? 'font-arabic' : ''}`}>
-                        {String(searchTerm || filterType 
+                        {String(searchTerm 
                           ? (getTranslation(language, 'team.adjustSearchCriteria') || 'Try adjusting your search or filter criteria.')
                           : (getTranslation(language, `team.no${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)}Available`) || `No ${activeTab} are currently available.`))}
                       </p>

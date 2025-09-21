@@ -9,7 +9,7 @@ import RTLWrapper from '../../components/ui/RTLWrapper'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
 import { useFetchData } from '../../hooks'
-import usePagination from '../../hooks/usePagination'
+import useInfiniteScroll from '../../hooks/useInfiniteScroll'
 import { 
   CalendarIcon,
   EyeIcon,
@@ -39,14 +39,12 @@ export default function NewsPage() {
 
   const {
     data: news,
-    pagination,
     isLoading,
+    isLoadingMore,
+    hasMore,
     error,
-    goToPage,
-    nextPage,
-    previousPage,
-    resetPage
-  } = usePagination('/news', {
+    reset
+  } = useInfiniteScroll('/news', {
     search: searchTerm,
     filters,
     ordering: '-published_at',
@@ -63,12 +61,12 @@ export default function NewsPage() {
 
   const handleSearch = (value) => {
     setSearchTerm(value)
-    resetPage()
+    reset()
   }
 
   const handleCategoryChange = (value) => {
     setFilterCategory(value)
-    resetPage()
+    reset()
   }
 
   return (
@@ -245,51 +243,37 @@ export default function NewsPage() {
                   ))}
                 </div>
                 
-                {/* Pagination */}
-                {pagination && pagination.total_pages > 1 && (
-                  <div className="flex justify-center mt-16">
-                    <div className="p-4 shadow-lg border-0 bg-white rounded-3xl">
-                      <div className={`flex items-center space-x-2 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                        <button
-                          onClick={previousPage}
-                          disabled={!pagination.has_previous}
-                          className={`px-6 py-3 border-2 border-gray-200 rounded-xl hover:bg-blue-50 hover:border-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-medium ${isRTL ? 'font-arabic' : ''}`}
-                        >
-                          {getTranslation(language, 'common.pagination.previous')}
-                        </button>
-                        
-                        <div className={`flex items-center space-x-2 mx-4 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
-                          {Array.from({ length: Math.min(5, pagination.total_pages) }, (_, i) => {
-                            const page = i + 1
-                            return (
-                              <button
-                                key={page}
-                                onClick={() => goToPage(page)}
-                                className={`w-12 h-12 rounded-xl font-bold transition-all duration-200 ${
-                                  pagination.current_page === page
-                                    ? 'bg-blue-600 text-white shadow-lg transform scale-110'
-                                    : 'border-2 border-gray-200 hover:bg-blue-50 hover:border-blue-300'
-                                }`}
-                              >
-                                {page}
-                              </button>
-                            )
-                          })}
-                        </div>
-                        
-                        <button
-                          onClick={nextPage}
-                          disabled={!pagination.has_next}
-                          className={`px-6 py-3 border-2 border-gray-200 rounded-xl hover:bg-blue-50 hover:border-blue-300 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-medium ${isRTL ? 'font-arabic' : ''}`}
-                        >
-                          {getTranslation(language, 'common.pagination.next')}
-                        </button>
+                {/* Loading More Indicator */}
+                {isLoadingMore && (
+                  <div className="flex justify-center mt-12">
+                    <div className="bg-white rounded-2xl shadow-lg p-6">
+                      <div className="flex items-center space-x-3">
+                        <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                        <span className={`text-gray-600 font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                          {String(getTranslation(language, 'common.loadingMore') || 'Loading more news...')}
+                        </span>
                       </div>
                     </div>
                   </div>
                 )}
+
+                {/* End of Results */}
+                {!hasMore && news.length > 0 && (
+                  <div className="text-center mt-12">
+                    <div className="bg-gray-50 rounded-2xl p-6 max-w-md mx-auto">
+                      <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg className="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className={`text-gray-600 font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                        {String(getTranslation(language, 'common.allNewsLoaded') || 'All news articles loaded')}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </>
-            ) : (
+            ) : !isLoading && (
               <div className="text-center py-20">
                 <div className="max-w-lg mx-auto p-12 shadow-lg border-0 bg-white rounded-3xl">
                   <div className="w-32 h-32 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-8">
@@ -298,10 +282,10 @@ export default function NewsPage() {
                     </svg>
                   </div>
                   <h3 className={`text-2xl font-bold text-gray-900 mb-4 ${isRTL ? 'font-arabic' : ''}`}>
-                    {getTranslation(language, 'news.noNews.title')}
+                    {String(getTranslation(language, 'news.noNews.title') || 'No News Found')}
                   </h3>
                   <p className={`text-lg text-gray-600 leading-relaxed ${isRTL ? 'font-arabic' : ''}`}>
-                    {getTranslation(language, 'news.noNews.description')}
+                    {String(getTranslation(language, 'news.noNews.description') || 'No news articles available at the moment.')}
                   </p>
                 </div>
               </div>

@@ -29,6 +29,9 @@ export const common = {
     back: 'Back',
     close: 'Close'
   },
+  loadingMore: 'Loading more...',
+  allLoaded: 'All items loaded',
+  allNewsLoaded: 'All news articles loaded',
   loading: 'Loading...',
   notAvailable: 'Not available',
   backToTeam: 'Back to Team',
@@ -127,6 +130,11 @@ export const common = {
     of: 'of',
     showing: 'Showing',
     results: 'results'
+  },
+  infiniteScroll: {
+    loadingMore: 'Loading more...',
+    allLoaded: 'All items loaded',
+    allNewsLoaded: 'All news articles loaded'
   },
   error: {
     title: 'Something went wrong',
