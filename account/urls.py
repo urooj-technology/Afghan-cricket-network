@@ -12,7 +12,7 @@ from account.views import (
     UserDeleteView,
     UserDetailView
 )
-from account.backup import backup_database, restore_database,list_backups,delete_backup
+
 from knox import views as knox_views
 
 
@@ -37,9 +37,5 @@ urlpatterns = [
     path('users/<int:pk>/edit/', UserEditView.as_view(), name='user-edit'),
     path('users/<int:pk>/delete/', UserDeleteView.as_view(), name='user-delete'),
 
-    # Backup section
-    path("backup/", backup_database, name="backup_database"),
-    path("restore/", restore_database, name="restore_database"),
-    path("list-backups/", list_backups, name="list_backups"),
-    path("delete-backup/", delete_backup, name="delete_backup"),
+
 ]
