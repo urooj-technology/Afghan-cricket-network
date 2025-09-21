@@ -1,138 +1,120 @@
 export const common = {
-  // Navigation
   nav: {
     home: 'کور',
     news: 'خبرونه',
     rankings: 'درجه بندي',
     events: 'پیښې',
     media: 'رسنۍ',
-    about: 'زموږ په اړه',
     team: 'ټیم',
-    contact: 'اړیکه',
-    search: 'لټون',
+    about: 'زموږ په اړه',
+    contact: 'اړیکه'
   },
-
-  // Common UI Elements
-  common: {
-    loading: 'بار کول...',
-    error: 'تیروتنه',
-    noData: 'هیڅ معلومات نشته',
-    viewMore: 'نور وګورئ',
-    back: 'شاته',
+  buttons: {
+    readMore: 'نور ولولئ',
+    viewAll: 'ټول وګورئ',
+    viewDetails: 'تفصیلات وګورئ',
+    loadMore: 'نور پورته کړئ',
+    previous: 'مخکینی',
     next: 'راتلونکی',
-    previous: 'پخوانی',
-    close: 'تړل',
-    save: 'ساتل',
-    edit: 'سمول',
-    delete: 'ړنګول',
-    cancel: 'لغوه کول',
-    confirm: 'تایید',
-    yes: 'هو',
-    no: 'نه',
-    email: 'ایمیل',
-    phone: 'تلیفون',
-    address: 'پته',
-    officeHours: 'د دفتر ساعتونه',
-    officeHoursValue: 'شنبه - پنجشنبه: ۸:۰۰ صبح - ۵:۰۰ عصر',
+    search: 'لټون',
+    filter: 'فلټر',
+    clear: 'پاک کړئ',
+    clearFilters: 'فلټرونه پاک کړئ',
+    tryAgain: 'بیا هڅه وکړئ',
+    submit: 'وسپارئ',
+    cancel: 'لغوه کړئ',
+    save: 'خوندي کړئ',
+    edit: 'سمون',
+    delete: 'ړنګ کړئ',
+    back: 'شاته',
+    close: 'تړل'
   },
-
-  // Language
-  language: {
-    english: 'انګلیسي',
-    pashto: 'پښتو',
-    en: 'EN',
-    ps: 'پښ',
+  status: {
+    loading: 'پورته کیږي...',
+    error: 'تېروتنه',
+    success: 'بریالیتوب',
+    noData: 'هیڅ معلومات شتون نلري',
+    notFound: 'ونه موندل شو',
+    upcoming: 'راتلونکي',
+    ongoing: 'روان',
+    completed: 'بشپړ شوي',
+    cancelled: 'لغوه شوي',
+    published: 'خپور شوي',
+    draft: 'مسوده',
+    active: 'فعال',
+    inactive: 'غیر فعال'
   },
-
-  // Footer
+  time: {
+    today: 'نن',
+    yesterday: 'پرون',
+    tomorrow: 'سبا',
+    thisWeek: 'دا اونۍ',
+    thisMonth: 'دا میاشت',
+    thisYear: 'دا کال',
+    ago: 'مخکې',
+    from: 'څخه',
+    to: 'ته',
+    at: 'په',
+    on: 'په'
+  },
+  categories: {
+    all: 'ټولې کټګورۍ',
+    international: 'نړیوال',
+    domestic: 'کورني',
+    teamNews: 'د ټیم خبرونه',
+    playerUpdates: 'د لوبغاړو تازه معلومات',
+    matchReports: 'د لوبې راپورونه',
+    training: 'روزنه',
+    awards: 'جایزې',
+    youthCricket: 'د ځوانانو کرکټ',
+    womenCricket: 'د میرمنو کرکټ'
+  },
+  formats: {
+    t20i: 'T20I',
+    odi: 'ODI',
+    test: 'ټیسټ'
+  },
+  positions: {
+    batsman: 'بیټسمن',
+    bowler: 'بولر',
+    allRounder: 'ټول راونډر',
+    wicketKeeper: 'ویکټ کیپر',
+    captain: 'کپتان',
+    viceCaptain: 'مرستیال کپتان'
+  },
+  stats: {
+    matches: 'لوبې',
+    runs: 'منډې',
+    wickets: 'ویکټونه',
+    average: 'اوسط',
+    strikeRate: 'د ضربې کچه',
+    economy: 'اقتصاد',
+    rating: 'درجه بندي',
+    points: 'ټکي',
+    rank: 'درجه',
+    views: 'لیدنې',
+    registered: 'ثبت شوي',
+    capacity: 'ظرفیت'
+  },
   footer: {
-    description: 'د افغانستان کرکټ شبکه د افغانستان د کرکټ د دپرمختګ او ترویج لپاره کار کوي.',
+    description: 'ستاسو د افغان کرکټ خبرونو، تازه معلوماتو او د کرکټ نړۍ څخه بصیرتونو لپاره لومړنۍ موخه.',
     quickLinks: 'چټک لینکونه',
-    resources: 'سرچینې',
-    contactInfo: 'د اړیکې معلومات',
-    copyright: 'د افغانستان کرکټ شبکه. ټول حقونه خوندي دي.',
-    playerRankings: 'د لوبغاړو درجه بندي',
-    matchSchedule: 'د لوبو پروګرام',
-    cricketAcademy: 'کرکټ اکاډمۍ',
-    trainingPrograms: 'د روزنې پروګرامونه',
-    youthDevelopment: 'د ځوانانو پرمختګ',
-    newsArchive: 'د خبرونو ارشیف',
-    photoGallery: 'د عکسونو ګالري',
-    videoGallery: 'د ویډیو ګالري',
-    pressReleases: 'د مطبوعاتو خبرونه',
-    tournamentResults: 'د لوبو پایلې',
-    newsletter: 'لا زیات معلومات ترلاسه کړی',
-    emailPlaceholder: 'ستاسو ایمیل دننه کړئ',
-    subscribe: 'ګډون',
-    allRightsReserved: 'ټول حقونه خوندي دي.',
-    privacy: 'د محرمیت تګلاره',
-    terms: 'د خدمتونو شرطونه',
-    sitemap: 'د ویب سایټ نقشه',
-    poweredBy: 'د لخوا چلول شوی',
-    builtWith: 'د لخوا جوړ شوی',
-    forAfghanistan: 'د افغانستان کرکټ لپاره',
+    cricket: 'کرکټ',
+    contact: 'د اړیکې معلومات',
+    newsletter: 'خبرپاڼه',
+    emailPlaceholder: 'خپل بریښنالیک دننه کړئ',
+    madeWith: 'جوړ شوی د',
+    forAfghanistan: 'د افغانستان لپاره',
+    privacy: 'د محرمیت پالیسي',
+    terms: 'د خدماتو شرایط',
+    cookies: 'د کوکیز پالیسي',
+    disclaimer: 'سلبیت'
   },
-
-  // Contact Info Labels
-  contact: {
-    email: 'ایمیل',
-    phone: 'تلیفون',
-    address: 'پته',
-    officeHours: 'د دفتر ساعتونه',
+  language: {
+    english: 'ژبه',
+    selectLanguage: 'ژبه غوره کړئ'
   },
-
-  // Achievements
-  achievements: {
-    iccFullMember: 'د ICC بشپړ غړی',
-    since2017: 'له ۲۰۱۷ راهیسې',
-    activePlayers: '۵۰+ لوبغاړي',
-    activeSquad: 'فعاله ډله',
-    internationalMatches: '۱۰۰+ لوبې',
-    internationalGames: 'نړیوالې لوبې',
-    newsArticles: '۵۰۰+ مقالې',
-    newsCoverage: 'د خبرونو پوښښ',
-  },
-
-  // Copyright & Credits
-  copyright: {
-    allRightsReserved: 'تول حقوق له افغان کرکټ شبکې سره خوندي دي',
-    madeWith: 'ډیزاین او ترتیب ❤',
-    by: 'له لخوا',
-    year: '۲۰۲۵ ـ',
-  },
-
-  // Rankings Data
-  rankings: {
-    players: {
-      'rashid khan': 'رشید خان',
-      'mohammad nabi': 'محمد نبي',
-      'rahmanullah gurbaz': 'رحمان الله ګربز',
-      'najibullah zadran': 'نجیب الله ځدران',
-      'hazratullah zazai': 'حضرت الله ځځي',
-      'hashmatullah shahidi': 'حشمت الله شهيدي',
-      'ibrahim zadran': 'ابراهیم ځدران',
-      'rahmat shah': 'رحمت شاه',
-      'mujeeb ur rahman': 'مجیب الرحمان',
-      'fazalhaq farooqi': 'فضلالحق فاروقي',
-      'naveen-ul-haq': 'نعیم الحق',
-      'amir hamza': 'امیر حمزه',
-      'yamin ahmadzai': 'یمین احمدزای',
-      'wafadar momand': 'وفادار مومند',
-      'zia-ur-rehman': 'ضیاء الرحمان',
-    },
-    countries: {
-      'afghanistan': 'افغانستان',
-      'india': 'هند',
-      'pakistan': 'پاکستان',
-      'england': 'انګلستان',
-      'australia': 'اسټرالیا',
-    },
-    teams: {
-      'afghanistan': 'افغانستان',
-      'india': 'هند',
-      'pakistan': 'پاکستان',
-      'england': 'انګلستان',
-      'australia': 'اسټرالیا',
-    },
-  },
+  admin: {
+    dashboard: 'اډمین'
+  }
 }

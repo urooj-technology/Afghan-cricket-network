@@ -29,6 +29,7 @@ class NewsViewSet(DataRootViewSet):
     filterset_fields = ['status', 'category', 'is_featured', 'author']
     ordering_fields = ['created_at', 'published_at', 'views', 'title']
     ordering = ['-created_at']
+    lookup_field = 'slug'
 
     def get_queryset(self):
         return News.objects.select_related('author', 'category').filter(

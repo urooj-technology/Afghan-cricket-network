@@ -1,138 +1,120 @@
 export const common = {
-  // Navigation
   nav: {
     home: 'Home',
     news: 'News',
     rankings: 'Rankings',
     events: 'Events',
     media: 'Media',
-    about: 'About',
     team: 'Team',
-    contact: 'Contact',
-    search: 'Search',
+    about: 'About',
+    contact: 'Contact'
   },
-
-  // Common UI Elements
-  common: {
-    loading: 'Loading...',
-    error: 'Error',
-    noData: 'No data available',
-    viewMore: 'View More',
-    back: 'Back',
-    next: 'Next',
+  buttons: {
+    readMore: 'Read More',
+    viewAll: 'View All',
+    viewDetails: 'View Details',
+    loadMore: 'Load More',
     previous: 'Previous',
-    close: 'Close',
+    next: 'Next',
+    search: 'Search',
+    filter: 'Filter',
+    clear: 'Clear',
+    clearFilters: 'Clear Filters',
+    tryAgain: 'Try Again',
+    submit: 'Submit',
+    cancel: 'Cancel',
     save: 'Save',
     edit: 'Edit',
     delete: 'Delete',
-    cancel: 'Cancel',
-    confirm: 'Confirm',
-    yes: 'Yes',
-    no: 'No',
-    email: 'Email',
-    phone: 'Phone',
-    address: 'Address',
-    officeHours: 'Office Hours',
-    officeHoursValue: 'Saturday - Thursday: 8:00 AM - 5:00 PM',
+    back: 'Back',
+    close: 'Close'
   },
-
-  // Language
-  language: {
-    english: 'English',
-    pashto: 'پښتو',
-    en: 'EN',
-    ps: 'پښ',
+  status: {
+    loading: 'Loading...',
+    error: 'Error',
+    success: 'Success',
+    noData: 'No data available',
+    notFound: 'Not found',
+    upcoming: 'Upcoming',
+    ongoing: 'Ongoing',
+    completed: 'Completed',
+    cancelled: 'Cancelled',
+    published: 'Published',
+    draft: 'Draft',
+    active: 'Active',
+    inactive: 'Inactive'
   },
-
-  // Footer
+  time: {
+    today: 'Today',
+    yesterday: 'Yesterday',
+    tomorrow: 'Tomorrow',
+    thisWeek: 'This Week',
+    thisMonth: 'This Month',
+    thisYear: 'This Year',
+    ago: 'ago',
+    from: 'from',
+    to: 'to',
+    at: 'at',
+    on: 'on'
+  },
+  categories: {
+    all: 'All Categories',
+    international: 'International',
+    domestic: 'Domestic',
+    teamNews: 'Team News',
+    playerUpdates: 'Player Updates',
+    matchReports: 'Match Reports',
+    training: 'Training',
+    awards: 'Awards',
+    youthCricket: 'Youth Cricket',
+    womenCricket: 'Women Cricket'
+  },
+  formats: {
+    t20i: 'T20I',
+    odi: 'ODI',
+    test: 'Test'
+  },
+  positions: {
+    batsman: 'Batsman',
+    bowler: 'Bowler',
+    allRounder: 'All-Rounder',
+    wicketKeeper: 'Wicket-Keeper',
+    captain: 'Captain',
+    viceCaptain: 'Vice Captain'
+  },
+  stats: {
+    matches: 'Matches',
+    runs: 'Runs',
+    wickets: 'Wickets',
+    average: 'Average',
+    strikeRate: 'Strike Rate',
+    economy: 'Economy',
+    rating: 'Rating',
+    points: 'Points',
+    rank: 'Rank',
+    views: 'Views',
+    registered: 'Registered',
+    capacity: 'Capacity'
+  },
   footer: {
-    description: 'Afghan Cricket Network works to promote cricket in Afghanistan.',
+    description: 'Your premier destination for Afghan cricket news, updates, and insights from the world of cricket.',
     quickLinks: 'Quick Links',
-    resources: 'Resources',
-    contactInfo: 'Contact Info',
-    copyright: 'Afghan Cricket Network. All rights reserved.',
-    playerRankings: 'Player Rankings',
-    matchSchedule: 'Match Schedule',
-    cricketAcademy: 'Cricket Academy',
-    trainingPrograms: 'Training Programs',
-    youthDevelopment: 'Youth Development',
-    newsArchive: 'News Archive',
-    photoGallery: 'Photo Gallery',
-    videoGallery: 'Video Gallery',
-    pressReleases: 'Press Releases',
-    tournamentResults: 'Tournament Results',
-    newsletter: 'Stay Updated',
+    cricket: 'Cricket',
+    contact: 'Contact Info',
+    newsletter: 'Newsletter',
     emailPlaceholder: 'Enter your email',
-    subscribe: 'Subscribe',
-    allRightsReserved: 'All rights reserved.',
+    madeWith: 'Made with',
+    forAfghanistan: 'for Afghanistan',
     privacy: 'Privacy Policy',
     terms: 'Terms of Service',
-    sitemap: 'Sitemap',
-    poweredBy: 'Powered by',
-    builtWith: 'Built with',
-    forAfghanistan: 'for Afghanistan Cricket',
+    cookies: 'Cookie Policy',
+    disclaimer: 'Disclaimer'
   },
-
-  // Contact Info Labels
-  contact: {
-    email: 'Email',
-    phone: 'Phone',
-    address: 'Address',
-    officeHours: 'Office Hours',
+  language: {
+    english: 'Language',
+    selectLanguage: 'Select Language'
   },
-
-  // Achievements
-  achievements: {
-    iccFullMember: 'ICC Full Member',
-    since2017: 'Since 2017',
-    activePlayers: '50+ Players',
-    activeSquad: 'Active Squad',
-    internationalMatches: '100+ Matches',
-    internationalGames: 'International Games',
-    newsArticles: '500+ Articles',
-    newsCoverage: 'News Coverage',
-  },
-
-  // Copyright & Credits
-  copyright: {
-    allRightsReserved: 'All Rights Reserved by Afghan Cricket Network',
-    madeWith: 'Design & Development ❤',
-    by: 'by',
-    year: '2025 -',
-  },
-
-  // Rankings Data
-  rankings: {
-    players: {
-      'rashid khan': 'Rashid Khan',
-      'mohammad nabi': 'Mohammad Nabi',
-      'rahmanullah gurbaz': 'Rahmanullah Gurbaz',
-      'najibullah zadran': 'Najibullah Zadran',
-      'hazratullah zazai': 'Hazratullah Zazai',
-      'hashmatullah shahidi': 'Hashmatullah Shahidi',
-      'ibrahim zadran': 'Ibrahim Zadran',
-      'rahmat shah': 'Rahmat Shah',
-      'mujeeb ur rahman': 'Mujeeb Ur Rahman',
-      'fazalhaq farooqi': 'Fazalhaq Farooqi',
-      'naveen-ul-haq': 'Naveen-ul-Haq',
-      'amir hamza': 'Amir Hamza',
-      'yamin ahmadzai': 'Yamin Ahmadzai',
-      'wafadar momand': 'Wafadar Momand',
-      'zia-ur-rehman': 'Zia-ur-Rehman',
-    },
-    countries: {
-      'afghanistan': 'Afghanistan',
-      'india': 'India',
-      'pakistan': 'Pakistan',
-      'england': 'England',
-      'australia': 'Australia',
-    },
-    teams: {
-      'afghanistan': 'Afghanistan',
-      'india': 'India',
-      'pakistan': 'Pakistan',
-      'england': 'England',
-      'australia': 'Australia',
-    },
-  },
+  admin: {
+    dashboard: 'Admin'
+  }
 }

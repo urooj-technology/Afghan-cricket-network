@@ -1,17 +1,20 @@
 export const news = {
-  title: 'اخبار',
-  subtitle: 'آخرین اخبار کریکت افغانستان',
-  latest: 'آخرین اخبار',
-  featured: 'اخبار ویژه',
-  noNews: 'هیچ خبری یافت نشد',
-  readMore: 'ادامه مطلب',
-  publishedOn: 'منتشر شده در',
-  by: 'توسط',
+  title: 'آخرین اخبار کریکت',
+  subtitle: 'با آخرین اخبار، گزارش مسابقات و بینشهای کریکت افغانستان بهروز باشید',
+  featuredNews: 'اخبار ویژه',
+  tryAdjusting: 'تنظیم معیارهای جستجو یا فیلتر خود را امتحان کنید.',
+  checkBackLater: 'برای آخرین اخبار کریکت بعداً بررسی کنید.',
+  showing: 'نمایش',
   categories: {
-    all: 'همه',
-    matches: 'مسابقات',
-    team: 'تیم',
-    players: 'بازیکنان',
-    tournaments: 'تورنمنتها'
+    all: 'همه دستهها',
+    international: 'کریکت بینالمللی',
+    domestic: 'کریکت داخلی',
+    teamNews: 'اخبار تیم',
+    playerUpdates: 'بهروزرسانی بازیکنان',
+    matchReports: 'گزارش مسابقات',
+    training: 'تمرین',
+    awards: 'جوایز',
+    youthCricket: 'کریکت جوانان',
+    womenCricket: 'کریکت زنان'
   }
 }

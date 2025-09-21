@@ -1,140 +1,120 @@
 export const common = {
-  // Navigation
   nav: {
     home: 'خانه',
     news: 'اخبار',
-    rankings: 'رتبهبندی',
+    rankings: 'رتبه‌بندی',
     events: 'رویدادها',
     media: 'رسانه',
-    about: 'درباره ما',
     team: 'تیم',
-    contact: 'تماس',
-    search: 'جستجو',
+    about: 'درباره ما',
+    contact: 'تماس'
   },
-
-  // Common UI Elements
-  common: {
-    loading: 'در حال بارگذاری...',
-    error: 'خطا',
-    noData: 'هیچ دادهای موجود نیست',
-    viewMore: 'مشاهده بیشتر',
-    back: 'بازگشت',
-    next: 'بعدی',
+  buttons: {
+    readMore: 'بیشتر بخوانید',
+    viewAll: 'مشاهده همه',
+    viewDetails: 'مشاهده جزئیات',
+    loadMore: 'بارگذاری بیشتر',
     previous: 'قبلی',
-    close: 'بستن',
+    next: 'بعدی',
+    search: 'جستجو',
+    filter: 'فیلتر',
+    clear: 'پاک کردن',
+    clearFilters: 'پاک کردن فیلترها',
+    tryAgain: 'دوباره تلاش کنید',
+    submit: 'ارسال',
+    cancel: 'لغو',
     save: 'ذخیره',
     edit: 'ویرایش',
     delete: 'حذف',
-    cancel: 'لغو',
-    confirm: 'تأیید',
-    yes: 'بله',
-    no: 'خیر',
-    email: 'ایمیل',
-    phone: 'تلفن',
-    address: 'آدرس',
-    officeHours: 'ساعات کاری',
-    officeHoursValue: 'شنبه - پنجشنبه: ۸:۰۰ صبح - ۵:۰۰ عصر',
+    back: 'بازگشت',
+    close: 'بستن'
   },
-
-  // Language
-  language: {
-    english: 'انگلیسی',
-    farsi: 'فارسی',
-    pashto: 'پشتو',
-    en: 'EN',
-    fa: 'فا',
-    ps: 'پښ',
+  status: {
+    loading: 'در حال بارگذاری...',
+    error: 'خطا',
+    success: 'موفقیت',
+    noData: 'هیچ داده‌ای موجود نیست',
+    notFound: 'یافت نشد',
+    upcoming: 'آینده',
+    ongoing: 'در حال انجام',
+    completed: 'تکمیل شده',
+    cancelled: 'لغو شده',
+    published: 'منتشر شده',
+    draft: 'پیش‌نویس',
+    active: 'فعال',
+    inactive: 'غیرفعال'
   },
-
-  // Footer
+  time: {
+    today: 'امروز',
+    yesterday: 'دیروز',
+    tomorrow: 'فردا',
+    thisWeek: 'این هفته',
+    thisMonth: 'این ماه',
+    thisYear: 'امسال',
+    ago: 'پیش',
+    from: 'از',
+    to: 'تا',
+    at: 'در',
+    on: 'در'
+  },
+  categories: {
+    all: 'همه دسته‌ها',
+    international: 'بین‌المللی',
+    domestic: 'داخلی',
+    teamNews: 'اخبار تیم',
+    playerUpdates: 'به‌روزرسانی بازیکنان',
+    matchReports: 'گزارش مسابقات',
+    training: 'تمرین',
+    awards: 'جوایز',
+    youthCricket: 'کریکت جوانان',
+    womenCricket: 'کریکت زنان'
+  },
+  formats: {
+    t20i: 'T20I',
+    odi: 'ODI',
+    test: 'تست'
+  },
+  positions: {
+    batsman: 'ضربه‌زن',
+    bowler: 'توپ‌انداز',
+    allRounder: 'همه‌کاره',
+    wicketKeeper: 'دروازه‌بان',
+    captain: 'کاپیتان',
+    viceCaptain: 'کاپیتان دوم'
+  },
+  stats: {
+    matches: 'مسابقات',
+    runs: 'دوها',
+    wickets: 'ویکت‌ها',
+    average: 'میانگین',
+    strikeRate: 'نرخ ضربه',
+    economy: 'اقتصاد',
+    rating: 'رتبه‌بندی',
+    points: 'امتیازات',
+    rank: 'رتبه',
+    views: 'بازدیدها',
+    registered: 'ثبت‌شده',
+    capacity: 'ظرفیت'
+  },
   footer: {
-    description: 'شبکه کریکت افغانستان برای توسعه و ترویج کریکت در افغانستان فعالیت میکند.',
-    quickLinks: 'لینکهای سریع',
-    resources: 'منابع',
-    contactInfo: 'اطلاعات تماس',
-    copyright: 'شبکه کریکت افغانستان. تمام حقوق محفوظ است.',
-    playerRankings: 'رتبهبندی بازیکنان',
-    matchSchedule: 'برنامه مسابقات',
-    cricketAcademy: 'آکادمی کریکت',
-    trainingPrograms: 'برنامههای آموزشی',
-    youthDevelopment: 'توسعه جوانان',
-    newsArchive: 'آرشیو اخبار',
-    photoGallery: 'گالری عکس',
-    videoGallery: 'گالری ویدیو',
-    pressReleases: 'اطلاعیههای مطبوعاتی',
-    tournamentResults: 'نتایج تورنمنتها',
-    newsletter: 'اطلاعات بیشتر دریافت کنید',
+    description: 'مقصد اصلی شما برای اخبار کریکت افغانستان، به‌روزرسانی‌ها و بینش‌هایی از دنیای کریکت.',
+    quickLinks: 'لینک‌های سریع',
+    cricket: 'کریکت',
+    contact: 'اطلاعات تماس',
+    newsletter: 'خبرنامه',
     emailPlaceholder: 'ایمیل خود را وارد کنید',
-    subscribe: 'عضویت',
-    allRightsReserved: 'تمام حقوق محفوظ است.',
+    madeWith: 'ساخته شده با',
+    forAfghanistan: 'برای افغانستان',
     privacy: 'سیاست حریم خصوصی',
     terms: 'شرایط خدمات',
-    sitemap: 'نقشه سایت',
-    poweredBy: 'قدرت گرفته از',
-    builtWith: 'ساخته شده با',
-    forAfghanistan: 'برای کریکت افغانستان',
+    cookies: 'سیاست کوکی',
+    disclaimer: 'سلب مسئولیت'
   },
-
-  // Contact Info Labels
-  contact: {
-    email: 'ایمیل',
-    phone: 'تلفن',
-    address: 'آدرس',
-    officeHours: 'ساعات کاری',
+  language: {
+    english: 'زبان',
+    selectLanguage: 'انتخاب زبان'
   },
-
-  // Achievements
-  achievements: {
-    iccFullMember: 'عضو کامل ICC',
-    since2017: 'از سال ۲۰۱۷',
-    activePlayers: '۵۰+ بازیکن',
-    activeSquad: 'تیم فعال',
-    internationalMatches: '۱۰۰+ مسابقه',
-    internationalGames: 'بازیهای بینالمللی',
-    newsArticles: '۵۰۰+ مقاله',
-    newsCoverage: 'پوشش خبری',
-  },
-
-  // Copyright & Credits
-  copyright: {
-    allRightsReserved: 'تمام حقوق با شبکه کریکت افغانستان محفوظ است',
-    madeWith: 'طراحی و توسعه با ❤',
-    by: 'توسط',
-    year: '۲۰۲۵ -',
-  },
-
-  // Rankings Data
-  rankings: {
-    players: {
-      'rashid khan': 'رشید خان',
-      'mohammad nabi': 'محمد نبی',
-      'rahmanullah gurbaz': 'رحمان‌الله گربز',
-      'najibullah zadran': 'نجیب‌الله ځدران',
-      'hazratullah zazai': 'حضرت‌الله ځځی',
-      'hashmatullah shahidi': 'حشمت‌الله شهیدی',
-      'ibrahim zadran': 'ابراهیم ځدران',
-      'rahmat shah': 'رحمت شاه',
-      'mujeeb ur rahman': 'مجیب‌الرحمان',
-      'fazalhaq farooqi': 'فضل‌الحق فاروقی',
-      'naveen-ul-haq': 'نعیم‌الحق',
-      'amir hamza': 'امیر حمزه',
-      'yamin ahmadzai': 'یمین احمدزای',
-      'wafadar momand': 'وفادار مومند',
-      'zia-ur-rehman': 'ضیاء‌الرحمان',
-    },
-    countries: {
-      'afghanistan': 'افغانستان',
-      'india': 'هند',
-      'pakistan': 'پاکستان',
-      'england': 'انگلستان',
-      'australia': 'استرالیا',
-    },
-    teams: {
-      'afghanistan': 'افغانستان',
-      'india': 'هند',
-      'pakistan': 'پاکستان',
-      'england': 'انگلستان',
-      'australia': 'استرالیا',
-    },
-  },
+  admin: {
+    dashboard: 'مدیریت'
+  }
 }

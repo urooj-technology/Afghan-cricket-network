@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Bars3Icon, XMarkIcon, GlobeAltIcon, MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
@@ -12,8 +13,8 @@ const navigation = [
   { key: 'rankings', href: '/rankings' },
   { key: 'events', href: '/events' },
   { key: 'media', href: '/media' },
-  { key: 'about', href: '/about' },
   { key: 'team', href: '/team' },
+  { key: 'about', href: '/about' },
   { key: 'contact', href: '/contact' },
 ]
 
@@ -28,8 +29,16 @@ export default function Header() {
   const [langDropdownOpen, setLangDropdownOpen] = useState(false)
   const { language, setLanguage, isRTL, direction } = useLanguage()
   const dropdownRef = useRef(null)
+  const pathname = usePathname()
 
   const currentLang = languages.find(lang => lang.code === language) || languages[0]
+
+  const isActiveRoute = (href) => {
+    if (href === '/') {
+      return pathname === '/'
+    }
+    return pathname.startsWith(href)
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -70,16 +79,25 @@ export default function Header() {
         
         {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:items-center lg:space-x-8">
-          {navigation.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              className="relative text-sm font-medium text-gray-700 hover:text-blue-600 transition-all duration-200 py-2 px-1 group"
-            >
-              {getTranslation(language, `common.nav.${item.key}`)}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-200 group-hover:w-full"></span>
-            </Link>
-          ))}
+          {navigation.map((item) => {
+            const isActive = isActiveRoute(item.href)
+            return (
+              <Link
+                key={item.key}
+                href={item.href}
+                className={`relative text-sm font-medium transition-all duration-200 py-2 px-3 rounded-lg group ${
+                  isActive 
+                    ? 'text-blue-600 bg-blue-50 font-semibold' 
+                    : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                }`}
+              >
+                {getTranslation(language, `common.nav.${item.key}`)}
+                <span className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-blue-600 transition-all duration-200 ${
+                  isActive ? 'w-6' : 'w-0 group-hover:w-6'
+                }`}></span>
+              </Link>
+            )
+          })}
         </div>
         
         {/* Desktop Actions */}
@@ -92,7 +110,11 @@ export default function Header() {
           {/* Admin Link */}
           <Link
             href="/admin"
-            className="px-3 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-all duration-200"
+            className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+              pathname.startsWith('/admin')
+                ? 'text-red-700 bg-red-50 font-semibold'
+                : 'text-red-600 hover:text-red-700 hover:bg-red-50'
+            }`}
           >
             {getTranslation(language, 'admin.nav.dashboard')}
           </Link>
@@ -164,20 +186,31 @@ export default function Header() {
             
             {/* Mobile Navigation */}
             <div className="px-6 py-4 space-y-2">
-              {navigation.map((item) => (
-                <Link
-                  key={item.key}
-                  href={item.href}
-                  className="block px-4 py-3 text-base font-medium text-gray-900 hover:bg-gray-50 hover:text-blue-600 rounded-lg transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {getTranslation(language, `common.nav.${item.key}`)}
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                const isActive = isActiveRoute(item.href)
+                return (
+                  <Link
+                    key={item.key}
+                    href={item.href}
+                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
+                      isActive
+                        ? 'bg-blue-50 text-blue-600 font-semibold border-l-4 border-blue-600'
+                        : 'text-gray-900 hover:bg-gray-50 hover:text-blue-600'
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {getTranslation(language, `common.nav.${item.key}`)}
+                  </Link>
+                )
+              })}
               
               <Link
                 href="/admin"
-                className="block px-4 py-3 text-base font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
+                  pathname.startsWith('/admin')
+                    ? 'bg-red-50 text-red-600 font-semibold border-l-4 border-red-600'
+                    : 'text-red-600 hover:bg-red-50'
+                }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {getTranslation(language, 'admin.nav.dashboard')}
