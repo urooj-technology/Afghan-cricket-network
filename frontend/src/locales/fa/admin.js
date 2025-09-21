@@ -21,7 +21,7 @@ export const admin = {
     search: 'جستجو',
     filter: 'فیلتر',
     loading: 'در حال بارگذاری...',
-    noData: 'هیچ دادهای موجود نیست',
+    noData: 'دادهای موجود نیست',
     confirm: 'آیا مطمئن هستید؟',
     success: 'موفقیت',
     error: 'خطا',
@@ -36,7 +36,7 @@ export const admin = {
     stats: {
       totalArticles: 'کل مقالات',
       published: 'منتشر شده',
-      draft: 'مقالات پیشنویس',
+      draft: 'پیشنویس',
       totalViews: 'کل بازدیدها'
     }
   },
@@ -44,7 +44,7 @@ export const admin = {
   // News Management
   news: {
     title: 'مدیریت اخبار',
-    subtitle: 'مقالات خبری خود را ایجاد، ویرایش و مدیریت کنید',
+    subtitle: 'ایجاد، ویرایش و مدیریت مقالات خبری',
     create: 'ایجاد مقاله',
     edit: 'ویرایش مقاله',
     delete: 'حذف مقاله',
@@ -52,22 +52,22 @@ export const admin = {
     published: 'منتشر شده',
     draft: 'پیشنویس',
     featured: 'ویژه',
-    category: 'دسته‌بندی',
+    category: 'دستهبندی',
     author: 'نویسنده',
-    publishedOn: 'منتشر شده در',
-    views: 'بازدیدها'
+    publishedOn: 'تاریخ انتشار',
+    views: 'بازدید'
   },
   
   // Events Management
   events: {
     title: 'مدیریت رویدادها',
-    subtitle: 'رویدادها و مسابقات کریکت را مدیریت کنید',
+    subtitle: 'مدیریت رویدادها و مسابقات کریکت',
     create: 'ایجاد رویداد',
     edit: 'ویرایش رویداد',
     delete: 'حذف رویداد',
     upcoming: 'آینده',
     live: 'زنده',
-    completed: 'تمام شده',
+    completed: 'تکمیل شده',
     cancelled: 'لغو شده'
   }
 }

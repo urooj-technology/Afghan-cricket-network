@@ -52,16 +52,16 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
   if (!mounted) return null
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/20" dir={direction}>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50/30 to-purple-50/20" dir={direction}>
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-          <div className="fixed inset-y-0 left-0 w-72 bg-white/95 backdrop-blur-xl shadow-2xl border-r border-white/20">
+          <div className={`fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} w-72 bg-white/95 backdrop-blur-xl shadow-2xl border-r border-white/20`}>
             {/* Mobile header */}
             <div className="flex h-16 items-center justify-between px-6 border-b border-gray-100">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
                   <span className="text-white font-bold text-sm">ACN</span>
                 </div>
                 <h2 className="text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">Admin</h2>
@@ -81,7 +81,7 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
                     href={item.href}
                     className={`group flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${
                       isActive
-                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25'
+                        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25'
                         : 'text-gray-700 hover:bg-white/80 hover:shadow-sm'
                     }`}
                     onClick={() => setSidebarOpen(false)}
@@ -92,7 +92,7 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
                     </div>
                     {item.badge && (
                       <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                        isActive ? 'bg-white/20 text-white' : 'bg-blue-100 text-blue-600'
+                        isActive ? 'bg-white/20 text-white' : 'bg-indigo-100 text-indigo-600'
                       }`}>
                         {item.badge}
                       </span>
@@ -111,7 +111,7 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
           {/* Desktop header */}
           <div className="flex h-16 items-center px-6 border-b border-gray-100">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                 <span className="text-white font-bold">ACN</span>
               </div>
               <div>
@@ -131,7 +131,7 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
                   href={item.href}
                   className={`group flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 ${
                     isActive
-                      ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/25 transform scale-[1.02]'
+                      ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25 transform scale-[1.02]'
                       : 'text-gray-700 hover:bg-white/80 hover:shadow-sm hover:transform hover:scale-[1.01]'
                   }`}
                 >
@@ -141,7 +141,7 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
                   </div>
                   {item.badge && (
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full transition-colors ${
-                      isActive ? 'bg-white/20 text-white' : 'bg-blue-100 text-blue-600 group-hover:bg-blue-200'
+                      isActive ? 'bg-white/20 text-white' : 'bg-indigo-100 text-indigo-600 group-hover:bg-indigo-200'
                     }`}>
                       {item.badge}
                     </span>
@@ -153,7 +153,7 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
           
           {/* User section */}
           <div className="p-4 border-t border-gray-100">
-            <div className="flex items-center space-x-3 p-3 rounded-xl bg-gradient-to-r from-gray-50 to-blue-50 mb-3">
+            <div className="flex items-center space-x-3 p-3 rounded-xl bg-gradient-to-r from-gray-50 to-indigo-50 mb-3">
               <UserCircleIcon className="h-8 w-8 text-gray-600" />
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-gray-900 truncate">Admin User</p>
@@ -199,19 +199,19 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
                   <div className="py-2">
                     <button
                       onClick={() => setLanguage('en')}
-                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${language === 'en' ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'}`}
+                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${language === 'en' ? 'bg-indigo-50 text-indigo-600 font-medium' : 'text-gray-700'}`}
                     >
                       🇺🇸 English
                     </button>
                     <button
                       onClick={() => setLanguage('ps')}
-                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${language === 'ps' ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'}`}
+                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${language === 'ps' ? 'bg-indigo-50 text-indigo-600 font-medium' : 'text-gray-700'}`}
                     >
                       🇦🇫 پښتو
                     </button>
                     <button
                       onClick={() => setLanguage('fa')}
-                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${language === 'fa' ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'}`}
+                      className={`w-full text-left px-3 py-2 text-sm hover:bg-gray-50 transition-colors ${language === 'fa' ? 'bg-indigo-50 text-indigo-600 font-medium' : 'text-gray-700'}`}
                     >
                       🇮🇷 فارسی
                     </button>

@@ -1,7 +1,7 @@
 export const admin = {
   // Navigation
   nav: {
-    dashboard: 'کنټرول پینل',
+    dashboard: 'ډشبورډ',
     news: 'خبرونه',
     events: 'پیښې',
     rankings: 'درجه بندي',
@@ -20,23 +20,23 @@ export const admin = {
     cancel: 'لغوه کول',
     search: 'لټون',
     filter: 'فلټر',
-    loading: 'بار کول...',
-    noData: 'هیڅ معلومات نشته',
-    confirm: 'ایا تاسو ډاډه یاست؟',
+    loading: 'بارېږي...',
+    noData: 'معلومات شتون نلري',
+    confirm: 'آیا تاسو ډاډه یاست؟',
     success: 'بریالیتوب',
-    error: 'تیروتنه',
+    error: 'تېروتنه',
     view: 'کتل',
     manage: 'اداره کول'
   },
   
   // Dashboard
   dashboard: {
-    title: 'کنټرول پینل',
+    title: 'ډشبورډ',
     subtitle: 'ستاسو د اداري پینل ته ښه راغلاست',
     stats: {
       totalArticles: 'ټولې مقالې',
       published: 'خپرې شوې',
-      draft: 'د مسودې مقالې',
+      draft: 'مسودې',
       totalViews: 'ټولې لیدنې'
     }
   },
@@ -44,30 +44,30 @@ export const admin = {
   // News Management
   news: {
     title: 'د خبرونو اداره',
-    subtitle: 'د خبرونو مقالې جوړې کړئ، سمې کړئ او اداره یې کړئ',
-    create: 'مقاله جوړه کړئ',
-    edit: 'مقاله سمه کړئ',
-    delete: 'مقاله ړنګه کړئ',
-    publish: 'خپره کړئ',
+    subtitle: 'د خبري مقالو جوړول، سمول او اداره کول',
+    create: 'مقاله جوړول',
+    edit: 'مقاله سمول',
+    delete: 'مقاله ړنګول',
+    publish: 'خپرول',
     published: 'خپره شوې',
     draft: 'مسوده',
     featured: 'ځانګړې',
     category: 'کټګورۍ',
     author: 'لیکوال',
-    publishedOn: 'خپره شوې په',
+    publishedOn: 'د خپرولو نیټه',
     views: 'لیدنې'
   },
   
   // Events Management
   events: {
     title: 'د پیښو اداره',
-    subtitle: 'د کرکټ پیښې او لوبې اداره کړئ',
-    create: 'پیښه جوړه کړئ',
-    edit: 'پیښه سمه کړئ',
-    delete: 'پیښه ړنګه کړئ',
-    upcoming: 'راتلونکې',
-    live: 'ژوندی',
-    completed: 'بشپړ شوې',
-    cancelled: 'لغوه شوې'
+    subtitle: 'د کرکټ پیښو او سیالیو اداره کول',
+    create: 'پیښه جوړول',
+    edit: 'پیښه سمول',
+    delete: 'پیښه ړنګول',
+    upcoming: 'راتلونکي',
+    live: 'ژوندي',
+    completed: 'بشپړ شوي',
+    cancelled: 'لغوه شوي'
   }
 }
