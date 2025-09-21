@@ -26,6 +26,7 @@ class PlayerViewSet(DataRootViewSet):
     filterset_fields = ['role', 'status', 'is_captain', 'is_vice_captain', 'is_featured']
     ordering_fields = ['name', 'jersey_number', 'age', 'matches_played', 'runs_scored', 'wickets_taken']
     ordering = ['jersey_number', 'name']
+    lookup_field = 'slug'
 
     def get_queryset(self):
         return Player.objects.filter(status='active' if self.action == 'list' else Q())
@@ -56,6 +57,7 @@ class TeamMemberViewSet(DataRootViewSet):
     filterset_fields = ['member_type', 'role', 'is_active']
     ordering_fields = ['order', 'name', 'join_date']
     ordering = ['member_type', 'order', 'name']
+    lookup_field = 'slug'
 
     def get_queryset(self):
         return TeamMember.objects.select_related('role').filter(is_active=True)
