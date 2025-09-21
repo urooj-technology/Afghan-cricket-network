@@ -15,6 +15,38 @@ export const news = {
     training: 'روزنه',
     awards: 'جایزې',
     youthCricket: 'د ځوانانو کرکټ',
-    womenCricket: 'د میرمنو کرکټ'
-  }
+    womenCricket: 'د میرمنو کرکټ',
+    infrastructure: 'زیربنا'
+  },
+  noImage: 'د خبرونو مقاله',
+  noNews: {
+    title: 'هیڅ خبر ونه موندل شو',
+    description: 'ستاسو د اوسنۍ لټون معیارونو سره هیڅ خبري مقاله نه مطابقت لري.'
+  },
+  searchPlaceholder: 'د خبري مقالو لټون...',
+  readMore: 'نور ولولئ',
+  viewAll: 'ټول خبرونه وګورئ',
+  author: 'لیکوال',
+  publishedOn: 'خپاره شوی په',
+  views: 'لیدنې',
+  relatedNews: 'اروندې مقالې',
+  shareArticle: 'مقاله شریکه کړئ',
+  backToNews: 'خبرونو ته بیرته راستنېدنه',
+  aboutAuthor: 'د لیکوال په اړه',
+  articleStats: 'د مقالې احصایې',
+  shareOptions: 'مقاله شریکه کړئ',
+  like: 'خوښېدل',
+  comment: 'نظر',
+  share: 'شریکه کول',
+  save: 'زغورول',
+  facebook: 'فیسبوک',
+  twitter: 'ټویټر',
+  whatsapp: 'واټساپ',
+  copyLink: 'لینک کاپي کړئ',
+  sportsJournalist: 'د سپورت ژورنالیست',
+  experiencedJournalist: 'د کرکټ با تجربه ژورنالیست چې د ۵ کلونو زیات د افغان کرکټ پوښښ کوي.',
+  discoverMore: 'د افغان کرکټ نورې کیسې وموندئ',
+  articleNotFound: 'مقاله ونه موندل شوه',
+  articleNotFoundDesc: 'هغه مقاله چې تاسو یې لټوي شتون نلري یا لرې شوی دی.',
+  contentNotAvailable: 'محتوا نه دی شته.'
 }

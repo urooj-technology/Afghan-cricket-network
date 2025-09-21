@@ -15,6 +15,38 @@ export const news = {
     training: 'تمرین',
     awards: 'جوایز',
     youthCricket: 'کریکت جوانان',
-    womenCricket: 'کریکت زنان'
-  }
+    womenCricket: 'کریکت زنان',
+    infrastructure: 'زیرساخت'
+  },
+  noImage: 'مقاله خبری',
+  noNews: {
+    title: 'خبری یافت نشد',
+    description: 'هیچ مقاله خبری با معیارهای جستجوی فعلی شما مطابقت ندارد.'
+  },
+  searchPlaceholder: 'جستجوی مقالات خبری...',
+  readMore: 'بیشتر بخوانید',
+  viewAll: 'مشاهده همه اخبار',
+  author: 'نویسنده',
+  publishedOn: 'منتشر شده در',
+  views: 'بازدید',
+  relatedNews: 'مقالات مرتبط',
+  shareArticle: 'اشتراک مقاله',
+  backToNews: 'بازگشت به اخبار',
+  aboutAuthor: 'درباره نویسنده',
+  articleStats: 'آمار مقاله',
+  shareOptions: 'اشتراک مقاله',
+  like: 'پسندیدن',
+  comment: 'نظر',
+  share: 'اشتراک',
+  save: 'ذخیره',
+  facebook: 'فیسبوک',
+  twitter: 'توییتر',
+  whatsapp: 'واتساپ',
+  copyLink: 'کپی لینک',
+  sportsJournalist: 'روزنامهنگار ورزشی',
+  experiencedJournalist: 'روزنامهنگار با تجربه کریکت که بیش از ۵ سال کریکت افغانستان را پوشش میدهد.',
+  discoverMore: 'داستانهای بیشتری از کریکت افغانستان کشف کنید',
+  articleNotFound: 'مقاله یافت نشد',
+  articleNotFoundDesc: 'مقالهای که به دنبال آن هستید وجود ندارد یا حذف شده است.',
+  contentNotAvailable: 'محتوا در دسترس نیست.'
 }

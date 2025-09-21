@@ -56,10 +56,10 @@ export default function NewsDetailPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <Card className="text-center py-16">
               <h1 className={`text-2xl font-bold text-gray-900 mb-4 ${isRTL ? 'font-arabic' : ''}`}>
-                Article not found
+                {String(getTranslation(language, 'news.articleNotFound') || 'Article not found')}
               </h1>
               <p className={`text-gray-600 mb-6 ${isRTL ? 'font-arabic' : ''}`}>
-                The article you're looking for doesn't exist or has been removed.
+                {String(getTranslation(language, 'news.articleNotFoundDesc') || "The article you're looking for doesn't exist or has been removed.")}
               </p>
               <Link
                 href="/news"
@@ -114,7 +114,7 @@ export default function NewsDetailPage() {
               <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                 <UserIcon className={`w-5 h-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 <span className={isRTL ? 'font-arabic' : ''}>
-                  By {article.author_name}
+                  {String(getTranslation(language, 'news.author') || 'By')} {article.author_name}
                 </span>
               </div>
               <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
@@ -123,7 +123,7 @@ export default function NewsDetailPage() {
               </div>
               <div className={`flex items-center ${isRTL ? 'flex-row-reverse' : ''}`}>
                 <EyeIcon className={`w-5 h-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                <span>{article.views.toLocaleString()} views</span>
+                <span>{article.views.toLocaleString()} {String(getTranslation(language, 'news.views') || 'views')}</span>
               </div>
             </div>
           </div>
@@ -202,7 +202,7 @@ export default function NewsDetailPage() {
               {/* Author Card */}
               <div className="bg-white rounded-2xl shadow-lg p-6">
                 <h3 className={`text-lg font-bold text-gray-900 mb-4 ${isRTL ? 'font-arabic text-right' : ''}`}>
-                  About the Author
+                  {String(getTranslation(language, 'news.aboutAuthor') || 'About the Author')}
                 </h3>
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center">

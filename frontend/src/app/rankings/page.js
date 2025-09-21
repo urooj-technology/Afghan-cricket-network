@@ -416,10 +416,10 @@ export default function RankingsPage() {
                 return (
                   <div
                     key={index}
-                    className={`group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 ${
-                      isFirst ? 'border-yellow-400 ring-4 ring-yellow-100' :
-                      isTopRank ? 'border-blue-400 ring-2 ring-blue-100' :
-                      'border-gray-100 hover:border-gray-200'
+                    className={`group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 hover:scale-105 border-2 ${
+                      isFirst ? 'border-yellow-400 ring-4 ring-yellow-100 bg-gradient-to-br from-yellow-50 to-white' :
+                      isTopRank ? 'border-blue-400 ring-2 ring-blue-100 bg-gradient-to-br from-blue-50 to-white' :
+                      'border-gray-100 hover:border-gray-300 bg-gradient-to-br from-gray-50 to-white'
                     }`}
                     dir={isRTL ? 'rtl' : 'ltr'}
                   >
@@ -447,18 +447,18 @@ export default function RankingsPage() {
                     {/* Content */}
                     <div className="p-6">
                       {/* Avatar */}
-                      <div className="flex justify-center -mt-12 mb-4">
-                        <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center border-4 border-white">
+                      <div className="flex justify-center -mt-8 mb-3">
+                        <div className="w-16 h-16 bg-gradient-to-br from-white to-gray-50 rounded-full shadow-lg flex items-center justify-center border-3 border-white ring-1 ring-gray-100">
                           {selectedCategory === 'teams' ? (
-                            <UsersIcon className="w-8 h-8 text-gray-600 mt-1" />
+                            <UsersIcon className="w-7 h-7 text-gray-700 pt-1" />
                           ) : (
-                            <UserIcon className="w-8 h-8 text-gray-600 mt-1" />
+                            <UserIcon className="w-7 h-7 text-gray-700 pt-1" />
                           )}
                         </div>
                       </div>
                       
                       {/* Name */}
-                      <h3 className={`text-lg font-bold text-gray-900 text-center mb-4 line-clamp-2 ${isRTL ? 'font-arabic' : ''}`}>
+                      <h3 className={`text-lg font-bold text-gray-900 text-center mb-2 line-clamp-1 ${isRTL ? 'font-arabic' : ''}`}>
                         {selectedCategory === 'teams' 
                           ? item.team_name
                           : item.player_name
@@ -467,16 +467,16 @@ export default function RankingsPage() {
                       
                       {/* Country for players */}
                       {selectedCategory !== 'teams' && (
-                        <div className="flex items-center justify-center mb-4">
-                          <span className="text-lg mr-2">🇦🇫</span>
-                          <span className={`text-sm text-gray-600 font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                        <div className="flex items-center justify-center mb-3">
+                          <span className="text-sm mr-1">🇦🇫</span>
+                          <span className={`text-xs text-gray-600 font-medium ${isRTL ? 'font-arabic' : ''}`}>
                             {item.country || 'Afghanistan'}
                           </span>
                         </div>
                       )}
                       
                       {/* Stats */}
-                      <div className="space-y-3">
+                      <div className="space-y-2">
                         {/* Rating */}
                         <div className="bg-gray-50 rounded-xl p-3">
                           <div className={`flex items-center justify-between mb-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
