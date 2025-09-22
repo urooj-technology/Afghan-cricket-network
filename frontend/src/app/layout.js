@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '../contexts/LanguageContext'
+import { AuthProvider } from '../contexts/AuthContext'
 import DynamicLayout from '../components/layout/DynamicLayout'
 import QueryProvider from '../providers/QueryProvider'
 
@@ -64,11 +65,13 @@ export default function RootLayout({ children }) {
       </head>
       <body className={`${inter.className} font-en`} suppressHydrationWarning>
         <QueryProvider>
-          <LanguageProvider>
-            <DynamicLayout>
-              {children}
-            </DynamicLayout>
-          </LanguageProvider>
+          <AuthProvider>
+            <LanguageProvider>
+              <DynamicLayout>
+                {children}
+              </DynamicLayout>
+            </LanguageProvider>
+          </AuthProvider>
         </QueryProvider>
       </body>
     </html>

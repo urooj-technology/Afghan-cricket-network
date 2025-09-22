@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import { useAuth } from '../../../contexts/AuthContext'
 import AdminLayout from '../../../components/admin/AdminLayout'
 import { 
   NewspaperIcon, 
@@ -18,18 +19,15 @@ import {
 
 export default function AdminDashboard() {
   const router = useRouter()
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const { isAuthenticated, isAdmin, isLoading } = useAuth()
 
   useEffect(() => {
-    const auth = localStorage.getItem('adminAuth')
-    if (!auth) {
-      router.push('/admin')
-    } else {
-      setIsAuthenticated(true)
+    if (!isLoading && (!isAuthenticated || !isAdmin())) {
+      router.push('/admin/login')
     }
-  }, [router])
+  }, [isAuthenticated, isAdmin, isLoading, router])
 
-  if (!isAuthenticated) return null
+  if (isLoading || !isAuthenticated || !isAdmin()) return null
 
   const stats = [
     { name: 'Total Articles', value: '24', change: '+12%', icon: NewspaperIcon, color: 'blue' },

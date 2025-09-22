@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { Bars3Icon, XMarkIcon, GlobeAltIcon, MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
+import { useAuth } from '../../contexts/AuthContext'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
 
@@ -27,9 +28,11 @@ const languages = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [langDropdownOpen, setLangDropdownOpen] = useState(false)
+  const { isAuthenticated, isAdmin } = useAuth()
   const { language, setLanguage, isRTL, direction } = useLanguage()
   const dropdownRef = useRef(null)
   const pathname = usePathname()
+  const router = useRouter()
 
   const currentLang = languages.find(lang => lang.code === language) || languages[0]
 
@@ -108,8 +111,14 @@ export default function Header() {
           </button>
           
           {/* Admin Link */}
-          <Link
-            href="/admin"
+          <button
+            onClick={() => {
+              if (isAuthenticated && isAdmin()) {
+                router.push('/admin/dashboard')
+              } else {
+                router.push('/admin')
+              }
+            }}
             className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
               pathname.startsWith('/admin')
                 ? 'text-red-700 bg-gradient-to-r from-red-50 to-pink-50 font-semibold'
@@ -117,7 +126,7 @@ export default function Header() {
             }`}
           >
             {getTranslation(language, 'admin.nav.dashboard')}
-          </Link>
+          </button>
           
           {/* Language Dropdown */}
           <div className="relative" ref={dropdownRef}>
@@ -204,17 +213,23 @@ export default function Header() {
                 )
               })}
               
-              <Link
-                href="/admin"
-                className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false)
+                  if (isAuthenticated && isAdmin()) {
+                    router.push('/admin/dashboard')
+                  } else {
+                    router.push('/admin')
+                  }
+                }}
+                className={`w-full text-left block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
                   pathname.startsWith('/admin')
                     ? 'bg-red-50 text-red-600 font-semibold border-l-4 border-red-600'
                     : 'text-red-600 hover:bg-red-50'
                 }`}
-                onClick={() => setMobileMenuOpen(false)}
               >
                 {getTranslation(language, 'admin.nav.dashboard')}
-              </Link>
+              </button>
             </div>
             
             {/* Mobile Language Selection */}

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
+import { useAuth } from '../../contexts/AuthContext'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
 import { 
@@ -48,9 +49,11 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
     setMounted(true)
   }, [])
 
-  const handleLogout = () => {
-    localStorage.removeItem('adminAuth')
-    router.push('/admin')
+  const { logout, user } = useAuth()
+
+  const handleLogout = async () => {
+    await logout()
+    router.push('/admin/login')
   }
 
   if (!mounted) return null
@@ -160,8 +163,8 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
             <div className="flex items-center space-x-3 p-3 rounded-xl bg-gradient-to-r from-gray-50 to-indigo-50 mb-3">
               <UserCircleIcon className="h-8 w-8 text-gray-600" />
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-gray-900 truncate">Admin User</p>
-                <p className="text-xs text-gray-500 truncate">admin@acn.com</p>
+                <p className="text-sm font-medium text-gray-900 truncate">{user?.first_name || user?.username || 'Admin'}</p>
+                <p className="text-xs text-gray-500 truncate">{user?.email || 'admin@acn.com'}</p>
               </div>
             </div>
             <button
