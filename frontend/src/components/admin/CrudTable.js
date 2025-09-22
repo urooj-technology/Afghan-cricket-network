@@ -184,13 +184,13 @@ export default function CrudTable({
         <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex-1 max-w-md">
             <div className="relative">
-              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <MagnifyingGlassIcon className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400`} />
               <input
                 type="text"
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={(e) => handleSearch(e.target.value)}
-                className="form-input pl-10 bg-white/50"
+                className={`form-input ${isRTL ? 'pr-10 text-right font-arabic' : 'pl-10'} bg-white/50`}
               />
             </div>
           </div>
@@ -308,22 +308,43 @@ export default function CrudTable({
             >
               Previous
             </button>
-            {[...Array(Math.min(5, pagination.totalPages))].map((_, i) => {
-              const page = i + 1
-              return (
-                <button
-                  key={page}
-                  onClick={() => goToPage(page)}
-                  className={`px-3 py-2 text-sm border rounded-lg ${
-                    page === pagination.currentPage
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'hover:bg-gray-50'
-                  }`}
-                >
-                  {page}
-                </button>
-              )
-            })}
+            {(() => {
+              const current = pagination.currentPage
+              const total = pagination.totalPages
+              const pages = []
+              
+              if (total <= 7) {
+                for (let i = 1; i <= total; i++) {
+                  pages.push(i)
+                }
+              } else {
+                if (current <= 4) {
+                  pages.push(1, 2, 3, 4, 5, '...', total)
+                } else if (current >= total - 3) {
+                  pages.push(1, '...', total - 4, total - 3, total - 2, total - 1, total)
+                } else {
+                  pages.push(1, '...', current - 1, current, current + 1, '...', total)
+                }
+              }
+              
+              return pages.map((page, index) => (
+                page === '...' ? (
+                  <span key={index} className="px-3 py-2 text-sm text-gray-500">...</span>
+                ) : (
+                  <button
+                    key={page}
+                    onClick={() => goToPage(page)}
+                    className={`px-3 py-2 text-sm border rounded-lg ${
+                      page === current
+                        ? 'bg-blue-600 text-white border-blue-600'
+                        : 'hover:bg-gray-50'
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
+              ))
+            })()}
             <button
               onClick={nextPage}
               disabled={!pagination.hasNext}

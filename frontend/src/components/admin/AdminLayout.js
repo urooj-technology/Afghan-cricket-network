@@ -64,7 +64,7 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
       {sidebarOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
-          <div className={`fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} w-72 bg-white/95 backdrop-blur-xl shadow-2xl border-r border-white/20`}>
+          <div className={`fixed inset-y-0 ${isRTL ? 'right-0' : 'left-0'} w-72 bg-white/95 backdrop-blur-xl shadow-2xl ${isRTL ? 'border-l' : 'border-r'} border-white/20`}>
             {/* Mobile header */}
             <div className="flex h-16 items-center justify-between px-6 border-b border-gray-100">
               <div className="flex items-center space-x-3">
@@ -90,12 +90,12 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
                       isActive
                         ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25'
                         : 'text-gray-700 hover:bg-white/80 hover:shadow-sm'
-                    }`}
+                    } ${isRTL ? 'flex-row-reverse' : ''}`}
                     onClick={() => setSidebarOpen(false)}
                   >
-                    <div className="flex items-center">
-                      <item.icon className={`h-5 w-5 mr-3 ${isActive ? 'text-white' : 'text-gray-500'}`} />
-                      {getTranslation(language, `admin.nav.${item.key}`)}
+                    <div className={`flex items-center ${isRTL ? 'flex-row-reverse space-x-reverse' : ''} space-x-3`}>
+                      <item.icon className={`h-5 w-5 ${isActive ? 'text-white' : 'text-gray-500'}`} />
+                      <span className={isRTL ? 'font-arabic' : ''}>{getTranslation(language, `admin.nav.${item.key}`)}</span>
                     </div>
                     {item.badge && (
                       <span className={`px-2 py-1 text-xs font-semibold rounded-full ${
@@ -150,11 +150,11 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
                     isActive
                       ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25 transform scale-[1.02]'
                       : 'text-gray-700 hover:bg-white/80 hover:shadow-sm hover:transform hover:scale-[1.01]'
-                  }`}
+                  } ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
-                  <div className="flex items-center">
-                    <item.icon className={`h-5 w-5 mr-3 ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-gray-700'}`} />
-                    {getTranslation(language, `admin.nav.${item.key}`)}
+                  <div className={`flex items-center ${isRTL ? 'flex-row-reverse space-x-reverse' : ''} space-x-3`}>
+                    <item.icon className={`h-5 w-5 ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-gray-700'}`} />
+                    <span className={isRTL ? 'font-arabic' : ''}>{getTranslation(language, `admin.nav.${item.key}`)}</span>
                   </div>
                   {item.badge && (
                     <span className={`px-2 py-1 text-xs font-semibold rounded-full transition-colors ${
@@ -246,12 +246,12 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
               </div>
               
               {/* Search */}
-              <div className="hidden md:flex items-center space-x-2 bg-gray-100 rounded-lg px-3 py-2">
+              <div className={`hidden md:flex items-center bg-gray-100 rounded-lg px-3 py-2 ${isRTL ? 'space-x-reverse' : ''} space-x-2`}>
                 <MagnifyingGlassIcon className="h-4 w-4 text-gray-500" />
                 <input 
                   type="text" 
                   placeholder={getTranslation(language, 'admin.common.search')}
-                  className="bg-transparent text-sm text-gray-700 placeholder-gray-500 border-none outline-none w-32 lg:w-48"
+                  className={`bg-transparent text-sm text-gray-700 placeholder-gray-500 border-none outline-none w-32 lg:w-48 ${isRTL ? 'text-right font-arabic' : ''}`}
                 />
               </div>
               

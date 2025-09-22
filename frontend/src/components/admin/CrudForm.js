@@ -140,10 +140,11 @@ export default function CrudForm({
     e.preventDefault()
     setErrors({})
 
-    // Validate required fields
+    // Validate only critical required fields
     const validationErrors = {}
+    const criticalFields = ['name', 'title', 'email'] // Only validate these important fields
     fields.forEach(field => {
-      if (field.required) {
+      if (field.required && criticalFields.includes(field.name)) {
         const value = formData[field.name]
         if (!value || (typeof value === 'string' && value.trim() === '')) {
           validationErrors[field.name] = `${field.label} is required`
@@ -212,9 +213,6 @@ export default function CrudForm({
             onChange={(e) => handleInputChange(field.name, e.target.value)}
             className={baseClasses}
             placeholder={field.placeholder}
-            required={field.required}
-            min={field.min}
-            max={field.max}
           />
         )
 
@@ -225,7 +223,6 @@ export default function CrudForm({
             onChange={(e) => handleInputChange(field.name, e.target.value)}
             className={baseClasses}
             placeholder={field.placeholder}
-            required={field.required}
             rows={field.rows || 4}
           />
         )
@@ -236,7 +233,6 @@ export default function CrudForm({
             value={value}
             onChange={(e) => handleInputChange(field.name, e.target.value)}
             className={baseClasses}
-            required={field.required}
           >
             <option value="">Select {field.label}</option>
             {field.options.map((option) => (
@@ -268,7 +264,6 @@ export default function CrudForm({
             value={value}
             onChange={(e) => handleInputChange(field.name, e.target.value)}
             className={baseClasses}
-            required={field.required}
           />
         )
 
@@ -337,7 +332,6 @@ export default function CrudForm({
             onChange={(e) => handleInputChange(field.name, e.target.value)}
             className={baseClasses}
             placeholder={field.placeholder}
-            required={field.required}
           />
         )
     }
