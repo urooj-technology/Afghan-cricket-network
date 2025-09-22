@@ -74,7 +74,7 @@ export default function Hero() {
 
   return (
     <RTLWrapper>
-      <section className="relative h-[80vh] lg:h-[85vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         {/* Background with Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 transition-all duration-1000">
           <div className="absolute inset-0 bg-black/20"></div>
@@ -90,34 +90,33 @@ export default function Hero() {
         </div>
 
         {/* Main Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-8 lg:space-y-10">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center space-y-6 sm:space-y-8 lg:space-y-10">
             {/* Main Heading */}
             <div className="space-y-4 lg:space-y-6">
-              <h1 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight opacity-0 animate-fade-in-up ${isRTL ? 'font-arabic' : ''}`}>
-                <span className="block bg-gradient-to-r from-white via-purple-100 to-pink-200 bg-clip-text text-transparent drop-shadow-lg">
+              <h1 className={`text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight tracking-tight text-center ${isRTL ? 'font-arabic' : ''}`}>
+                <span className="block drop-shadow-2xl">
                   {getTranslation(language, currentSlideData.titleKey)}
                 </span>
               </h1>
-              <p className={`text-base sm:text-lg md:text-xl lg:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed opacity-0 animate-fade-in-up animation-delay-300 px-4 ${isRTL ? 'font-arabic' : ''}`}>
+              <p className={`text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed px-2 text-center ${isRTL ? 'font-arabic' : ''}`}>
                 {getTranslation(language, currentSlideData.subtitleKey)}
               </p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="space-y-6 opacity-0 animate-fade-in-up animation-delay-500">
-              {/* CTA Buttons */}
-              <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center px-4 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
+            <div className="space-y-4 sm:space-y-6">
+              <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-2 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
                 <Link
                   href="/news"
-                  className={`group inline-flex items-center px-6 py-3 bg-white/90 backdrop-blur-sm text-indigo-900 font-semibold rounded-full hover:bg-white transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-base w-full sm:w-auto justify-center ${isRTL ? 'flex-row-reverse' : ''}`}
+                  className={`group inline-flex items-center px-6 py-3 bg-white text-blue-900 font-semibold rounded-full hover:bg-white/90 transition-all duration-300 shadow-lg text-sm sm:text-base w-full sm:w-auto justify-center max-w-xs ${isRTL ? 'flex-row-reverse' : ''}`}
                 >
                   <span className={isRTL ? 'ml-2' : 'mr-2'}>
                     {getTranslation(language, currentSlideData.ctaKey)}
                   </span>
-                  <ChevronRightIcon className={`w-4 h-4 group-hover:translate-x-1 transition-transform ${isRTL ? 'rotate-180' : ''}`} />
+                  <ChevronRightIcon className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
                 </Link>
-                <button className={`group inline-flex items-center px-6 py-3 border-2 border-white/80 text-white font-semibold rounded-full hover:bg-white/10 backdrop-blur-sm transition-all duration-300 transform hover:scale-105 text-base w-full sm:w-auto justify-center ${isRTL ? 'flex-row-reverse' : ''}`}>
+                <button className={`group inline-flex items-center px-6 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 text-sm sm:text-base w-full sm:w-auto justify-center max-w-xs ${isRTL ? 'flex-row-reverse' : ''}`}>
                   <PlayIcon className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
                   <span>{getTranslation(language, 'home.hero.watchHighlights')}</span>
                 </button>
@@ -125,17 +124,17 @@ export default function Hero() {
             </div>
 
             {/* Compact Stats */}
-            <div className="opacity-0 animate-fade-in-up animation-delay-700">
-              <div className="grid grid-cols-3 gap-4 lg:gap-8 max-w-3xl mx-auto px-4">
+            <div className="mt-8 sm:mt-12">
+              <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-8 max-w-3xl mx-auto px-2">
                 {stats.map((stat, index) => (
-                  <div key={index} className="text-center group">
-                    <div className="inline-flex items-center justify-center w-12 h-12 lg:w-16 lg:h-16 bg-white/10 backdrop-blur-sm rounded-full mb-2 lg:mb-3 group-hover:bg-white/20 transition-all duration-300 group-hover:scale-110">
-                      <stat.icon className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
+                  <div key={index} className="text-center">
+                    <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-white/20 rounded-full mb-2 lg:mb-3">
+                      <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
                     </div>
-                    <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 tracking-tight">
+                    <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-1">
                       {getTranslation(language, stat.valueKey)}
                     </div>
-                    <div className={`text-purple-100 text-xs sm:text-sm lg:text-base font-medium ${isRTL ? 'font-arabic' : ''}`}>
+                    <div className={`text-white/80 text-xs sm:text-sm lg:text-base font-medium ${isRTL ? 'font-arabic' : ''}`}>
                       {getTranslation(language, stat.labelKey)}
                     </div>
                   </div>

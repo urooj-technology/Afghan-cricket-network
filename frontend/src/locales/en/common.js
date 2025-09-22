@@ -27,7 +27,9 @@ export const common = {
     edit: 'Edit',
     delete: 'Delete',
     back: 'Back',
-    close: 'Close'
+    close: 'Close',
+    login: 'Login',
+    logout: 'Logout'
   },
   loadingMore: 'Loading more...',
   allLoaded: 'All items loaded',

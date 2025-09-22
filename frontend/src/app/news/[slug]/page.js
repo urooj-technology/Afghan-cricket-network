@@ -34,7 +34,7 @@ export default function NewsDetailPage() {
   const [liked, setLiked] = useState(false)
   const [bookmarked, setBookmarked] = useState(false)
 
-  const { data: article, isLoading, error } = useFetchData(`/news/${slug}`, {
+  const { data: article, isLoading, error } = useFetchData(`/news/${slug}/`, {
     queryKey: ['news', slug],
     enabled: !!slug
   })
@@ -446,7 +446,7 @@ export default function NewsDetailPage() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {relatedNews.results.slice(0, 3).map((relatedArticle, index) => (
-                  <Link key={relatedArticle.id} href={`/news/${relatedArticle.slug}`}>
+                  <Link key={relatedArticle.id} href={`/news/${relatedArticle.id}`}>
                     <div className="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 border border-gray-100">
                       <div className="relative overflow-hidden">
                         {relatedArticle.image ? (

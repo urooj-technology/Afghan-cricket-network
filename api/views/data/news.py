@@ -33,7 +33,7 @@ class NewsViewSet(DataRootViewSet):
     filterset_fields = ['status', 'category', 'is_featured', 'author']
     ordering_fields = ['created_at', 'published_at', 'views', 'title']
     ordering = ['-created_at']
-    lookup_field = 'slug'
+    lookup_field = 'pk'
 
     def get_queryset(self):
         if self.action in ['list', 'retrieve']:

@@ -92,25 +92,14 @@ export default function NewsSection() {
                       </div>
                       <h3 className="text-2xl font-bold text-gray-900 mb-4">{featuredNews[0].title}</h3>
                       <p className="text-gray-600 mb-6 leading-relaxed">{featuredNews[0].excerpt}</p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-4">
-                          <span className="text-sm text-gray-500">
-                            By {featuredNews[0].author_name}
-                          </span>
-                          <span className="text-sm text-gray-500 flex items-center">
-                            <EyeIcon className="w-4 h-4 mr-1" />
-                            {featuredNews[0].views}
-                          </span>
-                        </div>
-                        <Link
-                          href={`/news/${featuredNews[0].slug}`}
-                          className="inline-flex items-center px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200"
-                        >
-                          Read More
-                          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </Link>
+                      <div className="flex items-center space-x-4">
+                        <span className="text-sm text-gray-500">
+                          By {featuredNews[0].author_name}
+                        </span>
+                        <span className="text-sm text-gray-500 flex items-center">
+                          <EyeIcon className="w-4 h-4 mr-1" />
+                          {featuredNews[0].views}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -154,7 +143,7 @@ export default function NewsSection() {
                         </span>
                       </div>
                       <Link
-                        href={`/news/${news.slug}`}
+                        href={`/news/${news.id}`}
                         className="text-blue-600 hover:text-blue-800 font-medium text-sm"
                       >
                         Read More →

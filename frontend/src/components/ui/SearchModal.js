@@ -156,7 +156,7 @@ export default function SearchModal({ isOpen, onClose }) {
                         className="group bg-white border border-gray-200 rounded-xl p-4 hover:shadow-lg transition-all duration-300 cursor-pointer hover:border-blue-300"
                         onClick={() => {
                           if (item.type === 'news') {
-                            window.location.href = `/news/${item.slug}`
+                            window.location.href = `/news/${item.id}`
                           } else if (item.type === 'events') {
                             window.location.href = `/events/${item.id}`
                           } else if (item.type === 'players' || item.type === 'team') {
@@ -370,7 +370,7 @@ export default function SearchModal({ isOpen, onClose }) {
                   <button
                     onClick={() => {
                       if (selectedItem.type === 'news') {
-                        window.location.href = `/news/${selectedItem.slug}`
+                        window.location.href = `/news/${selectedItem.id}`
                       } else if (selectedItem.type === 'events') {
                         window.location.href = `/events/${selectedItem.id}`
                       } else if (selectedItem.type === 'players' || selectedItem.type === 'team') {

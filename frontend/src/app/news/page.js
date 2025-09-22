@@ -208,7 +208,7 @@ export default function NewsPage() {
                       
                       <div className="p-6 flex-1 flex flex-col">
                         <h3 className={`text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors leading-tight ${isRTL ? 'font-arabic text-right' : ''}`}>
-                          <Link href={`/news/${article.slug}`}>
+                          <Link href={`/news/${article.id}`}>
                             {article.title}
                           </Link>
                         </h3>

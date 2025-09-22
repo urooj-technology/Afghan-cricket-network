@@ -27,7 +27,9 @@ export const common = {
     edit: 'ویرایش',
     delete: 'حذف',
     back: 'بازگشت',
-    close: 'بستن'
+    close: 'بستن',
+    login: 'ورود',
+    logout: 'خروج'
   },
   loadingMore: 'بارگذاری بیشتر...',
   allLoaded: 'همه موارد بارگذاری شد',

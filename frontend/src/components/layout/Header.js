@@ -248,61 +248,59 @@ export default function Header() {
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-indigo-500/5 rounded-full blur-3xl animate-spin" style={{animationDuration: '30s'}}></div>
             </div>
             {/* Mobile Header */}
-            <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 px-6 py-6 border-b border-white/10">
+            <div className="relative bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-900 px-4 py-4 border-b border-white/10">
               <div className="flex items-center justify-between relative z-10">
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-3">
                   <div className="relative">
-                    <div className="w-14 h-14 bg-gradient-to-br from-white/30 to-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl">
-                      <img src="/logo.jpg" alt="ACN" className="w-10 h-10 rounded-xl" />
+                    <div className="w-12 h-12 bg-gradient-to-br from-white/30 to-white/10 rounded-xl flex items-center justify-center backdrop-blur-md border border-white/20 shadow-lg">
+                      <img src="/logo.jpg" alt="ACN" className="w-8 h-8 rounded-lg" />
                     </div>
-                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+                    <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
                   </div>
                   <div>
-                    <span className="text-white font-bold text-2xl tracking-tight">ACN</span>
-                    <p className="text-blue-100 text-sm font-medium">Cricket Network</p>
+                    <span className="text-white font-bold text-xl tracking-tight">ACN</span>
+                    <p className="text-blue-100 text-xs font-medium leading-tight">{getTranslation(language, 'common.footer.forAfghanistan') || 'Cricket Network'}</p>
                   </div>
                 </div>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-white/70 hover:text-white p-3 rounded-2xl hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                  className="text-white/80 hover:text-white p-2 rounded-xl hover:bg-white/20 transition-all duration-200"
                 >
-                  <XMarkIcon className="h-6 w-6" />
+                  <XMarkIcon className="h-5 w-5" />
                 </button>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent"></div>
             </div>
             
             {/* Mobile Navigation Card */}
-            <div className="p-5 relative z-10">
-              <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-3 space-y-2 border border-white/10 shadow-2xl">
+            <div className="p-4 relative z-10">
+              <div className="bg-white/15 backdrop-blur-xl rounded-2xl p-2 space-y-1 border border-white/10 shadow-2xl">
                 {navigation.map((item, index) => {
                   const isActive = isActiveRoute(item.href)
                   return (
                     <Link
                       key={item.key}
                       href={item.href}
-                      className={`group flex items-center space-x-4 px-5 py-4 rounded-2xl transition-all duration-300 transform hover:scale-[1.02] ${
+                      className={`group flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                         isActive 
-                          ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-xl shadow-blue-500/25' 
-                          : 'text-slate-200 hover:bg-white/20 hover:text-white hover:shadow-lg'
-                      }`}
+                          ? 'bg-gradient-to-r from-indigo-600 to-purple-700 text-white shadow-lg' 
+                          : 'text-slate-200 hover:bg-white/20 hover:text-white'
+                      } ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}
                       onClick={() => setMobileMenuOpen(false)}
-                      style={{animationDelay: `${index * 50}ms`}}
                     >
-                      <div className={`p-2 rounded-xl transition-all duration-300 ${
+                      <div className={`p-2 rounded-lg transition-all duration-200 ${
                         isActive ? 'bg-white/20' : 'bg-white/10 group-hover:bg-white/20'
                       }`}>
-                        <item.icon className="w-5 h-5" />
+                        <item.icon className="w-4 h-4" />
                       </div>
-                      <span className="text-sm font-semibold">{getTranslation(language, `common.nav.${item.key}`)}</span>
-                      {isActive && <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse"></div>}
+                      <span className={`text-sm font-semibold flex-1 ${isRTL ? 'font-arabic text-right' : 'text-left'}`}>{getTranslation(language, `common.nav.${item.key}`)}</span>
+                      {isActive && <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>}
                     </Link>
                   )
                 })}
               </div>
               
               {/* Profile Card */}
-              <div className="mt-5 bg-white/15 backdrop-blur-xl rounded-3xl p-3 border border-white/10 shadow-2xl">
+              <div className="mt-3 bg-white/15 backdrop-blur-xl rounded-2xl p-2 border border-white/10 shadow-2xl">
                 {isAuthenticated ? (
                   <>
                     <button
@@ -310,28 +308,28 @@ export default function Header() {
                         setMobileMenuOpen(false)
                         router.push('/admin/dashboard')
                       }}
-                      className="w-full group flex items-center space-x-4 px-5 py-4 rounded-2xl text-slate-200 hover:bg-white/20 hover:text-white transition-all duration-300 transform hover:scale-[1.02]"
+                      className={`w-full group flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-200 hover:bg-white/20 hover:text-white transition-all duration-200 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}
                     >
-                      <div className="p-2 rounded-xl bg-emerald-500/20 group-hover:bg-emerald-500/30 transition-all duration-300">
-                        <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="p-2 rounded-lg bg-emerald-500/20 group-hover:bg-emerald-500/30 transition-all duration-200">
+                        <svg className="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
                         </svg>
                       </div>
-                      <span className="text-sm font-semibold">Dashboard</span>
+                      <span className={`text-sm font-semibold flex-1 ${isRTL ? 'font-arabic text-right' : 'text-left'}`}>{getTranslation(language, 'common.admin.dashboard') || 'Dashboard'}</span>
                     </button>
                     <button
                       onClick={() => {
                         setMobileMenuOpen(false)
                         router.push('/admin/login')
                       }}
-                      className="w-full group flex items-center space-x-4 px-5 py-4 rounded-2xl text-red-300 hover:bg-red-500/20 hover:text-red-200 transition-all duration-300 transform hover:scale-[1.02] mt-2"
+                      className={`w-full group flex items-center space-x-3 px-4 py-3 rounded-xl text-red-300 hover:bg-red-500/20 hover:text-red-200 transition-all duration-200 mt-1 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}
                     >
-                      <div className="p-2 rounded-xl bg-red-500/20 group-hover:bg-red-500/30 transition-all duration-300">
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="p-2 rounded-lg bg-red-500/20 group-hover:bg-red-500/30 transition-all duration-200">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd" />
                         </svg>
                       </div>
-                      <span className="text-sm font-semibold">Logout</span>
+                      <span className={`text-sm font-semibold flex-1 ${isRTL ? 'font-arabic text-right' : 'text-left'}`}>{getTranslation(language, 'common.buttons.logout') || 'Logout'}</span>
                     </button>
                   </>
                 ) : (
@@ -340,35 +338,35 @@ export default function Header() {
                       setMobileMenuOpen(false)
                       router.push('/admin/login')
                     }}
-                    className="w-full group flex items-center space-x-4 px-5 py-4 rounded-2xl text-blue-300 hover:bg-blue-500/20 hover:text-blue-200 transition-all duration-300 transform hover:scale-[1.02]"
+                    className={`w-full group flex items-center space-x-3 px-4 py-3 rounded-xl text-blue-300 hover:bg-blue-500/20 hover:text-blue-200 transition-all duration-200 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}
                   >
-                    <div className="p-2 rounded-xl bg-blue-500/20 group-hover:bg-blue-500/30 transition-all duration-300">
-                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="p-2 rounded-lg bg-blue-500/20 group-hover:bg-blue-500/30 transition-all duration-200">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-sm font-semibold">Login</span>
+                    <span className={`text-sm font-semibold flex-1 ${isRTL ? 'font-arabic text-right' : 'text-left'}`}>{getTranslation(language, 'common.buttons.login') || 'Login'}</span>
                   </button>
                 )}
               </div>
             </div>
             
             {/* Mobile Language Selection */}
-            <div className="absolute bottom-0 left-0 right-0 p-5 relative z-10">
-              <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-4 border border-white/10 shadow-2xl">
-                <p className="text-white/80 text-xs font-semibold mb-3 text-center">Language</p>
-                <div className="flex space-x-3">
+            <div className="absolute bottom-0 left-0 right-0 p-4 relative z-10">
+              <div className="bg-white/15 backdrop-blur-xl rounded-2xl p-3 border border-white/10 shadow-2xl">
+                <p className={`text-white/80 text-xs font-semibold mb-2 text-center ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'common.language.selectLanguage') || 'Language'}</p>
+                <div className="flex gap-2">
                   {languages.map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() => handleLanguageChange(lang.code)}
-                      className={`flex-1 py-3 px-4 rounded-2xl text-center text-sm font-bold transition-all duration-300 transform hover:scale-105 ${
+                      className={`flex-1 py-2 px-3 rounded-xl text-center text-sm font-bold transition-all duration-200 ${
                         language === lang.code 
-                          ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-xl shadow-blue-500/25' 
+                          ? 'bg-gradient-to-r from-indigo-600 to-purple-700 text-white shadow-lg' 
                           : 'text-slate-300 hover:bg-white/20 hover:text-white border border-white/10'
                       }`}
                     >
-                      <div className="text-lg mb-1">{lang.flag}</div>
+                      <div className="text-base mb-0.5">{lang.flag}</div>
                       <div className="text-xs">{lang.code.toUpperCase()}</div>
                     </button>
                   ))}

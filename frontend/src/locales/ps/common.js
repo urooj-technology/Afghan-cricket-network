@@ -27,7 +27,9 @@ export const common = {
     edit: 'سمول',
     delete: 'ړنګول',
     back: 'بیرته',
-    close: 'تړل'
+    close: 'تړل',
+    login: 'ننوتل',
+    logout: 'وتل'
   },
   loadingMore: 'نور یې بارول...',
   allLoaded: 'ټول مواد بار شول',
