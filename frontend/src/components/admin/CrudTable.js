@@ -6,6 +6,7 @@ import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
 import { useFetchData, useDelete } from '../../hooks'
 import usePagination from '../../hooks/usePagination'
+import ConfirmDialog from '../ui/ConfirmDialog'
 import { 
   PlusIcon, 
   PencilIcon, 
@@ -32,6 +33,7 @@ export default function CrudTable({
   const { language, isRTL } = useLanguage()
   const [searchTerm, setSearchTerm] = useState('')
   const [filters, setFilters] = useState({})
+  const [deleteConfirm, setDeleteConfirm] = useState({ isOpen: false, itemId: null })
   
   // Fetch data with pagination
   const {
@@ -62,9 +64,18 @@ export default function CrudTable({
   })
 
   const handleDelete = (id) => {
-    if (confirm(getTranslation(language, 'admin.common.confirmDelete'))) {
-      deleteItem.mutate(id)
+    setDeleteConfirm({ isOpen: true, itemId: id })
+  }
+
+  const confirmDelete = () => {
+    if (deleteConfirm.itemId) {
+      deleteItem.mutate(deleteConfirm.itemId)
+      setDeleteConfirm({ isOpen: false, itemId: null })
     }
+  }
+
+  const cancelDelete = () => {
+    setDeleteConfirm({ isOpen: false, itemId: null })
   }
 
   const handleSearch = (value) => {
@@ -349,6 +360,15 @@ export default function CrudTable({
           )}
         </div>
       )}
+
+      {/* Delete Confirmation Dialog */}
+      <ConfirmDialog
+        isOpen={deleteConfirm.isOpen}
+        onClose={cancelDelete}
+        onConfirm={confirmDelete}
+        isLoading={deleteItem.isPending}
+        type="danger"
+      />
     </div>
   )
 }

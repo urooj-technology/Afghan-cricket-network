@@ -12,13 +12,14 @@ export const useAdd = (endpoint, options = {}) => {
 
   return useMutation({
     mutationFn: async (data) => {
+      const cleanEndpoint = endpoint.endsWith('/') ? endpoint : `${endpoint}/`
       const config = {}
       if (data instanceof FormData) {
         config.headers = {
           'Content-Type': 'multipart/form-data'
         }
       }
-      const response = await api.post(endpoint, data, config)
+      const response = await api.post(cleanEndpoint, data, config)
       return response.data
     },
     onSuccess: (data, variables, context) => {

@@ -12,7 +12,8 @@ export const useDelete = (endpoint, options = {}) => {
 
   return useMutation({
     mutationFn: async (id) => {
-      const response = await api.delete(`${endpoint}/${id}/`)
+      const cleanEndpoint = endpoint.endsWith('/') ? endpoint.slice(0, -1) : endpoint
+      const response = await api.delete(`${cleanEndpoint}/${id}/`)
       return response.data
     },
     onSuccess: (data, variables, context) => {
