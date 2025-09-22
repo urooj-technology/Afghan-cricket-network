@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from .base import BaseModel
 
 
@@ -69,6 +70,11 @@ class Player(BaseModel):
             models.Index(fields=['-wickets_taken']),
         ]
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         if self.jersey_number:
             return f"{self.name} (#{self.jersey_number})"
@@ -102,6 +108,11 @@ class TeamMember(BaseModel):
             models.Index(fields=['member_type', 'order', 'name']),
             models.Index(fields=['is_active', 'member_type']),
         ]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.name} - {self.position}"

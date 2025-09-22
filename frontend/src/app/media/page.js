@@ -229,7 +229,7 @@ export default function Media() {
                       
                       <div className="mt-auto">
                         <Link
-                          href={`/media/${item.slug}`}
+                          href={`/media/${item.id}`}
                           className={`block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${isRTL ? 'font-arabic' : ''}`}
                         >
                           {item.media_type === 'video' ? (
@@ -363,7 +363,7 @@ export default function Media() {
                         {/* Action Button */}
                         <div className="mt-auto pt-2">
                           <Link
-                            href={`/media/${item.slug}`}
+                            href={`/media/${item.id}`}
                             className={`block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl ${isRTL ? 'font-arabic' : ''}`}
                           >
                             {item.media_type === 'video' ? (

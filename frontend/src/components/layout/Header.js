@@ -188,21 +188,25 @@ export default function Header() {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center gap-2">
+          <div className="hidden lg:flex lg:items-center gap-1">
             {navigation.map((item) => {
               const isActive = isActiveRoute(item.href)
               return (
                 <Link
                   key={item.key}
                   href={item.href}
-                  className={`relative flex items-center space-x-2 px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 group ${
+                  className={`relative flex items-center space-x-2 px-4 py-3 text-sm font-medium transition-all duration-300 group ${
                     isActive 
-                      ? 'text-blue-600 bg-blue-50' 
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50/50'
+                      ? 'text-blue-600' 
+                      : 'text-gray-700 hover:text-blue-600'
                   }`}
                 >
                   <item.icon className={`w-4 h-4 ${isActive ? 'text-blue-600' : 'text-gray-500 group-hover:text-blue-600'}`} />
                   <span>{getTranslation(language, `common.nav.${item.key}`)}</span>
+                  {/* Bottom border for active state */}
+                  <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-300 ${
+                    isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0 group-hover:opacity-50 group-hover:scale-x-100'
+                  }`}></div>
                 </Link>
               )
             })}

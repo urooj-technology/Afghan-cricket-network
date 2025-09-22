@@ -160,9 +160,9 @@ export default function SearchModal({ isOpen, onClose }) {
                           } else if (item.type === 'events') {
                             window.location.href = `/events/${item.id}`
                           } else if (item.type === 'players' || item.type === 'team') {
-                            window.location.href = `/team/${item.slug}`
+                            window.location.href = `/team/${item.id}`
                           } else if (item.type === 'media') {
-                            window.location.href = `/media/${item.slug}`
+                            window.location.href = `/media/${item.id}`
                           }
                         }}
                       >
@@ -374,9 +374,9 @@ export default function SearchModal({ isOpen, onClose }) {
                       } else if (selectedItem.type === 'events') {
                         window.location.href = `/events/${selectedItem.id}`
                       } else if (selectedItem.type === 'players' || selectedItem.type === 'team') {
-                        window.location.href = `/team/${selectedItem.slug}`
+                        window.location.href = `/team/${selectedItem.id}`
                       } else if (selectedItem.type === 'media') {
-                        window.location.href = `/media/${selectedItem.slug}`
+                        window.location.href = `/media/${selectedItem.id}`
                       }
                       setSelectedItem(null)
                       onClose()

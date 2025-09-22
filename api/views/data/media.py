@@ -29,6 +29,7 @@ class MediaViewSet(DataRootViewSet):
     filterset_fields = ['media_type', 'category', 'media_category', 'is_featured']
     ordering_fields = ['created_at', 'views', 'title']
     ordering = ['-created_at']
+    lookup_field = 'pk'
 
     def get_queryset(self):
         return Media.objects.select_related('media_category').filter(
@@ -69,7 +70,7 @@ class MediaGalleryViewSet(DataRootViewSet):
     search_fields = ['name', 'description']
     ordering_fields = ['order', 'created_at', 'name']
     ordering = ['order', '-created_at']
-    lookup_field = 'slug'
+    lookup_field = 'pk'
 
     def get_queryset(self):
         return MediaGallery.objects.prefetch_related('media_items').filter(

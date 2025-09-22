@@ -241,7 +241,7 @@ export default function Team() {
                             </div>
                           </div>
                           <Link 
-                            href={`/team/${captain.slug}`}
+                            href={`/team/${captain.id}`}
                             className={`block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-2 rounded-lg text-sm font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 ${isRTL ? 'font-arabic' : ''}`}
                           >
                             {getTranslation(language, 'team.viewProfile') || 'View Profile'}
@@ -430,7 +430,7 @@ export default function Team() {
                         )}
                         
                         <Link 
-                          href={`/team/${member.slug}`}
+                          href={`/team/${member.id}`}
                           className={`block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-2 rounded-lg text-sm font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 ${isRTL ? 'font-arabic' : ''}`}
                         >
                           {String(getTranslation(language, 'team.viewProfile') || 'View Profile')}

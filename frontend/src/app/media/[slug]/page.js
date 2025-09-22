@@ -430,7 +430,7 @@ export default function MediaDetailPage() {
                       {relatedMedia.results.slice(0, 3).map((item) => (
                         <Link
                           key={item.id}
-                          href={`/media/${item.slug}`}
+                          href={`/media/${item.id}`}
                           className="block group"
                         >
                           <div className={`flex gap-4 p-3 rounded-xl hover:bg-gray-50 transition-colors duration-200 ${isRTL ? 'flex-row-reverse' : ''}`}>

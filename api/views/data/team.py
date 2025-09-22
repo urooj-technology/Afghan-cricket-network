@@ -33,7 +33,9 @@ class PlayerViewSet(DataRootViewSet):
     lookup_field = 'pk'
 
     def get_queryset(self):
-        return Player.objects.filter(status='active' if self.action == 'list' else Q())
+        if self.action == 'list':
+            return Player.objects.filter(status='active')
+        return Player.objects.all()
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -61,7 +63,7 @@ class TeamMemberViewSet(DataRootViewSet):
     filterset_fields = ['member_type', 'role', 'is_active']
     ordering_fields = ['order', 'name', 'join_date']
     ordering = ['member_type', 'order', 'name']
-    lookup_field = 'slug'
+    lookup_field = 'pk'
 
     def get_queryset(self):
         return TeamMember.objects.select_related('role').filter(is_active=True)
