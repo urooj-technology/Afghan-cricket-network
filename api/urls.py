@@ -6,7 +6,8 @@ from api.views.data.viewsets import (
     PlayerViewSet, TeamMemberViewSet, TeamRoleViewSet,
     TeamRankingViewSet, PlayerRankingViewSet, GeneralRankingViewSet, RankingCategoryViewSet,
     MediaViewSet, MediaCategoryViewSet, MediaGalleryViewSet,
-    ContactViewSet, ContactCategoryViewSet, ContactInfoViewSet
+    ContactViewSet, ContactCategoryViewSet, ContactInfoViewSet,
+    CricketStatsViewSet
 )
 from api.views.data.search import GlobalSearchView
 
@@ -43,6 +44,9 @@ router.register(r'media-galleries', MediaGalleryViewSet, basename='media-galleri
 router.register(r'contacts', ContactViewSet, basename='contacts')
 router.register(r'contact-categories', ContactCategoryViewSet, basename='contact-categories')
 router.register(r'contact-info', ContactInfoViewSet, basename='contact-info')
+
+# Cricket Stats endpoints
+router.register(r'cricket-stats', CricketStatsViewSet, basename='cricket-stats')
 
 urlpatterns = [
     path('v1/', include(router.urls)),

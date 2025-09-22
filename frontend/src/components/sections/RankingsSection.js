@@ -2,102 +2,37 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { TrophyIcon, UserIcon, UsersIcon } from '@heroicons/react/24/outline'
+import { 
+  TrophyIcon, 
+  UserIcon, 
+  UsersIcon, 
+  ChartBarIcon,
+  CalendarIcon,
+  StarIcon,
+  FireIcon
+} from '@heroicons/react/24/outline'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
 import { useFetchData } from '../../hooks'
 
-const formats = [
-  { key: 't20i', display: 'T20I' },
-  { key: 'odi', display: 'ODI' },
-  { key: 'test', display: 'Test' }
-]
-
-const categories = [
-  { key: 'batting', display: 'Batting' },
-  { key: 'bowling', display: 'Bowling' },
-  { key: 'all-rounder', display: 'All-Rounder' },
-  { key: 'teams', display: 'Teams' }
-]
-
 export default function RankingsSection() {
-  const [selectedFormat, setSelectedFormat] = useState('t20i')
-  const [selectedCategory, setSelectedCategory] = useState('batting')
   const { language } = useLanguage()
 
-  // Fetch team rankings
-  const { data: teamRankings, isLoading: teamLoading } = useFetchData('/team-rankings/by_format', {
-    queryKey: ['team-rankings', selectedFormat],
-    params: { format: selectedFormat }
+  // Fetch comprehensive cricket statistics
+  const { data: cricketStats, isLoading } = useFetchData('/cricket-stats/home_stats', {
+    queryKey: ['cricket-home-stats']
   })
-
-  // Fetch player rankings
-  const { data: playerRankings, isLoading: playerLoading } = useFetchData('/player-rankings/top_performers', {
-    queryKey: ['player-rankings', selectedCategory, selectedFormat],
-    params: { 
-      category: selectedCategory === 'teams' ? 'batting' : selectedCategory,
-      format: selectedFormat 
-    },
-    enabled: selectedCategory !== 'teams'
-  })
-
-  const getCurrentRankings = () => {
-    if (selectedCategory === 'teams') {
-      return teamRankings || []
-    }
-    return playerRankings || []
-  }
-
-  const currentRankings = getCurrentRankings()
-  const isLoading = selectedCategory === 'teams' ? teamLoading : playerLoading
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gradient-to-br from-blue-50 to-green-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            {getTranslation(language, 'home.rankings.title')}
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Afghanistan Cricket at a Glance
           </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            {getTranslation(language, 'home.rankings.subtitle')}
+            Key statistics, rankings, and achievements of Afghan cricket team
           </p>
-        </div>
-
-        {/* Format and Category Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
-          <div className="flex items-center space-x-2">
-            <span className="text-sm font-medium text-gray-700">Format:</span>
-            {formats.map((format) => (
-              <button
-                key={format.key}
-                onClick={() => setSelectedFormat(format.key)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                  selectedFormat === format.key
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {format.display}
-              </button>
-            ))}
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <span className="text-sm font-medium text-gray-700">Category:</span>
-            {categories.map((category) => (
-              <button
-                key={category.key}
-                onClick={() => setSelectedCategory(category.key)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                  selectedCategory === category.key
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {category.display}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Loading State */}
@@ -107,129 +42,177 @@ export default function RankingsSection() {
           </div>
         )}
 
-        {/* Rankings Table */}
-        {!isLoading && (
-          <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-900">
-                {selectedCategory === 'teams'
-                  ? `Team Rankings - ${selectedFormat.toUpperCase()}`
-                  : `${selectedCategory.charAt(0).toUpperCase() + selectedCategory.slice(1)} Rankings - ${selectedFormat.toUpperCase()}`
-                }
-              </h3>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Rank
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      {selectedCategory === 'teams' ? 'Team' : 'Player'}
-                    </th>
-                    {selectedCategory !== 'teams' && (
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Country
-                      </th>
+        {/* Main Content */}
+        {!isLoading && cricketStats && (
+          <>
+            {/* Team Rankings Overview */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {['t20i', 'odi', 'test'].map((format) => {
+                const ranking = cricketStats.team_rankings?.[format]
+                return (
+                  <div key={format} className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-bold text-gray-900">{format.toUpperCase()}</h3>
+                      <TrophyIcon className="w-6 h-6 text-blue-600" />
+                    </div>
+                    {ranking ? (
+                      <>
+                        <div className="text-3xl font-bold text-blue-600 mb-2">#{ranking.rank}</div>
+                        <div className="space-y-2">
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Rating:</span>
+                            <span className="font-semibold">{ranking.rating}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Points:</span>
+                            <span className="font-semibold">{ranking.points}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Matches:</span>
+                            <span className="font-semibold">{ranking.matches_played}</span>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-gray-500 text-center py-4">No ranking data</div>
                     )}
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Rating
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      {selectedCategory === 'batting' ? 'Points' :
-                       selectedCategory === 'bowling' ? 'Wickets' :
-                       'Points'}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {currentRankings.slice(0, 5).map((item, index) => (
-                    <tr key={index} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          {item.rank === 1 && (
-                            <TrophyIcon className="w-5 h-5 text-yellow-500 mr-2" />
-                          )}
-                          <span className={`text-sm font-medium ${
-                            item.rank === 1 ? 'text-yellow-600' : 'text-gray-900'
-                          }`}>
-                            {item.rank}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0 h-8 w-8">
-                            <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center">
-                              {selectedCategory === 'teams' ? (
-                                <UsersIcon className="w-4 h-4 text-white" />
-                              ) : (
-                                <UserIcon className="w-4 h-4 text-white" />
-                              )}
-                            </div>
-                          </div>
-                          <div className="ml-4">
-                            <div className="text-sm font-medium text-gray-900">
-                              {selectedCategory === 'teams' 
-                                ? item.team_name
-                                : item.player_name
-                              }
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      {selectedCategory !== 'teams' && (
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-900">
-                            {item.country}
-                          </div>
-                        </td>
-                      )}
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="text-sm font-medium text-gray-900">{item.rating}</span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="text-sm font-medium text-gray-900">
-                          {selectedCategory === 'bowling' ? item.wickets : item.points}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </div>
+                )
+              })}
             </div>
-          </div>
-        )}
 
-        {/* Empty State */}
-        {!isLoading && currentRankings.length === 0 && (
-          <div className="text-center py-16">
-            <TrophyIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No Rankings Available</h3>
-            <p className="text-gray-600">Rankings for this category and format are not available yet.</p>
-          </div>
+            {/* Top Performers */}
+            <div className="bg-white rounded-xl shadow-lg p-8 mb-12">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <StarIcon className="w-6 h-6 text-yellow-500 mr-2" />
+                Top Performers
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { key: 'leading_run_scorer', title: 'Leading Run Scorer', icon: ChartBarIcon, color: 'blue' },
+                  { key: 'leading_wicket_taker', title: 'Leading Wicket Taker', icon: FireIcon, color: 'red' },
+                  { key: 'highest_average', title: 'Highest Average', icon: TrophyIcon, color: 'yellow' },
+                  { key: 'best_strike_rate', title: 'Best Strike Rate', icon: ChartBarIcon, color: 'green' }
+                ].map((performer) => {
+                  const player = cricketStats.top_performers?.[performer.key]
+                  const IconComponent = performer.icon
+                  return (
+                    <div key={performer.key} className="bg-gray-50 rounded-lg p-4 border border-gray-100">
+                      <div className="flex items-center mb-3">
+                        <IconComponent className="w-5 h-5 text-blue-600 mr-2" />
+                        <h4 className="font-semibold text-gray-900 text-sm">{performer.title}</h4>
+                      </div>
+                      {player ? (
+                        <>
+                          <div className="font-bold text-gray-900 mb-1">
+                            {player.name} {player.jersey_number && `#${player.jersey_number}`}
+                          </div>
+                          <div className="text-sm text-gray-600 mb-2">{player.role}</div>
+                          <div className="space-y-1 text-xs">
+                            {performer.key === 'leading_run_scorer' && (
+                              <div>Runs: <span className="font-semibold">{player.runs_scored}</span></div>
+                            )}
+                            {performer.key === 'leading_wicket_taker' && (
+                              <div>Wickets: <span className="font-semibold">{player.wickets_taken}</span></div>
+                            )}
+                            {performer.key === 'highest_average' && (
+                              <div>Average: <span className="font-semibold">{player.batting_average}</span></div>
+                            )}
+                            {performer.key === 'best_strike_rate' && (
+                              <div>Strike Rate: <span className="font-semibold">{player.strike_rate}</span></div>
+                            )}
+                            <div>Matches: <span className="font-semibold">{player.matches_played}</span></div>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="text-gray-500 text-sm">No data available</div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Upcoming Matches */}
+            {cricketStats.upcoming_matches?.length > 0 && (
+              <div className="bg-white rounded-xl shadow-lg p-8 mb-12">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                  <CalendarIcon className="w-6 h-6 text-green-600 mr-2" />
+                  Upcoming Matches
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {cricketStats.upcoming_matches.slice(0, 3).map((match, index) => (
+                    <div key={index} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <h4 className="font-semibold text-gray-900 mb-2">{match.title}</h4>
+                      <div className="space-y-2 text-sm text-gray-600">
+                        <div>📅 {new Date(match.date).toLocaleDateString()}</div>
+                        <div>🏟️ {match.venue.name}, {match.venue.city}</div>
+                        <div>🏏 {match.event_type}</div>
+                        <div className="inline-block px-2 py-1 bg-green-100 text-green-800 rounded text-xs font-medium">
+                          {match.status}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Recent Player Rankings */}
+            {cricketStats.recent_player_rankings?.length > 0 && (
+              <div className="bg-white rounded-xl shadow-lg p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6">Recent Player Rankings</h3>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full">
+                    <thead>
+                      <tr className="border-b border-gray-200">
+                        <th className="text-left py-3 px-4 font-semibold text-gray-900">Player</th>
+                        <th className="text-left py-3 px-4 font-semibold text-gray-900">Category</th>
+                        <th className="text-left py-3 px-4 font-semibold text-gray-900">Format</th>
+                        <th className="text-left py-3 px-4 font-semibold text-gray-900">Rank</th>
+                        <th className="text-left py-3 px-4 font-semibold text-gray-900">Rating</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {cricketStats.recent_player_rankings.map((ranking, index) => (
+                        <tr key={index} className="border-b border-gray-100 hover:bg-gray-50">
+                          <td className="py-3 px-4 font-medium text-gray-900">{ranking.player_name}</td>
+                          <td className="py-3 px-4 text-gray-600">{ranking.category}</td>
+                          <td className="py-3 px-4 text-gray-600">{ranking.format}</td>
+                          <td className="py-3 px-4">
+                            <span className="inline-flex items-center px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+                              #{ranking.rank}
+                            </span>
+                          </td>
+                          <td className="py-3 px-4 font-semibold text-gray-900">{ranking.rating}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </>
         )}
 
         {/* Additional Info */}
         <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-blue-50 rounded-lg p-6">
-            <h4 className="text-lg font-semibold text-blue-900 mb-2">Batting Rankings</h4>
+            <h4 className="text-lg font-semibold text-blue-900 mb-2">Team Rankings</h4>
             <p className="text-blue-700 text-sm">
-              Based on runs scored, average, and strike rate across all formats.
+              Current ICC rankings across all formats showing Afghanistan's position globally.
             </p>
           </div>
           <div className="bg-green-50 rounded-lg p-6">
-            <h4 className="text-lg font-semibold text-green-900 mb-2">Bowling Rankings</h4>
+            <h4 className="text-lg font-semibold text-green-900 mb-2">Player Performance</h4>
             <p className="text-green-700 text-sm">
-              Based on wickets taken, economy rate, and bowling average.
+              Top performers from the Afghan cricket team with key statistics.
             </p>
           </div>
           <div className="bg-purple-50 rounded-lg p-6">
-            <h4 className="text-lg font-semibold text-purple-900 mb-2">Team Rankings</h4>
+            <h4 className="text-lg font-semibold text-purple-900 mb-2">Upcoming Fixtures</h4>
             <p className="text-purple-700 text-sm">
-              Official ICC rankings based on recent match performances.
+              Next international matches and tournaments featuring Afghanistan.
             </p>
           </div>
         </div>

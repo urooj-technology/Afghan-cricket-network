@@ -5,3 +5,4 @@ from .team import *
 from .rankings import *
 from .media import *
 from .contact import *
+from .cricket_stats import *
