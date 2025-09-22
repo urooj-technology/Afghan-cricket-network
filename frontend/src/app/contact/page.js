@@ -39,7 +39,7 @@ export default function Contact() {
         <Header />
       
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 text-white py-20">
+        <section className="bg-gradient-to-br from-indigo-900 via-purple-800 to-pink-700 text-white py-48">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <RTLHeading 

@@ -132,7 +132,7 @@ export default function EventsPage() {
         <Header />
         
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-24 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-32 overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
@@ -145,10 +145,17 @@ export default function EventsPage() {
                 <TrophySolidIcon className="w-10 h-10 text-yellow-400" />
               </div>
               
+              <h1 className={`text-5xl md:text-7xl font-bold mb-6 leading-tight hero-title ${isRTL ? 'font-arabic' : ''}`}>
+                {String(getTranslation(language, 'events.title') || 'Cricket Events')}
+              </h1>
+              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-8 hero-subtitle ${isRTL ? 'font-arabic' : ''}`}>
+                {String(getTranslation(language, 'events.subtitle') || 'Discover upcoming cricket matches, tournaments, and training sessions')}
+              </p>
+              
               {/* Search */}
-              <div className="max-w-md mx-auto mb-8">
+              <div className="max-w-md mx-auto">
                 <div className="relative">
-                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/70 ${isRTL ? 'right-4' : 'left-4'}`} />
+                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/90 z-10 ${isRTL ? 'right-4' : 'left-4'}`} />
                   <input
                     type="text"
                     placeholder={getTranslation(language, 'events.searchPlaceholder') || 'Search events...'}
@@ -158,41 +165,11 @@ export default function EventsPage() {
                   />
                 </div>
               </div>
-              <h1 className={`text-5xl md:text-7xl font-bold mb-6 leading-tight hero-title ${isRTL ? 'font-arabic' : ''}`}>
-                {String(getTranslation(language, 'events.title') || 'Cricket Events')}
-              </h1>
-              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-12 hero-subtitle ${isRTL ? 'font-arabic' : ''}`}>
-                {String(getTranslation(language, 'events.subtitle') || 'Discover upcoming cricket matches, tournaments, and training sessions')}
-              </p>
-              
-              {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <CheckCircleIcon className="w-8 h-8 mx-auto mb-2 text-green-400" />
-                  <div className="text-2xl font-bold mb-1">{events.filter(e => e.status === 'upcoming').length}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'events.upcoming') || 'Upcoming'}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <StarSolidIcon className="w-8 h-8 mx-auto mb-2 text-yellow-400" />
-                  <div className="text-2xl font-bold mb-1">{featuredEvents?.results?.length || 0}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'events.featured') || 'Featured'}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <TrophySolidIcon className="w-8 h-8 mx-auto mb-2 text-blue-400" />
-                  <div className="text-2xl font-bold mb-1">{events.filter(e => e.event_type === 'international').length}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'events.international') || 'International'}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <UserGroupIcon className="w-8 h-8 mx-auto mb-2 text-purple-400" />
-                  <div className="text-2xl font-bold mb-1">{events.length}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'events.totalEvents') || 'Total Events'}</div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-12">
           {/* Featured Events */}
           {featuredEvents?.results && featuredEvents.results.length > 0 && (
             <section className="mb-20">

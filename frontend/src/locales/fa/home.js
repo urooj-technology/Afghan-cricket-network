@@ -33,6 +33,7 @@ export const home = {
   },
   news: {
     title: 'آخرین اخبار کریکت',
+    pageTitle: 'آخرین اخبار',
     description: 'با آخرین اخبار و بینشهای کریکت افغانستان بهروز باشید',
     viewAllNews: 'مشاهده همه اخبار',
     featuredNews: 'اخبار ویژه',

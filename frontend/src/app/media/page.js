@@ -105,7 +105,7 @@ export default function Media() {
         <Header />
       
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-24 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-32 overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
@@ -121,14 +121,14 @@ export default function Media() {
               <h1 className={`text-5xl md:text-7xl font-bold mb-6 leading-tight hero-title ${isRTL ? 'font-arabic' : ''}`}>
                 {String(getTranslation(language, 'media.title') || 'Media Gallery')}
               </h1>
-              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-12 hero-subtitle ${isRTL ? 'font-arabic' : ''}`}>
+              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-8 hero-subtitle ${isRTL ? 'font-arabic' : ''}`}>
                 {String(getTranslation(language, 'media.subtitle') || 'Explore photos, videos, and exclusive content from Afghanistan cricket')}
               </p>
               
-              {/* Search Field */}
-              <div className="max-w-md mx-auto mb-12">
+              {/* Search */}
+              <div className="max-w-md mx-auto">
                 <div className="relative">
-                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/70 ${isRTL ? 'right-4' : 'left-4'}`} />
+                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/90 z-10 ${isRTL ? 'right-4' : 'left-4'}`} />
                   <input
                     type="text"
                     placeholder={String(getTranslation(language, 'media.searchPlaceholder') || 'Search photos, videos, galleries...')}
@@ -139,41 +139,16 @@ export default function Media() {
                 </div>
               </div>
               
-              {/* Stats Cards */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <PhotoIcon className="w-8 h-8 mx-auto mb-2 text-blue-400" />
-                  <div className="text-2xl font-bold mb-1">{media.filter(m => m.media_type === 'photo').length || '500+'}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'media.photos') || 'Photos')}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <VideoCameraIcon className="w-8 h-8 mx-auto mb-2 text-red-400" />
-                  <div className="text-2xl font-bold mb-1">{media.filter(m => m.media_type === 'video').length || '100+'}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'media.videos') || 'Videos')}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <StarIcon className="w-8 h-8 mx-auto mb-2 text-yellow-400" />
-                  <div className="text-2xl font-bold mb-1">{featuredMedia?.length || '50+'}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'media.featured') || 'Featured')}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <EyeIcon className="w-8 h-8 mx-auto mb-2 text-green-400" />
-                  <div className="text-2xl font-bold mb-1">1M+</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'common.views') || 'Views')}</div>
-                </div>
-              </div>
+
             </div>
           </div>
         </section>
 
       {/* Featured Media */}
       {featuredMedia && featuredMedia.length > 0 && (
-        <section className="py-20">
+        <section className="py-20 mt-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mb-6">
-                <StarIcon className="w-8 h-8 text-yellow-600" />
-              </div>
               <h2 className={`text-4xl md:text-5xl font-bold text-gray-900 mb-6 ${isRTL ? 'font-arabic' : ''}`}>
                 {String(getTranslation(language, 'media.featuredMedia') || 'Featured Media')}
               </h2>
@@ -284,7 +259,7 @@ export default function Media() {
 
 
       {/* Media Grid */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white mt-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Loading State */}
           {isLoading && (

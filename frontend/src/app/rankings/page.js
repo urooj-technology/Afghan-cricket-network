@@ -18,7 +18,8 @@ import {
   MinusIcon,
   FireIcon,
   BoltIcon,
-  ShieldCheckIcon
+  ShieldCheckIcon,
+  MagnifyingGlassIcon
 } from '@heroicons/react/24/outline'
 import { 
   TrophyIcon as TrophySolidIcon,
@@ -232,7 +233,7 @@ export default function RankingsPage() {
         <Header />
         
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-20 overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-32 overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
@@ -247,38 +248,27 @@ export default function RankingsPage() {
               <h1 className={`text-5xl md:text-7xl font-bold mb-6 leading-tight ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
                 {String(getTranslation(language, 'rankings.title') || 'Cricket Rankings')}
               </h1>
-              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-12 ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-8 ${isRTL ? 'font-arabic text-center' : 'text-center'}`} dir={isRTL ? 'rtl' : 'ltr'}>
                 {String(getTranslation(language, 'rankings.subtitle') || 'Official ICC rankings and statistics for teams and players')}
               </p>
               
-              {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <TrophyIcon className="w-8 h-8 mx-auto mb-2 text-yellow-400" />
-                  <div className="text-2xl font-bold mb-1">12</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'rankings.teamRankings') || 'Teams')}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <ChartBarIcon className="w-8 h-8 mx-auto mb-2 text-blue-400" />
-                  <div className="text-2xl font-bold mb-1">50+</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'rankings.battingRankings') || 'Batsmen')}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <FireIcon className="w-8 h-8 mx-auto mb-2 text-green-400" />
-                  <div className="text-2xl font-bold mb-1">40+</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'rankings.bowlingRankings') || 'Bowlers')}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <StarSolidIcon className="w-8 h-8 mx-auto mb-2 text-purple-400" />
-                  <div className="text-2xl font-bold mb-1">25+</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{String(getTranslation(language, 'rankings.allRounderRankings') || 'All-Rounders')}</div>
+              {/* Search */}
+              <div className="max-w-md mx-auto">
+                <div className="relative">
+                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/90 z-10 ${isRTL ? 'right-4' : 'left-4'}`} />
+                  <input
+                    type="text"
+                    placeholder={String(getTranslation(language, 'rankings.searchPlaceholder') || 'Search rankings...')}
+                    className={`w-full py-4 px-12 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200 text-white placeholder-white/70 ${isRTL ? 'text-right font-arabic' : ''}`}
+                  />
                 </div>
               </div>
+              
+
             </div>
           </div>
         </section>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 mt-12">
         {/* Format Selection */}
         <section className="mb-8 sm:mb-12">
           <div className="text-center mb-8">

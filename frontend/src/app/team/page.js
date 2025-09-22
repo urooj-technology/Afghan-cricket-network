@@ -136,7 +136,7 @@ export default function Team() {
         <Header />
       
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-24 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-32 overflow-hidden">
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
@@ -152,14 +152,14 @@ export default function Team() {
               <h1 className={`text-5xl md:text-7xl font-bold mb-6 leading-tight hero-title ${isRTL ? 'font-arabic' : ''}`}>
                 {String(getTranslation(language, 'team.title') || 'Afghanistan Cricket Team')}
               </h1>
-              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-12 hero-subtitle ${isRTL ? 'font-arabic' : ''}`}>
+              <p className={`text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed mb-8 hero-subtitle ${isRTL ? 'font-arabic' : ''}`}>
                 {String(getTranslation(language, 'team.subtitle') || 'Meet the players, coaches, and staff who represent Afghanistan in international cricket')}
               </p>
               
               {/* Search */}
-              <div className="max-w-md mx-auto mb-12">
+              <div className="max-w-md mx-auto">
                 <div className="relative">
-                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/70 ${isRTL ? 'right-4' : 'left-4'}`} />
+                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/90 z-10 ${isRTL ? 'right-4' : 'left-4'}`} />
                   <input
                     type="text"
                     placeholder={String(getTranslation(language, 'team.searchPlaceholder') || 'Search team members...')}
@@ -170,44 +170,19 @@ export default function Team() {
                 </div>
               </div>
               
-              {/* Stats Cards */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <UserIcon className="w-6 h-6 mx-auto mb-2 text-blue-400" />
-                  <div className="text-xl font-bold mb-1">{players?.length || '25+'}</div>
-                  <div className={`text-purple-200 text-xs ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.activePlayers') || 'Active Players'}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <TrophyIcon className="w-6 h-6 mx-auto mb-2 text-green-400" />
-                  <div className="text-xl font-bold mb-1">{teamMembers?.length || '15+'}</div>
-                  <div className={`text-purple-200 text-xs ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.supportStaff') || 'Support Staff'}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <StarIcon className="w-6 h-6 mx-auto mb-2 text-yellow-400" />
-                  <div className="text-xl font-bold mb-1">100+</div>
-                  <div className={`text-purple-200 text-xs ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.matchesPlayed') || 'Matches Played'}</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <TrophyIcon className="w-6 h-6 mx-auto mb-2 text-purple-400" />
-                  <div className="text-xl font-bold mb-1">10+</div>
-                  <div className={`text-purple-200 text-xs ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.yearsExperience') || 'Years Experience'}</div>
-                </div>
-              </div>
+
             </div>
           </div>
         </section>
 
         {/* Featured Players & Captains */}
         {(featuredPlayers?.length > 0 || captains?.length > 0) && (
-          <section className="py-20">
+          <section className="py-20 mt-12">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
               {/* Captains */}
               {captains && captains.length > 0 && (
                 <div className="mb-16">
                   <div className="text-center mb-12">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mb-6">
-                      <TrophyIcon className="w-8 h-8 text-yellow-600" />
-                    </div>
                     <h2 className={`text-4xl md:text-5xl font-bold text-gray-900 mb-6 ${isRTL ? 'font-arabic' : ''}`}>
                       {String(getTranslation(language, 'team.leadership') || 'Team Leadership')}
                     </h2>
@@ -282,9 +257,6 @@ export default function Team() {
               {featuredPlayers && featuredPlayers.length > 0 && (
                 <div>
                   <div className="text-center mb-12">
-                    <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
-                      <StarIcon className="w-8 h-8 text-blue-600" />
-                    </div>
                     <h2 className={`text-4xl md:text-5xl font-bold text-gray-900 mb-6 ${isRTL ? 'font-arabic' : ''}`}>
                       {String(getTranslation(language, 'team.featuredPlayers') || 'Featured Players')}
                     </h2>
@@ -325,7 +297,7 @@ export default function Team() {
         )}
 
         {/* Main Team Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-white mt-12">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             {/* Tabs */}
             <div className="flex justify-center mb-12">

@@ -33,6 +33,7 @@ export const home = {
   },
   news: {
     title: 'Latest Cricket News',
+    pageTitle: 'Latest News',
     description: 'Stay updated with the latest news and insights from Afghan cricket',
     viewAllNews: 'View All News',
     featuredNews: 'Featured News',

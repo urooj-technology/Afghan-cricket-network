@@ -75,7 +75,7 @@ export default function NewsPage() {
         <Header />
         
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-24 overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+        <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-32 overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute top-0 left-0 w-full h-full">
             <div className="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full animate-pulse"></div>
@@ -94,48 +94,32 @@ export default function NewsPage() {
                 {String(getTranslation(language, 'news.subtitle') || 'Stay updated with the latest news and insights from Afghan cricket')}
               </p>
               
-              {/* Search in Hero */}
-              <div className="max-w-xl mx-auto mb-8">
+              {/* Search */}
+              <div className="max-w-md mx-auto">
                 <div className="relative">
-                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/60 ${isRTL ? 'right-4' : 'left-4'}`} />
+                  <MagnifyingGlassIcon className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/90 z-10 ${isRTL ? 'right-4' : 'left-4'}`} />
                   <input
                     type="text"
                     placeholder={getTranslation(language, 'news.searchPlaceholder') || 'Search news articles...'}
                     value={searchTerm}
                     onChange={(e) => handleSearch(e.target.value)}
-                    className={`w-full py-3 bg-white/15 backdrop-blur-md border border-white/30 rounded-full focus:ring-2 focus:ring-white/40 focus:border-white/40 transition-all duration-200 text-white placeholder-white/60 ${isRTL ? 'pr-12 pl-4 text-right font-arabic' : 'pl-12 pr-4'}`}
+                    className={`w-full py-4 px-12 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-2xl focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200 text-white placeholder-white/70 ${isRTL ? 'text-right font-arabic' : ''}`}
                   />
                 </div>
               </div>
               
-              {/* Quick Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <FireSolidIcon className="w-8 h-8 mx-auto mb-2 text-orange-400" />
-                  <div className="text-2xl font-bold mb-1">{news?.length || 0}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>Latest News</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <StarSolidIcon className="w-8 h-8 mx-auto mb-2 text-yellow-400" />
-                  <div className="text-2xl font-bold mb-1">{featuredNews?.length || 0}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>Featured</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <ChartBarIcon className="w-8 h-8 mx-auto mb-2 text-green-400" />
-                  <div className="text-2xl font-bold mb-1">{categories?.length || 0}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>Categories</div>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <EyeIcon className="w-8 h-8 mx-auto mb-2 text-blue-400" />
-                  <div className="text-2xl font-bold mb-1">10K+</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>Daily Views</div>
-                </div>
-              </div>
+
             </div>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mt-12">
+          {/* Page Title */}
+          <div className="text-center mb-12">
+            <h2 className={`text-4xl md:text-5xl font-bold text-gray-900 mb-6 ${isRTL ? 'font-arabic' : ''}`}>
+              {String(getTranslation(language, 'news.pageTitle') || 'Latest News')}
+            </h2>
+          </div>
 
           {/* News Grid */}
           <section>

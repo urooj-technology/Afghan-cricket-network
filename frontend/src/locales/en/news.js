@@ -1,6 +1,7 @@
 export const news = {
   title: 'Latest Cricket News',
   subtitle: 'Stay updated with the latest news, match reports, and insights from Afghan cricket',
+  pageTitle: 'Latest News',
   featuredNews: 'Featured News',
   tryAdjusting: 'Try adjusting your search or filter criteria.',
   checkBackLater: 'Check back later for the latest cricket news.',

@@ -33,6 +33,7 @@ export const home = {
   },
   news: {
     title: 'د کرکټ وروستي خبرونه',
+    pageTitle: 'وروستي خبرونه',
     description: 'د افغان کرکټ وروستي خبرونو او بصیرتونو سره تازه پاتې شئ',
     viewAllNews: 'ټول خبرونه وګورئ',
     featuredNews: 'ځانګړي خبرونه',
