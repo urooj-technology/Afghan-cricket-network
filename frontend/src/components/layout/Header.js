@@ -101,7 +101,7 @@ export default function Header() {
             {/* Language Selector & Login */}
             <div className="flex items-center space-x-4">
               {/* Language Dropdown */}
-              <div className="relative" ref={dropdownRef}>
+              <div className="relative z-50" ref={dropdownRef}>
                 <button
                   onClick={() => setLangDropdownOpen(!langDropdownOpen)}
                   className="flex items-center space-x-2 px-3 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
@@ -112,22 +112,22 @@ export default function Header() {
                 </button>
                 
                 {langDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-52 bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 py-2 z-50">
+                  <div className="absolute right-0 top-full mt-1 w-48 bg-white rounded-xl shadow-lg border border-gray-200 py-1 z-[60] overflow-hidden">
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
                         onClick={() => handleLanguageChange(lang.code)}
-                        className={`w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-blue-50 transition-colors rounded-xl mx-2 ${
+                        className={`w-full flex items-center space-x-3 px-3 py-2 text-sm hover:bg-blue-50 transition-colors ${
                           language === lang.code ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'
                         }`}
                       >
-                        <span className="text-lg">{lang.flag}</span>
+                        <span className="text-base">{lang.flag}</span>
                         <div className="flex-1 text-left">
-                          <div className="font-medium">{lang.nativeName}</div>
+                          <div className="font-medium text-sm">{lang.nativeName}</div>
                           <div className="text-xs text-gray-500">{lang.name}</div>
                         </div>
                         {language === lang.code && (
-                          <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                          <div className="w-1.5 h-1.5 bg-blue-600 rounded-full"></div>
                         )}
                       </button>
                     ))}

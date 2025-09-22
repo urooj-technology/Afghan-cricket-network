@@ -171,26 +171,26 @@ export default function Team() {
               </div>
               
               {/* Stats Cards */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <UserIcon className="w-8 h-8 mx-auto mb-2 text-blue-400" />
-                  <div className="text-2xl font-bold mb-1">{players?.length || '25+'}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.activePlayers') || 'Active Players'}</div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                  <UserIcon className="w-6 h-6 mx-auto mb-2 text-blue-400" />
+                  <div className="text-xl font-bold mb-1">{players?.length || '25+'}</div>
+                  <div className={`text-purple-200 text-xs ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.activePlayers') || 'Active Players'}</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <TrophyIcon className="w-8 h-8 mx-auto mb-2 text-green-400" />
-                  <div className="text-2xl font-bold mb-1">{teamMembers?.length || '15+'}</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.supportStaff') || 'Support Staff'}</div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                  <TrophyIcon className="w-6 h-6 mx-auto mb-2 text-green-400" />
+                  <div className="text-xl font-bold mb-1">{teamMembers?.length || '15+'}</div>
+                  <div className={`text-purple-200 text-xs ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.supportStaff') || 'Support Staff'}</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <StarIcon className="w-8 h-8 mx-auto mb-2 text-yellow-400" />
-                  <div className="text-2xl font-bold mb-1">100+</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.matchesPlayed') || 'Matches Played'}</div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                  <StarIcon className="w-6 h-6 mx-auto mb-2 text-yellow-400" />
+                  <div className="text-xl font-bold mb-1">100+</div>
+                  <div className={`text-purple-200 text-xs ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.matchesPlayed') || 'Matches Played'}</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
-                  <TrophyIcon className="w-8 h-8 mx-auto mb-2 text-purple-400" />
-                  <div className="text-2xl font-bold mb-1">10+</div>
-                  <div className={`text-purple-200 text-sm ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.yearsExperience') || 'Years Experience'}</div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                  <TrophyIcon className="w-6 h-6 mx-auto mb-2 text-purple-400" />
+                  <div className="text-xl font-bold mb-1">10+</div>
+                  <div className={`text-purple-200 text-xs ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'team.yearsExperience') || 'Years Experience'}</div>
                 </div>
               </div>
             </div>
@@ -215,59 +215,59 @@ export default function Team() {
                       {getTranslation(language, 'team.leadershipDesc') || 'Meet the leaders who guide Afghanistan cricket to new heights'}
                     </p>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {captains.map((captain) => (
-                      <div key={captain.id} className="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                        <div className="relative h-48 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
+                      <div key={captain.id} className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        <div className="relative h-36 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
                           {captain.photo ? (
                             <img 
                               src={captain.photo} 
                               alt={captain.name}
-                              className="w-24 h-24 rounded-full border-4 border-white shadow-lg group-hover:scale-110 transition-transform duration-300"
+                              className="w-20 h-20 rounded-full border-3 border-white shadow-lg group-hover:scale-105 transition-transform duration-300"
                             />
                           ) : (
-                            <div className="w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                              <UserIcon className="w-12 h-12 text-gray-400" />
+                            <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                              <UserIcon className="w-10 h-10 text-gray-400" />
                             </div>
                           )}
-                          <div className="absolute top-4 right-4">
-                            <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1">
-                              <span className="text-white font-bold text-sm">#{captain.jersey_number || 'N/A'}</span>
+                          <div className="absolute top-3 right-3">
+                            <div className="bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1">
+                              <span className="text-blue-600 font-bold text-xs">#{captain.jersey_number || 'N/A'}</span>
                             </div>
                           </div>
                         </div>
-                        <div className="p-6">
-                          <h3 className={`font-bold text-xl mb-2 text-gray-900 text-center ${isRTL ? 'font-arabic' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
+                        <div className="p-4">
+                          <h3 className={`font-bold text-lg mb-2 text-gray-900 text-center ${isRTL ? 'font-arabic' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
                             {captain.name}
                           </h3>
-                          <div className="flex flex-wrap justify-center gap-2 mb-4">
-                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getRoleColor(captain.role)}`}>
+                          <div className="flex flex-wrap justify-center gap-1 mb-3">
+                            <span className={`inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium ${getRoleColor(captain.role)}`}>
                               {captain.role}
                             </span>
                             {captain.is_captain && (
-                              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-500 text-white">
+                              <span className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium bg-yellow-500 text-white">
                                 Captain
                               </span>
                             )}
                             {captain.is_vice_captain && (
-                              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-orange-500 text-white">
+                              <span className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium bg-orange-500 text-white">
                                 Vice Captain
                               </span>
                             )}
                           </div>
-                          <div className="grid grid-cols-2 gap-4 text-center text-sm text-gray-600 mb-4">
+                          <div className="grid grid-cols-2 gap-2 text-center text-xs text-gray-600 mb-3">
                             <div>
-                              <div className="font-bold text-lg text-blue-600">{captain.matches_played || 0}</div>
+                              <div className="font-bold text-sm text-blue-600">{captain.matches_played || 0}</div>
                               <div>Matches</div>
                             </div>
                             <div>
-                              <div className="font-bold text-lg text-green-600">{captain.runs_scored || 0}</div>
+                              <div className="font-bold text-sm text-green-600">{captain.runs_scored || 0}</div>
                               <div>Runs</div>
                             </div>
                           </div>
                           <Link 
                             href={`/team/${captain.slug}`}
-                            className={`block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 ${isRTL ? 'font-arabic' : ''}`}
+                            className={`block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-2 rounded-lg text-sm font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 ${isRTL ? 'font-arabic' : ''}`}
                           >
                             {getTranslation(language, 'team.viewProfile') || 'View Profile'}
                           </Link>
@@ -294,25 +294,25 @@ export default function Team() {
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {featuredPlayers.slice(0, 4).map((player) => (
-                      <div key={player.id} className="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                        <div className="relative h-40 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
+                      <div key={player.id} className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
+                        <div className="relative h-32 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center">
                           {player.photo ? (
                             <img 
                               src={player.photo} 
                               alt={player.name}
-                              className="w-20 h-20 rounded-full border-3 border-white shadow-lg group-hover:scale-110 transition-transform duration-300"
+                              className="w-16 h-16 rounded-full border-3 border-white shadow-lg group-hover:scale-105 transition-transform duration-300"
                             />
                           ) : (
-                            <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                              <UserIcon className="w-10 h-10 text-gray-400" />
+                            <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                              <UserIcon className="w-8 h-8 text-gray-400" />
                             </div>
                           )}
-                          <div className="absolute top-3 right-3">
-                            <StarIcon className="w-6 h-6 text-yellow-400" />
+                          <div className="absolute top-2 right-2">
+                            <StarIcon className="w-5 h-5 text-yellow-400" />
                           </div>
                         </div>
-                        <div className="p-4 text-center">
-                          <h3 className={`font-bold text-lg mb-1 text-gray-900 text-center ${isRTL ? 'font-arabic' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>{player.name}</h3>
+                        <div className="p-3 text-center">
+                          <h3 className={`font-bold text-base mb-1 text-gray-900 text-center truncate ${isRTL ? 'font-arabic' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>{player.name}</h3>
                           <p className={`text-sm text-blue-600 font-medium text-center ${isRTL ? 'font-arabic' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>{player.role}</p>
                         </div>
                       </div>
@@ -383,77 +383,75 @@ export default function Team() {
             {/* Team Grid */}
             {!isLoading && !error && (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {currentData.map((member) => (
-                    <div key={member.id} className="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full flex flex-col">
+                    <div key={member.id} className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
                       <div className="relative">
-                        <div className="h-52 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center relative overflow-hidden flex-shrink-0">
-                          <div className="absolute inset-0 bg-black/10"></div>
+                        <div className="h-32 bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-500 flex items-center justify-center relative overflow-hidden">
                           {member.photo ? (
                             <img 
                               src={member.photo} 
                               alt={member.name}
-                              className="w-28 h-28 rounded-full border-4 border-white shadow-xl group-hover:scale-110 transition-transform duration-300 relative z-10"
+                              className="w-16 h-16 rounded-full border-3 border-white shadow-lg group-hover:scale-105 transition-transform duration-300"
                             />
                           ) : (
-                            <div className="w-28 h-28 bg-white rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 relative z-10">
-                              <span className="text-blue-600 text-3xl font-bold">
+                            <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                              <span className="text-blue-600 text-xl font-bold">
                                 {member.name.charAt(0)}
                               </span>
                             </div>
                           )}
-                          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>
                         {activeTab === 'players' && member.jersey_number && (
-                          <div className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'}`}>
-                            <div className="bg-white/20 backdrop-blur-sm rounded-full px-3 py-1 border border-white/30">
-                              <span className="text-white font-bold text-sm">#{member.jersey_number}</span>
+                          <div className={`absolute top-2 ${isRTL ? 'left-2' : 'right-2'}`}>
+                            <div className="bg-white/90 backdrop-blur-sm rounded-lg px-2 py-1">
+                              <span className="text-blue-600 font-bold text-xs">#{member.jersey_number}</span>
                             </div>
                           </div>
                         )}
                       </div>
                       
-                      <div className="p-6 text-center flex-1 flex flex-col">
-                        <h3 className={`font-bold text-xl mb-2 text-gray-900 ${isRTL ? 'font-arabic text-center' : 'text-center'}`}>
+                      <div className="p-4">
+                        <h3 className={`font-bold text-lg mb-1 text-gray-900 text-center truncate ${isRTL ? 'font-arabic' : ''}`}>
                           {member.name}
                         </h3>
                         
-                        <p className={`text-blue-600 font-semibold mb-4 ${isRTL ? 'font-arabic text-center' : 'text-center'}`}>
+                        <p className={`text-blue-600 font-medium text-sm mb-3 text-center ${isRTL ? 'font-arabic' : ''}`}>
                           {activeTab === 'players' ? member.role : member.position}
                         </p>
                         
-                        <div className="flex flex-wrap justify-center gap-2 mb-6">
+                        <div className="flex flex-wrap justify-center gap-1 mb-3">
                           {activeTab === 'players' ? (
                             <>
-                              <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getRoleColor(member.role)}`}>
+                              <span className={`inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium ${getRoleColor(member.role)}`}>
                                 {member.role}
                               </span>
                               {member.is_captain && (
-                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-yellow-500 text-white">
-                                  Captain
+                                <span className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium bg-yellow-500 text-white">
+                                  C
                                 </span>
                               )}
                               {member.is_vice_captain && (
-                                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-orange-500 text-white">
-                                  Vice Captain
+                                <span className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium bg-orange-500 text-white">
+                                  VC
                                 </span>
                               )}
                             </>
                           ) : (
-                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${getMemberTypeColor(member.member_type)}`}>
+                            <span className={`inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium ${getMemberTypeColor(member.member_type)}`}>
                               {member.member_type}
                             </span>
                           )}
                         </div>
                         
                         {activeTab === 'players' && (
-                          <div className="grid grid-cols-2 gap-4 text-center text-sm text-gray-600 mb-6">
+                          <div className="grid grid-cols-2 gap-2 text-center text-xs text-gray-600 mb-3">
                             <div>
-                              <div className="font-bold text-lg text-blue-600">{member.matches_played || 0}</div>
+                              <div className="font-bold text-sm text-blue-600">{member.matches_played || 0}</div>
                               <div>Matches</div>
                             </div>
                             <div>
-                              <div className="font-bold text-lg text-green-600">{member.runs_scored || 0}</div>
+                              <div className="font-bold text-sm text-green-600">{member.runs_scored || 0}</div>
                               <div>Runs</div>
                             </div>
                           </div>
@@ -461,7 +459,7 @@ export default function Team() {
                         
                         <Link 
                           href={`/team/${member.slug}`}
-                          className={`block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 mt-auto ${isRTL ? 'font-arabic' : ''}`}
+                          className={`block w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white text-center py-2 rounded-lg text-sm font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 ${isRTL ? 'font-arabic' : ''}`}
                         >
                           {String(getTranslation(language, 'team.viewProfile') || 'View Profile')}
                         </Link>
