@@ -246,7 +246,7 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
               </div>
               
               {/* Search */}
-              <div className={`hidden md:flex items-center bg-gray-100 rounded-lg px-3 py-2 ${isRTL ? 'space-x-reverse' : ''} space-x-2`}>
+              <div className={`hidden md:flex items-center bg-gray-100 rounded-lg px-4 py-2 ${isRTL ? 'space-x-reverse' : ''} space-x-3`}>
                 <MagnifyingGlassIcon className="h-4 w-4 text-gray-500" />
                 <input 
                   type="text" 

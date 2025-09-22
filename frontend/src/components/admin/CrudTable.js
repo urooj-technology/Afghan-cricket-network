@@ -184,13 +184,13 @@ export default function CrudTable({
         <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0 md:space-x-4">
           <div className="flex-1 max-w-md">
             <div className="relative">
-              <MagnifyingGlassIcon className={`absolute ${isRTL ? 'right-3' : 'left-3'} top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400`} />
+              <MagnifyingGlassIcon className={`absolute ${isRTL ? 'right-4' : 'left-4'} top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400`} />
               <input
                 type="text"
                 placeholder="Search..."
                 value={searchTerm}
                 onChange={(e) => handleSearch(e.target.value)}
-                className={`form-input ${isRTL ? 'pr-10 text-right font-arabic' : 'pl-10'} bg-white/50`}
+                className={`w-full py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/50 ${isRTL ? 'pr-12 pl-4 text-right font-arabic' : 'pl-12 pr-4'}`}
               />
             </div>
           </div>
