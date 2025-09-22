@@ -10,10 +10,14 @@ from .base import DataRootViewSet
 
 
 class RankingCategoryViewSet(DataRootViewSet):
-    queryset = RankingCategory.objects.filter(is_active=True)
     serializer_class = RankingCategorySerializer
     permission_classes = [AllowAny]
     ordering = ['name']
+    
+    def get_queryset(self):
+        if self.action in ['list', 'retrieve']:
+            return RankingCategory.objects.filter(is_active=True)
+        return RankingCategory.objects.all()
 
 
 class TeamRankingViewSet(DataRootViewSet):

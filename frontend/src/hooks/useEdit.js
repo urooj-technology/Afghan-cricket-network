@@ -13,10 +13,17 @@ export const useEdit = (endpoint, options = {}) => {
 
   return useMutation({
     mutationFn: async ({ id, data }) => {
-      const url = `${endpoint}/${id}/`
+      const cleanEndpoint = endpoint.endsWith('/') ? endpoint.slice(0, -1) : endpoint
+      const url = `${cleanEndpoint}/${id}/`
+      const config = {}
+      if (data instanceof FormData) {
+        config.headers = {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
       const response = method === 'PATCH' 
-        ? await api.patch(url, data)
-        : await api.put(url, data)
+        ? await api.patch(url, data, config)
+        : await api.put(url, data, config)
       return response.data
     },
     onSuccess: (data, variables, context) => {

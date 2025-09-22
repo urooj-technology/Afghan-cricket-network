@@ -12,10 +12,14 @@ from .base import DataRootViewSet
 
 
 class MediaCategoryViewSet(DataRootViewSet):
-    queryset = MediaCategory.objects.filter(is_active=True)
     serializer_class = MediaCategorySerializer
     permission_classes = [AllowAny]
     ordering = ['name']
+    
+    def get_queryset(self):
+        if self.action in ['list', 'retrieve']:
+            return MediaCategory.objects.filter(is_active=True)
+        return MediaCategory.objects.all()
 
 
 class MediaViewSet(DataRootViewSet):

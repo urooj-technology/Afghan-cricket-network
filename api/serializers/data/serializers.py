@@ -4,3 +4,4 @@ from .events import *
 from .team import *
 from .rankings import *
 from .media import *
+from .contact import *

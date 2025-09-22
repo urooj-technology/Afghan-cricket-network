@@ -1,19 +1,21 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
+import { useEffect } from 'react'
 import { useRouter, useParams } from 'next/navigation'
+import { useLanguage } from '../../../../../contexts/LanguageContext'
+import { getTranslation } from '../../../../../lib/translations'
+import AdminLayout from '../../../../../components/admin/AdminLayout'
+import CrudForm from '../../../../../components/admin/CrudForm'
+import { useFetchData } from '../../../../../hooks'
 
 export default function EditNews() {
   const router = useRouter()
   const params = useParams()
-  const [formData, setFormData] = useState({
-    title: 'Afghanistan Cricket Team Wins Series',
-    content: 'The Afghanistan cricket team secured a historic victory...',
-    excerpt: 'Historic victory for Afghanistan cricket team',
-    status: 'Published',
-    image: 'https://example.com/image.jpg'
-  })
+  const { language } = useLanguage()
+  const { id } = params
+
+  // Fetch categories for dropdown
+  const { data: categories } = useFetchData('/news-categories')
 
   useEffect(() => {
     if (!localStorage.getItem('adminAuth')) {
@@ -21,110 +23,118 @@ export default function EditNews() {
     }
   }, [router])
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('News updated:', formData)
-    alert('News article updated successfully!')
-    router.push('/admin/news')
-  }
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+  const fields = [
+    // Basic Information
+    {
+      name: 'title',
+      label: 'Article Title',
+      type: 'text',
+      required: true,
+      placeholder: 'Enter compelling news title',
+      help: 'Keep it under 200 characters for better SEO'
+    },
+    {
+      name: 'slug',
+      label: 'URL Slug',
+      type: 'text',
+      required: true,
+      placeholder: 'news-article-slug',
+      help: 'URL-friendly version (auto-generated from title if empty)'
+    },
+    {
+      name: 'excerpt',
+      label: 'Article Summary',
+      type: 'textarea',
+      required: true,
+      rows: 3,
+      placeholder: 'Write a compelling summary (max 500 characters)',
+      help: 'This appears in article previews and social media shares'
+    },
+    {
+      name: 'content',
+      label: 'Article Content',
+      type: 'textarea',
+      required: true,
+      rows: 15,
+      placeholder: 'Write the full article content here...',
+      fullWidth: true,
+      help: 'Use markdown formatting for better presentation'
+    },
+    
+    // Media
+    {
+      name: 'image',
+      label: 'Featured Image',
+      type: 'file',
+      accept: 'image/*',
+      help: 'Recommended size: 1200x630px for social media optimization'
+    },
+    
+    // Classification
+    {
+      name: 'category',
+      label: 'News Category',
+      type: 'select',
+      required: true,
+      options: categories?.results?.map(cat => ({
+        value: cat.id,
+        label: cat.name
+      })) || [],
+      help: 'Select the most relevant category'
+    },
+    
+    // Publishing Options
+    {
+      name: 'status',
+      label: 'Publication Status',
+      type: 'select',
+      required: true,
+      options: [
+        { value: 'draft', label: 'Draft - Not visible to public' },
+        { value: 'published', label: 'Published - Live on website' },
+        { value: 'archived', label: 'Archived - Hidden from main listings' }
+      ]
+    },
+    {
+      name: 'published_at',
+      label: 'Publish Date & Time',
+      type: 'datetime-local',
+      help: 'Schedule publication or leave empty to publish immediately'
+    },
+    
+    // Features
+    {
+      name: 'is_featured',
+      label: 'Featured Article',
+      type: 'checkbox',
+      help: 'Featured articles appear prominently on homepage and category pages'
+    },
+    
+    // Metadata
+    {
+      name: 'views',
+      label: 'View Count',
+      type: 'number',
+      defaultValue: 0,
+      help: 'Number of times this article has been viewed'
+    }
+  ]
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <nav className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center h-16 space-x-4">
-            <Link href="/admin/news" className="text-blue-600 hover:text-blue-800">← Back to News</Link>
-            <h1 className="text-xl font-semibold text-gray-900">Edit News Article</h1>
-          </div>
-        </div>
-      </nav>
-
-      <div className="max-w-4xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="bg-white shadow rounded-lg">
-          <form onSubmit={handleSubmit} className="p-6 space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Title</label>
-              <input
-                type="text"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Excerpt</label>
-              <textarea
-                name="excerpt"
-                value={formData.excerpt}
-                onChange={handleChange}
-                rows="3"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Content</label>
-              <textarea
-                name="content"
-                value={formData.content}
-                onChange={handleChange}
-                rows="10"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Image URL</label>
-              <input
-                type="url"
-                name="image"
-                value={formData.image}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
-              <select
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="Draft">Draft</option>
-                <option value="Published">Published</option>
-              </select>
-            </div>
-
-            <div className="flex space-x-4">
-              <button
-                type="submit"
-                className="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700"
-              >
-                Update News
-              </button>
-              <Link
-                href="/admin/news"
-                className="bg-gray-500 text-white px-6 py-2 rounded-md hover:bg-gray-600"
-              >
-                Cancel
-              </Link>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+    <AdminLayout title="Edit News Article">
+      <CrudForm
+        endpoint="/news/"
+        fields={fields}
+        title="News Article"
+        backPath="/admin/news/"
+        itemId={id}
+        onSuccess={(data) => {
+          console.log('News article updated:', data)
+        }}
+        onError={(error) => {
+          console.error('Failed to update news article:', error)
+        }}
+      />
+    </AdminLayout>
   )
 }

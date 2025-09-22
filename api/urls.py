@@ -5,7 +5,8 @@ from api.views.data.viewsets import (
     EventViewSet, EventCategoryViewSet, VenueViewSet,
     PlayerViewSet, TeamMemberViewSet, TeamRoleViewSet,
     TeamRankingViewSet, PlayerRankingViewSet, GeneralRankingViewSet, RankingCategoryViewSet,
-    MediaViewSet, MediaCategoryViewSet, MediaGalleryViewSet
+    MediaViewSet, MediaCategoryViewSet, MediaGalleryViewSet,
+    ContactViewSet, ContactCategoryViewSet, ContactInfoViewSet
 )
 
 
@@ -36,6 +37,11 @@ router.register(r'ranking-categories', RankingCategoryViewSet, basename='ranking
 router.register(r'media', MediaViewSet, basename='media')
 router.register(r'media-categories', MediaCategoryViewSet, basename='media-categories')
 router.register(r'media-galleries', MediaGalleryViewSet, basename='media-galleries')
+
+# Contact endpoints
+router.register(r'contacts', ContactViewSet, basename='contacts')
+router.register(r'contact-categories', ContactCategoryViewSet, basename='contact-categories')
+router.register(r'contact-info', ContactInfoViewSet, basename='contact-info')
 
 urlpatterns = [
     path('v1/', include(router.urls)),

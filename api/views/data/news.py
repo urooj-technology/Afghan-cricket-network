@@ -9,17 +9,21 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_headers
 
 from api.models.data.news import News, NewsCategory
-from api.serializers.data.news import NewsListSerializer, NewsDetailSerializer, NewsCategorySerializer
+from api.serializers.data.news import NewsListSerializer, NewsDetailSerializer, NewsCategorySerializer, NewsSerializer
 from .base import DataRootViewSet
 
 
 class NewsCategoryViewSet(DataRootViewSet):
-    queryset = NewsCategory.objects.filter(is_active=True)
     serializer_class = NewsCategorySerializer
     permission_classes = [AllowAny]
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['name']
     ordering = ['name']
+    
+    def get_queryset(self):
+        if self.action in ['list', 'retrieve']:
+            return NewsCategory.objects.filter(is_active=True)
+        return NewsCategory.objects.all()
 
 
 class NewsViewSet(DataRootViewSet):
@@ -29,16 +33,28 @@ class NewsViewSet(DataRootViewSet):
     filterset_fields = ['status', 'category', 'is_featured', 'author']
     ordering_fields = ['created_at', 'published_at', 'views', 'title']
     ordering = ['-created_at']
-    lookup_field = 'slug'
+    lookup_field = 'pk'
 
     def get_queryset(self):
-        return News.objects.select_related('author', 'category').filter(
-            status='published' if self.action == 'list' else Q()
+        if self.action in ['list', 'retrieve']:
+            return News.objects.select_related('author', 'category').filter(status='published')
+        return News.objects.select_related('author', 'category').all()
+    
+    def perform_create(self, serializer):
+        # Get or create a default admin user
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        admin_user, _ = User.objects.get_or_create(
+            username='admin',
+            defaults={'email': 'admin@acn.com', 'is_staff': True, 'is_superuser': True}
         )
+        serializer.save(author=admin_user)
 
     def get_serializer_class(self):
         if self.action == 'list':
             return NewsListSerializer
+        elif self.action in ['create', 'update', 'partial_update']:
+            return NewsSerializer
         return NewsDetailSerializer
 
     @method_decorator(cache_page(60 * 15))

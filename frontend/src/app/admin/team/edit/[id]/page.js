@@ -1,19 +1,18 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { useLanguage } from '../../../../contexts/LanguageContext'
-import { getTranslation } from '../../../../lib/translations'
-import AdminLayout from '../../../../components/admin/AdminLayout'
-import CrudForm from '../../../../components/admin/CrudForm'
-import { useFetchData } from '../../../../hooks'
+import { useRouter, useParams, useSearchParams } from 'next/navigation'
+import AdminLayout from '../../../../../components/admin/AdminLayout'
+import CrudForm from '../../../../../components/admin/CrudForm'
+import { useFetchData } from '../../../../../hooks'
 
-export default function AddTeamMember() {
+export default function EditTeamMember() {
   const router = useRouter()
-  const { language } = useLanguage()
-  const [memberType, setMemberType] = useState('player')
+  const params = useParams()
+  const searchParams = useSearchParams()
+  const { id } = params
+  const type = searchParams.get('type') || 'player'
 
-  // Fetch team roles for dropdown
   const { data: roles } = useFetchData('/team-roles')
 
   useEffect(() => {
@@ -23,23 +22,20 @@ export default function AddTeamMember() {
   }, [router])
 
   const playerFields = [
-    // Basic Information Section
+    // Basic Information
     {
       name: 'name',
       label: 'Player Name',
       type: 'text',
       required: true,
-      placeholder: 'Enter player name',
-      section: 'Basic Information'
+      placeholder: 'Enter player full name'
     },
     {
       name: 'slug',
-      label: 'Slug',
+      label: 'URL Slug',
       type: 'text',
       required: true,
-      placeholder: 'player-slug',
-      help: 'URL-friendly version of the name',
-      section: 'Basic Information'
+      placeholder: 'player-name-slug'
     },
     {
       name: 'jersey_number',
@@ -47,8 +43,16 @@ export default function AddTeamMember() {
       type: 'number',
       min: 1,
       max: 999,
-      placeholder: 'Jersey number (optional)'
+      placeholder: 'Jersey number (1-999)'
     },
+    {
+      name: 'photo',\n      label: 'Player Photo',
+      type: 'file',
+      accept: 'image/*',
+      help: 'Upload player headshot (recommended: 400x400px)'
+    },
+    
+    // Role & Position
     {
       name: 'role',
       label: 'Player Role',
@@ -63,10 +67,12 @@ export default function AddTeamMember() {
     },
     {
       name: 'position',
-      label: 'Position',
+      label: 'Playing Position',
       type: 'text',
-      placeholder: 'Playing position'
+      placeholder: 'e.g., Opening Batsman, Fast Bowler'
     },
+    
+    // Personal Details
     {
       name: 'age',
       label: 'Age',
@@ -81,19 +87,15 @@ export default function AddTeamMember() {
       type: 'date'
     },
     {
-      name: 'photo',
-      label: 'Player Photo',
-      type: 'file',
-      accept: 'image/*'
-    },
-    {
       name: 'bio',
-      label: 'Biography',
+      label: 'Player Biography',
       type: 'textarea',
-      rows: 4,
-      placeholder: 'Player biography',
+      rows: 6,
+      placeholder: 'Write about player background, achievements, playing style...',
       fullWidth: true
     },
+    
+    // Career Statistics
     {
       name: 'matches_played',
       label: 'Matches Played',
@@ -103,14 +105,14 @@ export default function AddTeamMember() {
     },
     {
       name: 'runs_scored',
-      label: 'Runs Scored',
+      label: 'Total Runs',
       type: 'number',
       defaultValue: 0,
       min: 0
     },
     {
       name: 'wickets_taken',
-      label: 'Wickets Taken',
+      label: 'Total Wickets',
       type: 'number',
       defaultValue: 0,
       min: 0
@@ -139,33 +141,38 @@ export default function AddTeamMember() {
       min: 0,
       step: 0.01
     },
+    
+    // Career Dates
     {
       name: 'debut_date',
       label: 'Debut Date',
-      type: 'date'
+      type: 'date',
+      help: 'Date of first professional match'
     },
     {
       name: 'join_date',
-      label: 'Join Date',
+      label: 'Team Join Date',
       type: 'date',
       required: true
     },
+    
+    // Status & Features
     {
       name: 'status',
-      label: 'Status',
+      label: 'Player Status',
       type: 'select',
       required: true,
       defaultValue: 'active',
       options: [
-        { value: 'active', label: 'Active' },
-        { value: 'injured', label: 'Injured' },
-        { value: 'retired', label: 'Retired' },
-        { value: 'suspended', label: 'Suspended' }
+        { value: 'active', label: 'Active - Available for selection' },
+        { value: 'injured', label: 'Injured - Currently injured' },
+        { value: 'retired', label: 'Retired - No longer playing' },
+        { value: 'suspended', label: 'Suspended - Temporarily unavailable' }
       ]
     },
     {
       name: 'is_captain',
-      label: 'Captain',
+      label: 'Team Captain',
       type: 'checkbox'
     },
     {
@@ -176,32 +183,33 @@ export default function AddTeamMember() {
     {
       name: 'is_featured',
       label: 'Featured Player',
-      type: 'checkbox'
+      type: 'checkbox',
+      help: 'Featured players appear on homepage'
     }
   ]
 
   const memberFields = [
+    // Basic Information
     {
       name: 'name',
       label: 'Member Name',
       type: 'text',
       required: true,
-      placeholder: 'Enter member name'
+      placeholder: 'Enter full name'
     },
     {
       name: 'slug',
-      label: 'Slug',
+      label: 'URL Slug',
       type: 'text',
       required: true,
-      placeholder: 'member-slug',
-      help: 'URL-friendly version of the name'
+      placeholder: 'member-name-slug'
     },
     {
       name: 'position',
-      label: 'Position',
+      label: 'Job Position/Title',
       type: 'text',
       required: true,
-      placeholder: 'Job position/title'
+      placeholder: 'e.g., Head Coach, Team Manager'
     },
     {
       name: 'member_type',
@@ -209,9 +217,9 @@ export default function AddTeamMember() {
       type: 'select',
       required: true,
       options: [
-        { value: 'management', label: 'Management' },
-        { value: 'coaches', label: 'Coaches' },
-        { value: 'staff', label: 'Staff' },
+        { value: 'management', label: 'Management Team' },
+        { value: 'coaches', label: 'Coaching Staff' },
+        { value: 'staff', label: 'Support Staff' },
         { value: 'players', label: 'Players' }
       ]
     },
@@ -224,32 +232,38 @@ export default function AddTeamMember() {
         label: role.name
       })) || []
     },
+    
+    // Personal Details
     {
       name: 'bio',
       label: 'Biography',
       type: 'textarea',
-      rows: 4,
-      placeholder: 'Member biography',
+      rows: 6,
+      placeholder: 'Write about experience, qualifications, achievements...',
       fullWidth: true
     },
     {
       name: 'photo',
-      label: 'Photo',
+      label: 'Profile Photo',
       type: 'file',
       accept: 'image/*'
     },
+    
+    // Contact Information
     {
       name: 'email',
-      label: 'Email',
+      label: 'Email Address',
       type: 'email',
       placeholder: 'member@example.com'
     },
     {
       name: 'phone',
-      label: 'Phone',
+      label: 'Phone Number',
       type: 'text',
       placeholder: '+93 xxx xxx xxx'
     },
+    
+    // Status & Organization
     {
       name: 'join_date',
       label: 'Join Date',
@@ -258,7 +272,7 @@ export default function AddTeamMember() {
     },
     {
       name: 'is_active',
-      label: 'Active',
+      label: 'Active Member',
       type: 'checkbox',
       defaultValue: true
     },
@@ -267,49 +281,19 @@ export default function AddTeamMember() {
       label: 'Display Order',
       type: 'number',
       defaultValue: 0,
-      min: 0
+      min: 0,
+      help: 'Lower numbers appear first in listings'
     }
   ]
 
   return (
-    <AdminLayout title={`Add ${memberType === 'player' ? 'Player' : 'Team Member'}`}>
-      {/* Type Selector */}
-      <div className="mb-8">
-        <div className="flex space-x-4">
-          <button
-            onClick={() => setMemberType('player')}
-            className={`px-4 py-2 rounded-lg font-medium ${
-              memberType === 'player'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
-          >
-            Add Player
-          </button>
-          <button
-            onClick={() => setMemberType('member')}
-            className={`px-4 py-2 rounded-lg font-medium ${
-              memberType === 'member'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
-          >
-            Add Team Member
-          </button>
-        </div>
-      </div>
-
+    <AdminLayout title={`Edit ${type === 'player' ? 'Player' : 'Team Member'}`}>
       <CrudForm
-        endpoint={memberType === 'player' ? '/players/' : '/team-members/'}
-        fields={memberType === 'player' ? playerFields : memberFields}
-        title={memberType === 'player' ? 'Player' : 'Team Member'}
+        endpoint={type === 'player' ? '/players/' : '/team-members/'}
+        fields={type === 'player' ? playerFields : memberFields}
+        title={type === 'player' ? 'Player' : 'Team Member'}
         backPath="/admin/team/"
-        onSuccess={(data) => {
-          console.log(`${memberType} created:`, data)
-        }}
-        onError={(error) => {
-          console.error(`Failed to create ${memberType}:`, error)
-        }}
+        itemId={id}
       />
     </AdminLayout>
   )

@@ -27,3 +27,10 @@ class NewsDetailSerializer(DataRootSerializer):
     class Meta:
         model = News
         fields = '__all__'
+
+
+class NewsSerializer(DataRootSerializer):
+    class Meta:
+        model = News
+        fields = '__all__'
+        read_only_fields = ['author']

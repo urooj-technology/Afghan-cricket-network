@@ -134,7 +134,7 @@ export default function AdminDashboard() {
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Link href="/admin/news/add" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+          <Link href="/admin/news/add/" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
             <div className="flex items-center">
               <div className="bg-gradient-to-r from-indigo-100 to-purple-100 p-3 rounded-xl group-hover:from-indigo-200 group-hover:to-purple-200 transition-all duration-300 shadow-lg">
                 <PlusIcon className="w-6 h-6 text-indigo-600" />
@@ -145,7 +145,7 @@ export default function AdminDashboard() {
               </div>
             </div>
           </Link>
-          <Link href="/admin/events/add" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+          <Link href="/admin/events/add/" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
             <div className="flex items-center">
               <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-3 rounded-xl group-hover:from-purple-200 group-hover:to-pink-200 transition-all duration-300 shadow-lg">
                 <CalendarDaysIcon className="w-6 h-6 text-purple-600" />
@@ -156,7 +156,7 @@ export default function AdminDashboard() {
               </div>
             </div>
           </Link>
-          <Link href="/admin/team/add" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+          <Link href="/admin/team/add/" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
             <div className="flex items-center">
               <div className="bg-gradient-to-r from-pink-100 to-indigo-100 p-3 rounded-xl group-hover:from-pink-200 group-hover:to-indigo-200 transition-all duration-300 shadow-lg">
                 <UsersIcon className="w-6 h-6 text-pink-600" />

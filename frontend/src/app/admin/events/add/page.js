@@ -1,198 +1,195 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLanguage } from '../../../../contexts/LanguageContext'
 import { getTranslation } from '../../../../lib/translations'
 import AdminLayout from '../../../../components/admin/AdminLayout'
-import { ArrowLeftIcon, CalendarIcon, ClockIcon, MapPinIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
+import CrudForm from '../../../../components/admin/CrudForm'
+import { useFetchData } from '../../../../hooks'
 
 export default function AddEvent() {
   const router = useRouter()
-  const { language, isRTL, direction } = useLanguage()
-  const [loading, setLoading] = useState(false)
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    date: '',
-    time: '',
-    venue: '',
-    teams: '',
-    status: 'upcoming'
-  })
+  const { language } = useLanguage()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setLoading(true)
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    router.push('/admin/events')
-  }
+  // Fetch categories and venues for dropdowns
+  const { data: categories } = useFetchData('/event-categories')
+  const { data: venues } = useFetchData('/venues')
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+  useEffect(() => {
+    if (!localStorage.getItem('adminAuth')) {
+      router.push('/admin')
+    }
+  }, [router])
+
+  const fields = [
+    // Basic Information
+    {
+      name: 'title',
+      label: 'Event Title',
+      type: 'text',
+      required: true,
+      placeholder: 'Enter compelling event title',
+      help: 'Make it descriptive and engaging'
+    },
+    {
+      name: 'slug',
+      label: 'URL Slug',
+      type: 'text',
+      required: true,
+      placeholder: 'event-slug',
+      help: 'URL-friendly version (auto-generated from title if empty)'
+    },
+    {
+      name: 'description',
+      label: 'Event Description',
+      type: 'textarea',
+      required: true,
+      rows: 6,
+      placeholder: 'Provide detailed event description, including what to expect...',
+      fullWidth: true,
+      help: 'Include key details like format, teams, special features'
+    },
+    
+    // Classification
+    {
+      name: 'category',
+      label: 'Event Category',
+      type: 'select',
+      required: true,
+      options: categories?.results?.map(cat => ({
+        value: cat.id,
+        label: cat.name
+      })) || [],
+      help: 'Select the most appropriate category'
+    },
+    {
+      name: 'event_type',
+      label: 'Event Type',
+      type: 'select',
+      required: true,
+      options: [
+        { value: 'international', label: 'International Match' },
+        { value: 'domestic', label: 'Domestic Match' },
+        { value: 'training', label: 'Training Session' },
+        { value: 'tournament', label: 'Tournament' },
+        { value: 'friendly', label: 'Friendly Match' }
+      ],
+      help: 'Choose the type that best describes this event'
+    },
+    
+    // Location & Timing
+    {
+      name: 'venue',
+      label: 'Venue',
+      type: 'select',
+      required: true,
+      options: venues?.results?.map(venue => ({
+        value: venue.id,
+        label: `${venue.name}, ${venue.city}`
+      })) || [],
+      help: 'Select the venue where event will take place'
+    },
+    {
+      name: 'date',
+      label: 'Start Date & Time',
+      type: 'datetime-local',
+      required: true,
+      help: 'When the event begins'
+    },
+    {
+      name: 'end_date',
+      label: 'End Date & Time',
+      type: 'datetime-local',
+      help: 'Leave empty for single-day events or matches'
+    },
+    
+    // Status & Publishing
+    {
+      name: 'status',
+      label: 'Event Status',
+      type: 'select',
+      required: true,
+      defaultValue: 'upcoming',
+      options: [
+        { value: 'upcoming', label: 'Upcoming - Event not started' },
+        { value: 'ongoing', label: 'Ongoing - Event in progress' },
+        { value: 'completed', label: 'Completed - Event finished' },
+        { value: 'cancelled', label: 'Cancelled - Event cancelled' }
+      ]
+    },
+    {
+      name: 'is_published',
+      label: 'Published',
+      type: 'checkbox',
+      defaultValue: true,
+      help: 'Uncheck to save as draft (not visible to public)'
+    },
+    {
+      name: 'is_featured',
+      label: 'Featured Event',
+      type: 'checkbox',
+      help: 'Featured events appear prominently on homepage'
+    },
+    
+    // Ticketing & Capacity
+    {
+      name: 'is_free',
+      label: 'Free Event',
+      type: 'checkbox',
+      defaultValue: true,
+      help: 'Check if the event is free to attend'
+    },
+    {
+      name: 'ticket_price',
+      label: 'Ticket Price (USD)',
+      type: 'number',
+      min: 0,
+      step: 0.01,
+      placeholder: '0.00',
+      help: 'Set to 0 or leave empty for free events'
+    },
+    {
+      name: 'max_capacity',
+      label: 'Maximum Capacity',
+      type: 'number',
+      min: 1,
+      placeholder: 'Maximum number of attendees',
+      help: 'Leave empty for unlimited capacity'
+    },
+    {
+      name: 'registered_count',
+      label: 'Current Registrations',
+      type: 'number',
+      defaultValue: 0,
+      min: 0,
+      help: 'Number of people currently registered'
+    },
+    
+    // Media
+    {
+      name: 'image',
+      label: 'Event Poster/Image',
+      type: 'file',
+      accept: 'image/*',
+      help: 'Upload an attractive poster or image (recommended: 1200x630px)'
+    }
+  ]
 
   return (
-    <AdminLayout title={getTranslation(language, 'admin.events.create')}>
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <div className={`flex items-center mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <Link
-              href="/admin/events"
-              className={`p-2 rounded-lg hover:bg-gray-100 transition-colors ${isRTL ? 'ml-3' : 'mr-3'}`}
-            >
-              <ArrowLeftIcon className={`w-5 h-5 text-gray-600 ${isRTL ? 'rotate-180' : ''}`} />
-            </Link>
-            <h1 className="text-3xl font-bold gradient-text">
-              {getTranslation(language, 'admin.events.create')}
-            </h1>
-          </div>
-          <p className="text-gray-600">
-            {getTranslation(language, 'admin.events.subtitle')}
-          </p>
-        </div>
-
-        {/* Form */}
-        <div className="glass rounded-2xl p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="md:col-span-2">
-                <label className="form-label">
-                  Event Title
-                </label>
-                <input
-                  type="text"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                  className="form-input"
-                  dir={direction}
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="form-label">
-                  <CalendarIcon className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  Date
-                </label>
-                <input
-                  type="date"
-                  name="date"
-                  value={formData.date}
-                  onChange={handleChange}
-                  className="form-input"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="form-label">
-                  <ClockIcon className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  Time
-                </label>
-                <input
-                  type="time"
-                  name="time"
-                  value={formData.time}
-                  onChange={handleChange}
-                  className="form-input"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="form-label">
-                  <MapPinIcon className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  Venue
-                </label>
-                <input
-                  type="text"
-                  name="venue"
-                  value={formData.venue}
-                  onChange={handleChange}
-                  className="form-input"
-                  dir={direction}
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="form-label">
-                  Teams
-                </label>
-                <input
-                  type="text"
-                  name="teams"
-                  value={formData.teams}
-                  onChange={handleChange}
-                  placeholder="e.g., Afghanistan vs Pakistan"
-                  className="form-input"
-                  dir={direction}
-                  required
-                />
-              </div>
-
-              <div className="md:col-span-2">
-                <label className="form-label">
-                  Description
-                </label>
-                <textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  rows={4}
-                  className="form-input"
-                  dir={direction}
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="form-label">
-                  Status
-                </label>
-                <select
-                  name="status"
-                  value={formData.status}
-                  onChange={handleChange}
-                  className="form-input"
-                >
-                  <option value="upcoming">{getTranslation(language, 'admin.events.upcoming')}</option>
-                  <option value="live">{getTranslation(language, 'admin.events.live')}</option>
-                  <option value="completed">{getTranslation(language, 'admin.events.completed')}</option>
-                  <option value="cancelled">{getTranslation(language, 'admin.events.cancelled')}</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className={`flex gap-4 pt-6 border-t border-gray-200 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn-primary"
-              >
-                {loading ? getTranslation(language, 'admin.common.loading') : getTranslation(language, 'admin.common.save')}
-              </button>
-              <Link
-                href="/admin/events"
-                className="btn-secondary"
-              >
-                {getTranslation(language, 'admin.common.cancel')}
-              </Link>
-            </div>
-          </form>
-        </div>
-      </div>
+    <AdminLayout title="Add Event">
+      <CrudForm
+        endpoint="/events/"
+        fields={fields}
+        title="Event"
+        backPath="/admin/events/"
+        onSuccess={(data) => {
+          console.log('Event created:', data)
+        }}
+        onError={(error) => {
+          console.error('Failed to create event:', error)
+        }}
+      />
     </AdminLayout>
   )
 }

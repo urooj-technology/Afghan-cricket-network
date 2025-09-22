@@ -1,185 +1,310 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLanguage } from '../../../../contexts/LanguageContext'
 import { getTranslation } from '../../../../lib/translations'
 import AdminLayout from '../../../../components/admin/AdminLayout'
-import { ArrowLeftIcon, TrophyIcon, UserIcon, HashtagIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
+import CrudForm from '../../../../components/admin/CrudForm'
+import { useFetchData } from '../../../../hooks'
 
 export default function AddRanking() {
   const router = useRouter()
-  const { language, isRTL, direction } = useLanguage()
-  const [loading, setLoading] = useState(false)
-  const [formData, setFormData] = useState({
-    playerName: '',
-    position: '',
-    points: '',
-    matches: '',
-    category: 'batting',
-    team: 'Afghanistan'
-  })
+  const { language } = useLanguage()
+  const [rankingType, setRankingType] = useState('team')
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setLoading(true)
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    router.push('/admin/rankings')
+  // Fetch players for dropdown
+  const { data: players } = useFetchData('/players')
+
+  useEffect(() => {
+    if (!localStorage.getItem('adminAuth')) {
+      router.push('/admin')
+    }
+  }, [router])
+
+  const teamRankingFields = [
+    {
+      name: 'team_name',
+      label: 'Team Name',
+      type: 'text',
+      required: true,
+      placeholder: 'Enter team name'
+    },
+    {
+      name: 'format',
+      label: 'Format',
+      type: 'select',
+      required: true,
+      options: [
+        { value: 't20i', label: 'T20I' },
+        { value: 'odi', label: 'ODI' },
+        { value: 'test', label: 'Test' }
+      ]
+    },
+    {
+      name: 'rank',
+      label: 'Rank',
+      type: 'number',
+      required: true,
+      min: 1,
+      placeholder: 'Team rank position'
+    },
+    {
+      name: 'rating',
+      label: 'Rating',
+      type: 'number',
+      required: true,
+      min: 0,
+      placeholder: 'Team rating'
+    },
+    {
+      name: 'points',
+      label: 'Points',
+      type: 'number',
+      required: true,
+      min: 0,
+      placeholder: 'Team points'
+    },
+    {
+      name: 'matches_played',
+      label: 'Matches Played',
+      type: 'number',
+      defaultValue: 0,
+      min: 0
+    },
+    {
+      name: 'country_code',
+      label: 'Country Code',
+      type: 'text',
+      defaultValue: 'AFG',
+      placeholder: 'AFG',
+      help: '3-letter country code'
+    },
+    {
+      name: 'is_published',
+      label: 'Published',
+      type: 'checkbox',
+      defaultValue: true
+    }
+  ]
+
+  const playerRankingFields = [
+    {
+      name: 'player',
+      label: 'Player',
+      type: 'select',
+      options: players?.results?.map(player => ({
+        value: player.id,
+        label: player.name
+      })) || []
+    },
+    {
+      name: 'player_name',
+      label: 'Player Name',
+      type: 'text',
+      required: true,
+      placeholder: 'Enter player name'
+    },
+    {
+      name: 'category',
+      label: 'Category',
+      type: 'select',
+      required: true,
+      options: [
+        { value: 'batting', label: 'Batting' },
+        { value: 'bowling', label: 'Bowling' },
+        { value: 'all-rounder', label: 'All-rounder' }
+      ]
+    },
+    {
+      name: 'format',
+      label: 'Format',
+      type: 'select',
+      required: true,
+      options: [
+        { value: 't20i', label: 'T20I' },
+        { value: 'odi', label: 'ODI' },
+        { value: 'test', label: 'Test' }
+      ]
+    },
+    {
+      name: 'rank',
+      label: 'Rank',
+      type: 'number',
+      required: true,
+      min: 1,
+      placeholder: 'Player rank position'
+    },
+    {
+      name: 'rating',
+      label: 'Rating',
+      type: 'number',
+      required: true,
+      min: 0,
+      placeholder: 'Player rating'
+    },
+    {
+      name: 'points',
+      label: 'Points',
+      type: 'number',
+      min: 0,
+      placeholder: 'Player points'
+    },
+    {
+      name: 'wickets',
+      label: 'Wickets',
+      type: 'number',
+      min: 0,
+      placeholder: 'Total wickets (for bowlers)'
+    },
+    {
+      name: 'country',
+      label: 'Country',
+      type: 'text',
+      defaultValue: 'Afghanistan',
+      required: true
+    },
+    {
+      name: 'is_published',
+      label: 'Published',
+      type: 'checkbox',
+      defaultValue: true
+    }
+  ]
+
+  const generalRankingFields = [
+    {
+      name: 'category',
+      label: 'Category',
+      type: 'select',
+      required: true,
+      options: [
+        { value: 'team', label: 'Team' },
+        { value: 'player', label: 'Player' },
+        { value: 'batting', label: 'Batting' },
+        { value: 'bowling', label: 'Bowling' },
+        { value: 'all-rounder', label: 'All-rounder' }
+      ]
+    },
+    {
+      name: 'title',
+      label: 'Title',
+      type: 'text',
+      required: true,
+      placeholder: 'Ranking title'
+    },
+    {
+      name: 'rank',
+      label: 'Rank',
+      type: 'number',
+      required: true,
+      min: 1,
+      placeholder: 'Rank position'
+    },
+    {
+      name: 'points',
+      label: 'Points',
+      type: 'number',
+      defaultValue: 0,
+      min: 0
+    },
+    {
+      name: 'rating',
+      label: 'Rating',
+      type: 'number',
+      defaultValue: 0,
+      min: 0
+    },
+    {
+      name: 'description',
+      label: 'Description',
+      type: 'textarea',
+      rows: 4,
+      placeholder: 'Ranking description',
+      fullWidth: true
+    },
+    {
+      name: 'image',
+      label: 'Image',
+      type: 'file',
+      accept: 'image/*'
+    },
+    {
+      name: 'is_published',
+      label: 'Published',
+      type: 'checkbox',
+      defaultValue: true
+    }
+  ]
+
+  const getEndpoint = () => {
+    switch (rankingType) {
+      case 'team': return '/team-rankings'
+      case 'player': return '/player-rankings'
+      case 'general': return '/general-rankings'
+      default: return '/team-rankings'
+    }
   }
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
+  const getFields = () => {
+    switch (rankingType) {
+      case 'team': return teamRankingFields
+      case 'player': return playerRankingFields
+      case 'general': return generalRankingFields
+      default: return teamRankingFields
+    }
   }
 
   return (
-    <AdminLayout title={getTranslation(language, 'admin.common.add') + ' ' + getTranslation(language, 'rankings.title')}>
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <div className={`flex items-center mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
-            <Link
-              href="/admin/rankings"
-              className={`p-2 rounded-lg hover:bg-gray-100 transition-colors ${isRTL ? 'ml-3' : 'mr-3'}`}
-            >
-              <ArrowLeftIcon className={`w-5 h-5 text-gray-600 ${isRTL ? 'rotate-180' : ''}`} />
-            </Link>
-            <h1 className="text-3xl font-bold gradient-text">
-              {getTranslation(language, 'admin.common.add')} {getTranslation(language, 'rankings.title')}
-            </h1>
-          </div>
-          <p className="text-gray-600">
-            Add player ranking information
-          </p>
-        </div>
-
-        {/* Form */}
-        <div className="glass rounded-2xl p-8">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="form-label">
-                  <UserIcon className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  {getTranslation(language, 'rankings.name')}
-                </label>
-                <input
-                  type="text"
-                  name="playerName"
-                  value={formData.playerName}
-                  onChange={handleChange}
-                  className="form-input"
-                  dir={direction}
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="form-label">
-                  <HashtagIcon className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  {getTranslation(language, 'rankings.position')}
-                </label>
-                <input
-                  type="number"
-                  name="position"
-                  value={formData.position}
-                  onChange={handleChange}
-                  className="form-input"
-                  min="1"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="form-label">
-                  <TrophyIcon className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  {getTranslation(language, 'rankings.points')}
-                </label>
-                <input
-                  type="number"
-                  name="points"
-                  value={formData.points}
-                  onChange={handleChange}
-                  className="form-input"
-                  min="0"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="form-label">
-                  {getTranslation(language, 'rankings.matches')}
-                </label>
-                <input
-                  type="number"
-                  name="matches"
-                  value={formData.matches}
-                  onChange={handleChange}
-                  className="form-input"
-                  min="0"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="form-label">
-                  Category
-                </label>
-                <select
-                  name="category"
-                  value={formData.category}
-                  onChange={handleChange}
-                  className="form-input"
-                >
-                  <option value="batting">{getTranslation(language, 'rankings.batting')}</option>
-                  <option value="bowling">{getTranslation(language, 'rankings.bowling')}</option>
-                  <option value="allRounder">{getTranslation(language, 'rankings.allRounder')}</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="form-label">
-                  Team
-                </label>
-                <select
-                  name="team"
-                  value={formData.team}
-                  onChange={handleChange}
-                  className="form-input"
-                >
-                  <option value="Afghanistan">Afghanistan</option>
-                  <option value="India">India</option>
-                  <option value="Pakistan">Pakistan</option>
-                  <option value="England">England</option>
-                  <option value="Australia">Australia</option>
-                </select>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className={`flex gap-4 pt-6 border-t border-gray-200 ${isRTL ? 'flex-row-reverse' : ''}`}>
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn-primary"
-              >
-                {loading ? getTranslation(language, 'admin.common.loading') : getTranslation(language, 'admin.common.save')}
-              </button>
-              <Link
-                href="/admin/rankings"
-                className="btn-secondary"
-              >
-                {getTranslation(language, 'admin.common.cancel')}
-              </Link>
-            </div>
-          </form>
+    <AdminLayout title={`Add ${rankingType.charAt(0).toUpperCase() + rankingType.slice(1)} Ranking`}>
+      {/* Type Selector */}
+      <div className="mb-8">
+        <div className="flex space-x-4">
+          <button
+            onClick={() => setRankingType('team')}
+            className={`px-4 py-2 rounded-lg font-medium ${
+              rankingType === 'team'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            Team Ranking
+          </button>
+          <button
+            onClick={() => setRankingType('player')}
+            className={`px-4 py-2 rounded-lg font-medium ${
+              rankingType === 'player'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            Player Ranking
+          </button>
+          <button
+            onClick={() => setRankingType('general')}
+            className={`px-4 py-2 rounded-lg font-medium ${
+              rankingType === 'general'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            General Ranking
+          </button>
         </div>
       </div>
+
+      <CrudForm
+        endpoint={getEndpoint()}
+        fields={getFields()}
+        title={`${rankingType.charAt(0).toUpperCase() + rankingType.slice(1)} Ranking`}
+        backPath="/admin/rankings/"
+        onSuccess={(data) => {
+          console.log(`${rankingType} ranking created:`, data)
+        }}
+        onError={(error) => {
+          console.error(`Failed to create ${rankingType} ranking:`, error)
+        }}
+      />
     </AdminLayout>
   )
 }

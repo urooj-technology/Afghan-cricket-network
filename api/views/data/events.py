@@ -12,10 +12,14 @@ from .base import DataRootViewSet
 
 
 class EventCategoryViewSet(DataRootViewSet):
-    queryset = EventCategory.objects.filter(is_active=True)
     serializer_class = EventCategorySerializer
     permission_classes = [AllowAny]
     ordering = ['name']
+    
+    def get_queryset(self):
+        if self.action in ['list', 'retrieve']:
+            return EventCategory.objects.filter(is_active=True)
+        return EventCategory.objects.all()
 
 
 class VenueViewSet(DataRootViewSet):

@@ -13,10 +13,14 @@ from .base import DataRootViewSet
 
 
 class TeamRoleViewSet(DataRootViewSet):
-    queryset = TeamRole.objects.filter(is_active=True)
     serializer_class = TeamRoleSerializer
     permission_classes = [AllowAny]
     ordering = ['name']
+    
+    def get_queryset(self):
+        if self.action in ['list', 'retrieve']:
+            return TeamRole.objects.filter(is_active=True)
+        return TeamRole.objects.all()
 
 
 class PlayerViewSet(DataRootViewSet):
@@ -26,7 +30,7 @@ class PlayerViewSet(DataRootViewSet):
     filterset_fields = ['role', 'status', 'is_captain', 'is_vice_captain', 'is_featured']
     ordering_fields = ['name', 'jersey_number', 'age', 'matches_played', 'runs_scored', 'wickets_taken']
     ordering = ['jersey_number', 'name']
-    lookup_field = 'slug'
+    lookup_field = 'pk'
 
     def get_queryset(self):
         return Player.objects.filter(status='active' if self.action == 'list' else Q())
