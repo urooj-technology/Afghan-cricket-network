@@ -428,6 +428,24 @@ header {
   margin: 0 !important;
 }
 
+/* Top header bar styling */
+.top-header {
+  height: 40px;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+/* Adjust main content for dual header */
+.main-content {
+  padding-top: 104px; /* 40px top header + 64px main header */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    padding-top: 104px;
+  }
+}
+
 /* Enhanced focus states */
 .focus-visible:focus-visible {
   outline: 2px solid #3b82f6;

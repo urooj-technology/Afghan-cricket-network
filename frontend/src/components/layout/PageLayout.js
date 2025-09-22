@@ -15,7 +15,7 @@ export default function PageLayout({
   return (
     <>
       <Header />
-      <main className={`min-h-screen bg-gray-50 ${className}`}>
+      <main className={`min-h-screen bg-gray-50 pt-[104px] ${className}`}>
         {showHero && (
           <section className={`bg-gradient-to-br ${heroGradient} text-white py-16 lg:py-24 relative`}>
             {heroImage && (

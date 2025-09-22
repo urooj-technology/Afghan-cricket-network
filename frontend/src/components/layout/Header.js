@@ -76,14 +76,93 @@ export default function Header() {
   }
 
   return (
-    <header 
-      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-200/50' 
-          : 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100/50'
-      }`} 
-      dir={direction}
-    >
+    <>
+      {/* Top Header Bar */}
+      <div className="fixed top-0 left-0 right-0 w-full z-50 bg-gradient-to-r from-slate-800 to-slate-900 text-white" dir={direction}>
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex h-10 items-center justify-between text-sm">
+            {/* Contact Info */}
+            <div className="hidden md:flex items-center space-x-6">
+              <div className="flex items-center space-x-2">
+                <PhoneIcon className="w-4 h-4 text-emerald-400" />
+                <span className="text-slate-300">+93 123 456 789</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <svg className="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                </svg>
+                <span className="text-slate-300">info@afghancricket.com</span>
+              </div>
+            </div>
+            
+            {/* Language Selector & Login */}
+            <div className="flex items-center space-x-4">
+              {/* Language Dropdown */}
+              <div className="relative" ref={dropdownRef}>
+                <button
+                  onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                  className="flex items-center space-x-2 px-3 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
+                >
+                  <span className="text-base">{currentLang.flag}</span>
+                  <span className="hidden sm:block">{currentLang.nativeName}</span>
+                  <ChevronDownIcon className={`w-3 h-3 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                
+                {langDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-52 bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 py-2 z-50">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => handleLanguageChange(lang.code)}
+                        className={`w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-blue-50 transition-colors rounded-xl mx-2 ${
+                          language === lang.code ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'
+                        }`}
+                      >
+                        <span className="text-lg">{lang.flag}</span>
+                        <div className="flex-1 text-left">
+                          <div className="font-medium">{lang.nativeName}</div>
+                          <div className="text-xs text-gray-500">{lang.name}</div>
+                        </div>
+                        {language === lang.code && (
+                          <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
+              {/* Quick Login */}
+              <button
+                onClick={() => {
+                  if (isAuthenticated) {
+                    router.push('/admin/dashboard')
+                  } else {
+                    router.push('/admin/login')
+                  }
+                }}
+                className="flex items-center space-x-2 px-3 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+                <span className="hidden sm:block">{isAuthenticated ? 'Dashboard' : 'Login'}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Main Header */}
+      <header 
+        className={`fixed top-10 left-0 right-0 w-full z-40 transition-all duration-300 ${
+          scrolled 
+            ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-200/50' 
+            : 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100/50'
+        }`} 
+        dir={direction}
+      >
       <nav className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -129,89 +208,14 @@ export default function Header() {
           
           {/* Desktop Actions */}
           <div className="hidden lg:flex lg:items-center lg:space-x-3">
-            {/* Admin Link */}
-            {/* Profile Dropdown */}
-            <div className="relative" ref={profileDropdownRef}>
-              <button
-                onClick={() => {
-                  if (isAuthenticated) {
-                    setProfileDropdownOpen(!profileDropdownOpen)
-                  } else {
-                    router.push('/admin/login')
-                  }
-                }}
-                className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
-              >
-                <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">
-                  <svg className="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <span>{isAuthenticated ? 'Profile' : 'Login'}</span>
-              </button>
-              
-              {profileDropdownOpen && isAuthenticated && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">
-                  <button
-                    onClick={() => {
-                      setProfileDropdownOpen(false)
-                      router.push('/admin/dashboard')
-                    }}
-                    className="w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-gray-50 text-gray-700"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
-                    </svg>
-                    <span>Dashboard</span>
-                  </button>
-                  <button
-                    onClick={() => {
-                      setProfileDropdownOpen(false)
-                      router.push('/admin/login')
-                    }}
-                    className="w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-gray-50 text-red-600"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd" />
-                    </svg>
-                    <span>Logout</span>
-                  </button>
-                </div>
-              )}
-            </div>
-            
-            {/* Language Dropdown */}
-            <div className="relative" ref={dropdownRef}>
-              <button
-                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 border border-gray-200/50"
-              >
-                <span className="text-base">{currentLang.flag}</span>
-                <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} />
-              </button>
-              
-              {langDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-52 bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 py-2 z-50">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      onClick={() => handleLanguageChange(lang.code)}
-                      className={`w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-blue-50 transition-colors rounded-xl mx-2 ${
-                        language === lang.code ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'
-                      }`}
-                    >
-                      <span className="text-lg">{lang.flag}</span>
-                      <div className="flex-1 text-left">
-                        <div className="font-medium">{lang.nativeName}</div>
-                        <div className="text-xs text-gray-500">{lang.name}</div>
-                      </div>
-                      {language === lang.code && (
-                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
+            {/* Search Bar */}
+            <div className="hidden md:flex items-center space-x-2 bg-gray-100 rounded-lg px-3 py-2 max-w-md">
+              <MagnifyingGlassIcon className="h-4 w-4 text-gray-500" />
+              <input 
+                type="text" 
+                placeholder={getTranslation(language, 'common.search')}
+                className="bg-transparent text-sm text-gray-700 placeholder-gray-500 border-none outline-none flex-1"
+              />
             </div>
           </div>
           
@@ -225,6 +229,7 @@ export default function Header() {
           </button>
         </div>
       </nav>
+      </header>
       
       {/* Mobile Menu */}
       {mobileMenuOpen && (
@@ -373,6 +378,6 @@ export default function Header() {
           </div>
         </>
       )}
-    </header>
+    </>
   )
 }
