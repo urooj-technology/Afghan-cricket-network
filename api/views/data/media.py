@@ -39,6 +39,14 @@ class MediaViewSet(DataRootViewSet):
         if self.action == 'list':
             return MediaListSerializer
         return MediaDetailSerializer
+    
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        # Increment view count
+        instance.views += 1
+        instance.save(update_fields=['views'])
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
 
     @method_decorator(cache_page(60 * 30))
     @action(detail=False, methods=['get'])
