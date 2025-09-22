@@ -30,13 +30,14 @@ class LoginView(KnoxLoginView):
         serializer = LoginSerializer(data=request.data, context={"request": request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data["user"]
-
-        # Login the user
-        login(request, user)
-        # Generate Knox token
-        token_instance, token = AuthToken.objects.create(user)
-
-        # Specify the fields you want to return
+        
+        # Set the user in request for Knox
+        request.user = user
+        
+        # Call parent's post method to handle Knox token creation
+        response = super().post(request, *args, **kwargs)
+        
+        # Add custom user data to response
         user_data = {
             "id": user.id,
             "username": user.username,
@@ -49,14 +50,9 @@ class LoginView(KnoxLoginView):
             "is_finance": user.is_finance,
             "is_admin": user.is_admin,
         }
-
-        return Response(
-            {
-                "token": token,
-                "user": user_data,  # Return only the specified fields
-            },
-            status=status.HTTP_200_OK,
-        )
+        
+        response.data["user"] = user_data
+        return response
     
 
 

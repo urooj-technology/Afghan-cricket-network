@@ -22,12 +22,20 @@ export default function AdminDashboard() {
   const { isAuthenticated, isAdmin, isLoading } = useAuth()
 
   useEffect(() => {
-    if (!isLoading && (!isAuthenticated || !isAdmin())) {
-      router.push('/admin/login')
+    if (!isLoading && !isAuthenticated) {
+      router.replace('/admin')
     }
-  }, [isAuthenticated, isAdmin, isLoading, router])
+  }, [isAuthenticated, isLoading, router])
 
-  if (isLoading || !isAuthenticated || !isAdmin()) return null
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    )
+  }
+
+  if (!isAuthenticated) return null
 
   const stats = [
     { name: 'Total Articles', value: '24', change: '+12%', icon: NewspaperIcon, color: 'blue' },

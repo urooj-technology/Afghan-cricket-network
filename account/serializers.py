@@ -25,18 +25,20 @@ class LoginSerializer(DataRootSerializer):
         password = attrs.get("password")
 
         if email and password:
-            user = authenticate(
-                request=self.context.get("request"), email=email, password=password
-            )
-            if not user:
-                msg = "Invalid credentials"
-                raise serializers.ValidationError(msg, code="authorization")
+            # Try to get user by email and check password manually
+            try:
+                user = User.objects.get(email=email)
+                if user.check_password(password) and user.is_active:
+                    attrs["user"] = user
+                    return attrs
+            except User.DoesNotExist:
+                pass
+            
+            msg = "Invalid credentials"
+            raise serializers.ValidationError(msg, code="authorization")
         else:
             msg = 'Must include "email" and "password".'
             raise serializers.ValidationError(msg, code="authorization")
-
-        attrs["user"] = user
-        return attrs
 
 
 class ChangePasswordSerializer(DataRootSerializer):

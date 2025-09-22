@@ -230,7 +230,7 @@ EMAIL_TIMEOUT = config('EMAIL_TIMEOUT', default=30, cast=int)
 # Add Knox settings
 REST_KNOX = {
     'TOKEN_TTL': timedelta(days=config('TOKEN_EXPIRY_DAYS', default=7, cast=int)),
-    'TOKEN_LIMIT_PER_USER': config('TOKEN_LIMIT', default=0, cast=int),
+    'TOKEN_LIMIT_PER_USER': None,
     'AUTO_REFRESH': True,
 }
 
@@ -240,3 +240,6 @@ ALLOWED_UPLOAD_EXTENSIONS = config("ALLOWED_UPLOAD_EXTENSIONS").split(",")
 
 # site address
 SITE_ADDRESS = config("SITE_ADDRESS")
+
+# Custom User Model
+AUTH_USER_MODEL = 'account.User'

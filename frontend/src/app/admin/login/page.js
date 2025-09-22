@@ -30,9 +30,9 @@ export default function AdminLogin() {
 
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
-      router.push('/admin/dashboard')
+      router.replace('/admin/dashboard')
     }
-  }, [isAuthenticated, isLoading, router])
+  }, [isAuthenticated, isLoading])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -74,10 +74,10 @@ export default function AdminLogin() {
       const result = await login(formData)
       
       if (result.success) {
-        setMessage({ type: 'success', text: 'Login successful!' })
+        setMessage({ type: 'success', text: 'Login successful! Redirecting...' })
         setTimeout(() => {
           router.push('/admin/dashboard')
-        }, 1000)
+        }, 500)
       } else {
         setMessage({ type: 'error', text: result.error || 'Login failed' })
       }
@@ -94,6 +94,10 @@ export default function AdminLogin() {
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     )
+  }
+
+  if (isAuthenticated) {
+    return null
   }
 
   return (

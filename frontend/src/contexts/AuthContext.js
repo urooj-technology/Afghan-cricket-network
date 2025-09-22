@@ -21,26 +21,36 @@ export const AuthProvider = ({ children }) => {
 
   // Initialize auth state from localStorage
   useEffect(() => {
-    const storedToken = localStorage.getItem('authToken')
-    const storedUser = localStorage.getItem('userData')
-    
-    if (storedToken && storedUser) {
+    const initializeAuth = () => {
       try {
-        const userData = JSON.parse(storedUser)
-        setToken(storedToken)
-        setUser(userData)
-        setIsAuthenticated(true)
+        const storedToken = localStorage.getItem('authToken')
+        const storedUser = localStorage.getItem('userData')
+        
+        if (storedToken && storedUser) {
+          const userData = JSON.parse(storedUser)
+          setToken(storedToken)
+          setUser(userData)
+          setIsAuthenticated(true)
+        }
       } catch (error) {
         console.error('Error parsing stored user data:', error)
-        logout()
+        localStorage.removeItem('authToken')
+        localStorage.removeItem('userData')
+        localStorage.removeItem('adminAuth')
+      } finally {
+        setIsLoading(false)
       }
     }
-    setIsLoading(false)
+
+    initializeAuth()
   }, [])
 
   const login = async (credentials) => {
     try {
+      console.log('Attempting login with:', credentials.email)
       const response = await api.post('/login/', credentials)
+      console.log('Login response:', response.data)
+      
       const { token: authToken, user: userData } = response.data
 
       // Store in localStorage
@@ -53,12 +63,13 @@ export const AuthProvider = ({ children }) => {
       setUser(userData)
       setIsAuthenticated(true)
 
+      console.log('Login successful, user:', userData)
       return { success: true, user: userData }
     } catch (error) {
-      console.error('Login error:', error)
+      console.error('Login error:', error.response?.data || error.message)
       return {
         success: false,
-        error: error.response?.data?.detail || 'Login failed'
+        error: error.response?.data?.non_field_errors?.[0] || error.response?.data?.detail || 'Login failed'
       }
     }
   }
@@ -66,7 +77,11 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     try {
       if (token) {
-        await api.post('/logout/')
+        await api.post('/logout/', {}, {
+          headers: {
+            'Authorization': `Token ${token}`
+          }
+        })
       }
     } catch (error) {
       console.error('Logout error:', error)
@@ -84,7 +99,8 @@ export const AuthProvider = ({ children }) => {
   }
 
   const isAdmin = () => {
-    return user?.is_admin || user?.is_staff || user?.is_superuser || false
+    if (!user) return false
+    return user.is_admin || user.is_staff || user.is_superuser || false
   }
 
   const hasPermission = (permission) => {

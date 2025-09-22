@@ -7,13 +7,15 @@ import AdminLogin from './login/page'
 
 export default function AdminPage() {
   const router = useRouter()
-  const { isAuthenticated, isAdmin, isLoading } = useAuth()
+  const { isAuthenticated, isLoading } = useAuth()
 
   useEffect(() => {
-    if (!isLoading && isAuthenticated && isAdmin()) {
-      router.push('/admin/dashboard')
+    if (!isLoading) {
+      if (isAuthenticated) {
+        router.replace('/admin/dashboard')
+      }
     }
-  }, [isAuthenticated, isAdmin, isLoading, router])
+  }, [isAuthenticated, isLoading, router])
 
   if (isLoading) {
     return (
@@ -21,6 +23,10 @@ export default function AdminPage() {
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     )
+  }
+
+  if (isAuthenticated) {
+    return null
   }
 
   return <AdminLogin />
