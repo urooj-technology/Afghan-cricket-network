@@ -8,6 +8,7 @@ from api.views.data.viewsets import (
     MediaViewSet, MediaCategoryViewSet, MediaGalleryViewSet,
     ContactViewSet, ContactCategoryViewSet, ContactInfoViewSet
 )
+from api.views.data.search import GlobalSearchView
 
 
 # Create router for API endpoints
@@ -45,4 +46,5 @@ router.register(r'contact-info', ContactInfoViewSet, basename='contact-info')
 
 urlpatterns = [
     path('v1/', include(router.urls)),
+    path('v1/search/', GlobalSearchView.as_view(), name='global-search'),
 ]

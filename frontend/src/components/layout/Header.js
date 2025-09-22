@@ -7,6 +7,7 @@ import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon, ChevronDownIcon, HomeIcon, N
 import { useAuth } from '../../contexts/AuthContext'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
+import SearchModal from '../ui/SearchModal'
 
 const navigation = [
   { key: 'home', href: '/', icon: HomeIcon },
@@ -30,6 +31,7 @@ export default function Header() {
   const [langDropdownOpen, setLangDropdownOpen] = useState(false)
   const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [searchModalOpen, setSearchModalOpen] = useState(false)
   const { isAuthenticated, isAdmin } = useAuth()
   const { language, setLanguage, isRTL, direction } = useLanguage()
   const dropdownRef = useRef(null)
@@ -208,15 +210,13 @@ export default function Header() {
           
           {/* Desktop Actions */}
           <div className="hidden lg:flex lg:items-center lg:space-x-3">
-            {/* Search Bar */}
-            <div className="hidden md:flex items-center space-x-2 bg-gray-100 rounded-lg px-3 py-2 max-w-md">
-              <MagnifyingGlassIcon className="h-4 w-4 text-gray-500" />
-              <input 
-                type="text" 
-                placeholder={getTranslation(language, 'common.search')}
-                className="bg-transparent text-sm text-gray-700 placeholder-gray-500 border-none outline-none flex-1"
-              />
-            </div>
+            {/* Search Icon */}
+            <button
+              onClick={() => setSearchModalOpen(true)}
+              className="p-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
+            >
+              <MagnifyingGlassIcon className="h-5 w-5" />
+            </button>
           </div>
           
           {/* Mobile Menu Button */}
@@ -378,6 +378,12 @@ export default function Header() {
           </div>
         </>
       )}
+      
+      {/* Search Modal */}
+      <SearchModal 
+        isOpen={searchModalOpen} 
+        onClose={() => setSearchModalOpen(false)} 
+      />
     </>
   )
 }

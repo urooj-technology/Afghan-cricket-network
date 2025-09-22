@@ -104,22 +104,8 @@ export default function Hero() {
               </p>
             </div>
 
-            {/* Search and CTA */}
+            {/* CTA Buttons */}
             <div className="space-y-6 opacity-0 animate-fade-in-up animation-delay-500">
-              {/* Search */}
-              <div className="max-w-lg mx-auto">
-                <div className="relative">
-                  <svg className={`absolute top-1/2 transform -translate-y-1/2 w-5 h-5 text-white/60 ${isRTL ? 'right-4' : 'left-4'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                  <input
-                    type="text"
-                    placeholder={getTranslation(language, 'common.search.placeholder') || 'Search cricket news, events, players...'}
-                    className={`w-full py-3 bg-white/15 backdrop-blur-md border border-white/30 rounded-full focus:ring-2 focus:ring-white/40 focus:border-white/40 transition-all duration-200 text-white placeholder-white/60 ${isRTL ? 'pr-12 pl-4 text-right font-arabic' : 'pl-12 pr-4'}`}
-                  />
-                </div>
-              </div>
-              
               {/* CTA Buttons */}
               <div className={`flex flex-col sm:flex-row gap-4 justify-center items-center px-4 ${isRTL ? 'sm:flex-row-reverse' : ''}`}>
                 <Link
