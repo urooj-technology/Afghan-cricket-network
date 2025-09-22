@@ -60,37 +60,41 @@ export const home = {
     totalRegistrations: 'ټولې نوملیکنې'
   },
   rankings: {
-    title: 'د کرکټ درجه بندي',
-    subtitle: 'د ICC وروستي درجه بندي او احصایې',
+    title: 'د افغانستان کرکټ په یوه کتنه کې',
+    subtitle: 'د افغان کرکټ ټیم کلیدي احصایې، درجه بندي او لاسته راوړنې',
     viewCompleteRankings: 'بشپړ درجه بندي وګورئ',
-    format: 'بڼه',
-    category: 'کټګورۍ',
+    topPerformers: 'غوره فعالین',
+    upcomingMatches: 'راتلونکي لوبې',
+    recentPlayerRankings: 'د لوبغاړو وروستي درجه بندي',
     teamRankings: 'د ټیمونو درجه بندي',
-    battingRankings: 'د وهلو درجه بندي',
-    bowlingRankings: 'د توپ اچولو درجه بندي',
-    battingDescription: 'د ټولو بڼو کې د ترلاسه شویو منډو، اوسط او د وهلو نرخ پر بنسټ.',
-    bowlingDescription: 'د اخیستل شویو ویکټونو، اقتصادي نرخ او د توپ اچولو اوسط پر بنسټ.',
-    teamDescription: 'د ICC رسمي درجه بندي د وروستیو لوبو فعالیت پر بنسټ.',
-    formats: {
-      t20i: 'T20I',
-      odi: 'ODI',
-      test: 'ټیسټ'
+    playerPerformance: 'د لوبغاړو فعالیت',
+    upcomingFixtures: 'راتلونکي لوبې',
+    teamRankingsDesc: 'د ICC اوسني درجه بندي په ټولو بڼو کې د افغانستان نړیوال موقعیت ښیي.',
+    playerPerformanceDesc: 'د افغان کرکټ ټیم غوره فعالین د کلیدي احصایو سره.',
+    upcomingFixturesDesc: 'راتلونکي نړیوالې لوبې او سیالۍ چې افغانستان پکې ګډون کوي.',
+    noRankingData: 'د درجه بندي معلومات نشته',
+    noDataAvailable: 'معلومات شتون نلري',
+    performers: {
+      leadingRunScorer: 'مخکښ منډه اخیستونکی',
+      leadingWicketTaker: 'مخکښ ویکټ اخیستونکی',
+      highestAverage: 'تر ټولو لوړ اوسط',
+      bestStrikeRate: 'غوره د وهلو نرخ'
     },
-    categories: {
-      batting: 'وهل',
-      bowling: 'توپ اچول',
-      allrounder: 'ټول کاره',
-      teams: 'ټیمونه'
+    stats: {
+      rating: 'درجه بندي',
+      points: 'ټکي',
+      matches: 'لوبې',
+      runs: 'منډې',
+      wickets: 'ویکټونه',
+      average: 'اوسط',
+      strikeRate: 'د وهلو نرخ'
     },
     columns: {
       rank: 'درجه',
       player: 'لوبغاړی',
-      team: 'ټیم',
-      country: 'هیواد',
-      rating: 'درجه بندي',
-      points: 'ټکي',
-      wickets: 'ویکټونه',
-      matches: 'لوبې'
+      category: 'کټګورۍ',
+      format: 'بڼه',
+      rating: 'درجه بندي'
     }
   },
   welcome: {

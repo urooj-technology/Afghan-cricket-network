@@ -60,37 +60,41 @@ export const home = {
     totalRegistrations: 'Total Registrations'
   },
   rankings: {
-    title: 'Cricket Rankings',
-    subtitle: 'Latest ICC rankings and statistics',
+    title: 'Afghanistan Cricket at a Glance',
+    subtitle: 'Key statistics, rankings, and achievements of Afghan cricket team',
     viewCompleteRankings: 'View Complete Rankings',
-    format: 'Format',
-    category: 'Category',
+    topPerformers: 'Top Performers',
+    upcomingMatches: 'Upcoming Matches',
+    recentPlayerRankings: 'Recent Player Rankings',
     teamRankings: 'Team Rankings',
-    battingRankings: 'Batting Rankings',
-    bowlingRankings: 'Bowling Rankings',
-    battingDescription: 'Based on runs scored, average, and strike rate across all formats.',
-    bowlingDescription: 'Based on wickets taken, economy rate, and bowling average.',
-    teamDescription: 'Official ICC rankings based on recent match performances.',
-    formats: {
-      t20i: 'T20I',
-      odi: 'ODI',
-      test: 'Test'
+    playerPerformance: 'Player Performance',
+    upcomingFixtures: 'Upcoming Fixtures',
+    teamRankingsDesc: 'Current ICC rankings across all formats showing Afghanistan\'s position globally.',
+    playerPerformanceDesc: 'Top performers from the Afghan cricket team with key statistics.',
+    upcomingFixturesDesc: 'Next international matches and tournaments featuring Afghanistan.',
+    noRankingData: 'No ranking data',
+    noDataAvailable: 'No data available',
+    performers: {
+      leadingRunScorer: 'Leading Run Scorer',
+      leadingWicketTaker: 'Leading Wicket Taker',
+      highestAverage: 'Highest Average',
+      bestStrikeRate: 'Best Strike Rate'
     },
-    categories: {
-      batting: 'Batting',
-      bowling: 'Bowling',
-      allrounder: 'All-Rounder',
-      teams: 'Teams'
+    stats: {
+      rating: 'Rating',
+      points: 'Points',
+      matches: 'Matches',
+      runs: 'Runs',
+      wickets: 'Wickets',
+      average: 'Average',
+      strikeRate: 'Strike Rate'
     },
     columns: {
       rank: 'Rank',
       player: 'Player',
-      team: 'Team',
-      country: 'Country',
-      rating: 'Rating',
-      points: 'Points',
-      wickets: 'Wickets',
-      matches: 'Matches'
+      category: 'Category',
+      format: 'Format',
+      rating: 'Rating'
     }
   },
   welcome: {

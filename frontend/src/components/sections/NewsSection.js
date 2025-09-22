@@ -42,7 +42,7 @@ export default function NewsSection() {
   const isLoading = featuredLoading || latestLoading
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -65,7 +65,7 @@ export default function NewsSection() {
             {/* Featured News */}
             {featuredNews && featuredNews.length > 0 && (
               <div className="mb-12">
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
                   <div className="md:flex">
                     <div className="md:flex-shrink-0">
                       <div className="h-48 w-full md:w-80 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
@@ -110,7 +110,7 @@ export default function NewsSection() {
             {/* Latest News Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {latestNews?.results?.slice(0, 6).map((news) => (
-                <article key={news.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <article key={news.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:border-gray-300 transition-colors duration-300">
                   <div className="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center">
                     {news.image ? (
                       <img 

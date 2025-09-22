@@ -69,7 +69,7 @@ export default function EventsSection() {
   const isLoading = upcomingLoading || featuredLoading || latestLoading
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -92,7 +92,7 @@ export default function EventsSection() {
             {/* Events Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {latestEvents?.results?.slice(0, 6).map((event) => (
-                <div key={event.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div key={event.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:border-gray-300 transition-colors duration-300">
                   <div className="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center relative">
                     {event.image ? (
                       <img 
@@ -165,25 +165,25 @@ export default function EventsSection() {
 
             {/* Event Statistics */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="bg-white rounded-lg p-6 text-center border border-gray-200">
                 <div className="text-3xl font-bold text-blue-600 mb-2">
                   {upcomingEvents?.length || 0}
                 </div>
                 <div className="text-sm text-gray-600">Upcoming Events</div>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="bg-white rounded-lg p-6 text-center border border-gray-200">
                 <div className="text-3xl font-bold text-green-600 mb-2">
                   {latestEvents?.results?.filter(e => e.event_type === 'international').length || 0}
                 </div>
                 <div className="text-sm text-gray-600">International Events</div>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="bg-white rounded-lg p-6 text-center border border-gray-200">
                 <div className="text-3xl font-bold text-purple-600 mb-2">
                   {featuredEvents?.length || 0}
                 </div>
                 <div className="text-sm text-gray-600">Featured Events</div>
               </div>
-              <div className="bg-white rounded-lg p-6 text-center shadow-md">
+              <div className="bg-white rounded-lg p-6 text-center border border-gray-200">
                 <div className="text-3xl font-bold text-orange-600 mb-2">
                   {latestEvents?.results?.reduce((sum, e) => sum + (e.registered_count || 0), 0) || 0}
                 </div>
