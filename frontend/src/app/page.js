@@ -16,8 +16,8 @@ export default function Home() {
   
   return (
     <RTLWrapper>
+      <Header />
       <main className="min-h-screen bg-gray-50">
-        <Header />
         <Hero />
         
         {/* Main Content Sections */}

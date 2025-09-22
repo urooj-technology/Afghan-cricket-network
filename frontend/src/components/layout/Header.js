@@ -3,20 +3,20 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Bars3Icon, XMarkIcon, GlobeAltIcon, MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, XMarkIcon, MagnifyingGlassIcon, ChevronDownIcon, HomeIcon, NewspaperIcon, TrophyIcon, CalendarIcon, PhotoIcon, UserGroupIcon, InformationCircleIcon, PhoneIcon } from '@heroicons/react/24/outline'
 import { useAuth } from '../../contexts/AuthContext'
 import { useLanguage } from '../../contexts/LanguageContext'
 import { getTranslation } from '../../lib/translations'
 
 const navigation = [
-  { key: 'home', href: '/' },
-  { key: 'news', href: '/news' },
-  { key: 'rankings', href: '/rankings' },
-  { key: 'events', href: '/events' },
-  { key: 'media', href: '/media' },
-  { key: 'team', href: '/team' },
-  { key: 'about', href: '/about' },
-  { key: 'contact', href: '/contact' },
+  { key: 'home', href: '/', icon: HomeIcon },
+  { key: 'news', href: '/news', icon: NewspaperIcon },
+  { key: 'rankings', href: '/rankings', icon: TrophyIcon },
+  { key: 'events', href: '/events', icon: CalendarIcon },
+  { key: 'media', href: '/media', icon: PhotoIcon },
+  { key: 'team', href: '/team', icon: UserGroupIcon },
+  { key: 'about', href: '/about', icon: InformationCircleIcon },
+  { key: 'contact', href: '/contact', icon: PhoneIcon },
 ]
 
 const languages = [
@@ -28,9 +28,12 @@ const languages = [
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [langDropdownOpen, setLangDropdownOpen] = useState(false)
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const { isAuthenticated, isAdmin } = useAuth()
   const { language, setLanguage, isRTL, direction } = useLanguage()
   const dropdownRef = useRef(null)
+  const profileDropdownRef = useRef(null)
   const pathname = usePathname()
   const router = useRouter()
 
@@ -44,13 +47,26 @@ export default function Header() {
   }
 
   useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+    
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setLangDropdownOpen(false)
       }
+      if (profileDropdownRef.current && !profileDropdownRef.current.contains(event.target)) {
+        setProfileDropdownOpen(false)
+      }
     }
+    
+    window.addEventListener('scroll', handleScroll)
     document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
   }, [])
 
   const handleLanguageChange = (langCode) => {
@@ -60,200 +76,298 @@ export default function Header() {
   }
 
   return (
-    <header className="bg-gradient-to-r from-indigo-50 via-white to-purple-50 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-purple-100" dir={direction}>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
-        {/* Logo */}
-        <div className="flex items-center">
-          <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <div className="relative">
-              <img 
-                src="/logo.jpg" 
-                alt="Afghan Cricket Network" 
-                className="w-10 h-10 object-contain rounded-lg shadow-sm"
-              />
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
-            </div>
-            <div className="hidden sm:block">
-              <h1 className="text-lg font-bold text-gray-900">ACN</h1>
-              <p className="text-xs text-gray-500 -mt-1">{getTranslation(language, 'common.footer.forAfghanistan')}</p>
-            </div>
-          </Link>
-        </div>
-        
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex lg:items-center lg:space-x-8">
-          {navigation.map((item) => {
-            const isActive = isActiveRoute(item.href)
-            return (
-              <Link
-                key={item.key}
-                href={item.href}
-                className={`relative text-sm font-medium transition-all duration-200 py-2 px-3 rounded-lg group ${
-                  isActive 
-                    ? 'text-indigo-600 bg-gradient-to-r from-indigo-50 to-purple-50 font-semibold' 
-                    : 'text-gray-700 hover:text-indigo-600 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50'
-                }`}
-              >
-                {getTranslation(language, `common.nav.${item.key}`)}
-                <span className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-200 ${
-                  isActive ? 'w-6' : 'w-0 group-hover:w-6'
-                }`}></span>
-              </Link>
-            )
-          })}
-        </div>
-        
-        {/* Desktop Actions */}
-        <div className="hidden lg:flex lg:items-center lg:space-x-4">
-          {/* Search */}
-          <button className="p-2 text-gray-500 hover:text-indigo-600 hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 rounded-lg transition-all duration-200">
-            <MagnifyingGlassIcon className="w-5 h-5" />
-          </button>
-          
-          {/* Admin Link */}
-          <button
-            onClick={() => {
-              if (isAuthenticated && isAdmin()) {
-                router.push('/admin/dashboard')
-              } else {
-                router.push('/admin')
-              }
-            }}
-            className={`px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
-              pathname.startsWith('/admin')
-                ? 'text-red-700 bg-gradient-to-r from-red-50 to-pink-50 font-semibold'
-                : 'text-red-600 hover:text-red-700 hover:bg-gradient-to-r hover:from-red-50 hover:to-pink-50'
-            }`}
-          >
-            {getTranslation(language, 'admin.nav.dashboard')}
-          </button>
-          
-          {/* Language Dropdown */}
-          <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-              className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 border border-gray-200"
-            >
-              <span className="text-base">{currentLang.flag}</span>
-              <span className="hidden sm:block">{currentLang.nativeName}</span>
-              <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} />
-            </button>
-            
-            {langDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => handleLanguageChange(lang.code)}
-                    className={`w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-gray-50 transition-colors ${
-                      language === lang.code ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'
-                    }`}
-                  >
-                    <span className="text-lg">{lang.flag}</span>
-                    <div className="flex-1 text-left">
-                      <div className="font-medium">{lang.nativeName}</div>
-                      <div className="text-xs text-gray-500">{lang.name}</div>
-                    </div>
-                    {language === lang.code && (
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    )}
-                  </button>
-                ))}
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-200/50' 
+          : 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100/50'
+      }`} 
+      dir={direction}
+    >
+      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link href="/" className="group flex items-center space-x-3 hover:opacity-90 transition-all duration-200">
+              <div className="relative">
+                <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-xl shadow-lg group-hover:shadow-xl transition-shadow duration-200 flex items-center justify-center">
+                  <img 
+                    src="/logo.jpg" 
+                    alt="Afghan Cricket Network" 
+                    className="w-8 h-8 object-contain rounded-lg"
+                  />
+                </div>
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
               </div>
-            )}
+              <div className="hidden sm:block">
+                <h1 className="text-lg font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">ACN</h1>
+                <p className="text-xs text-gray-500 -mt-1 font-medium">{getTranslation(language, 'common.footer.forAfghanistan')}</p>
+              </div>
+            </Link>
           </div>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex lg:items-center lg:space-x-1">
+            {navigation.map((item) => {
+              const isActive = isActiveRoute(item.href)
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  className={`relative flex items-center space-x-2 px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 group ${
+                    isActive 
+                      ? 'text-blue-600 bg-blue-50' 
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50/50'
+                  }`}
+                >
+                  <item.icon className={`w-4 h-4 ${isActive ? 'text-blue-600' : 'text-gray-500 group-hover:text-blue-600'}`} />
+                  <span>{getTranslation(language, `common.nav.${item.key}`)}</span>
+                </Link>
+              )
+            })}
+          </div>
+          
+          {/* Desktop Actions */}
+          <div className="hidden lg:flex lg:items-center lg:space-x-3">
+            {/* Admin Link */}
+            {/* Profile Dropdown */}
+            <div className="relative" ref={profileDropdownRef}>
+              <button
+                onClick={() => {
+                  if (isAuthenticated) {
+                    setProfileDropdownOpen(!profileDropdownOpen)
+                  } else {
+                    router.push('/admin/login')
+                  }
+                }}
+                className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
+              >
+                <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">
+                  <svg className="w-4 h-4 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span>{isAuthenticated ? 'Profile' : 'Login'}</span>
+              </button>
+              
+              {profileDropdownOpen && isAuthenticated && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">
+                  <button
+                    onClick={() => {
+                      setProfileDropdownOpen(false)
+                      router.push('/admin/dashboard')
+                    }}
+                    className="w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-gray-50 text-gray-700"
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                    </svg>
+                    <span>Dashboard</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setProfileDropdownOpen(false)
+                      router.push('/admin/login')
+                    }}
+                    className="w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-gray-50 text-red-600"
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd" />
+                    </svg>
+                    <span>Logout</span>
+                  </button>
+                </div>
+              )}
+            </div>
+            
+            {/* Language Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                className="flex items-center space-x-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200 border border-gray-200/50"
+              >
+                <span className="text-base">{currentLang.flag}</span>
+                <ChevronDownIcon className={`w-4 h-4 transition-transform duration-200 ${langDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              {langDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-52 bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/50 py-2 z-50">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={`w-full flex items-center space-x-3 px-4 py-3 text-sm hover:bg-blue-50 transition-colors rounded-xl mx-2 ${
+                        language === lang.code ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700'
+                      }`}
+                    >
+                      <span className="text-lg">{lang.flag}</span>
+                      <div className="flex-1 text-left">
+                        <div className="font-medium">{lang.nativeName}</div>
+                        <div className="text-xs text-gray-500">{lang.name}</div>
+                      </div>
+                      {language === lang.code && (
+                        <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            className="lg:hidden p-2.5 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all duration-200"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <Bars3Icon className="h-6 w-6" />
+          </button>
         </div>
-        
-        {/* Mobile Menu Button */}
-        <button
-          type="button"
-          className="lg:hidden p-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
-          onClick={() => setMobileMenuOpen(true)}
-        >
-          <Bars3Icon className="h-6 w-6" />
-        </button>
       </nav>
       
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <>
-          <div className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 lg:hidden" onClick={() => setMobileMenuOpen(false)} />
-          <div className={`fixed inset-y-0 z-50 w-full max-w-sm bg-white shadow-xl lg:hidden transition-transform duration-300 ${isRTL ? 'left-0' : 'right-0'}`}>
+          <div 
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden" 
+            onClick={() => setMobileMenuOpen(false)} 
+          />
+          <div className={`fixed top-0 bottom-0 z-50 w-80 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 shadow-2xl lg:hidden transform transition-transform duration-500 ease-out ${
+            isRTL ? 'left-0' : 'right-0'
+          }`}>
+            {/* Animated Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+              <div className="absolute top-20 -right-10 w-40 h-40 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute bottom-32 -left-10 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-indigo-500/5 rounded-full blur-3xl animate-spin" style={{animationDuration: '30s'}}></div>
+            </div>
             {/* Mobile Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <Link href="/" className="flex items-center space-x-2" onClick={() => setMobileMenuOpen(false)}>
-                <img src="/logo.jpg" alt="ACN" className="w-8 h-8 rounded-lg" />
-                <span className="text-lg font-bold text-gray-900">ACN</span>
-              </Link>
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <XMarkIcon className="h-6 w-6" />
-              </button>
+            <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-700 px-6 py-6 border-b border-white/10">
+              <div className="flex items-center justify-between relative z-10">
+                <div className="flex items-center space-x-4">
+                  <div className="relative">
+                    <div className="w-14 h-14 bg-gradient-to-br from-white/30 to-white/10 rounded-2xl flex items-center justify-center backdrop-blur-md border border-white/20 shadow-xl">
+                      <img src="/logo.jpg" alt="ACN" className="w-10 h-10 rounded-xl" />
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white animate-pulse"></div>
+                  </div>
+                  <div>
+                    <span className="text-white font-bold text-2xl tracking-tight">ACN</span>
+                    <p className="text-blue-100 text-sm font-medium">Cricket Network</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-white/70 hover:text-white p-3 rounded-2xl hover:bg-white/20 transition-all duration-300 hover:scale-110"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent"></div>
             </div>
             
-            {/* Mobile Navigation */}
-            <div className="px-6 py-4 space-y-2">
-              {navigation.map((item) => {
-                const isActive = isActiveRoute(item.href)
-                return (
-                  <Link
-                    key={item.key}
-                    href={item.href}
-                    className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
-                      isActive
-                        ? 'bg-blue-50 text-blue-600 font-semibold border-l-4 border-blue-600'
-                        : 'text-gray-900 hover:bg-gray-50 hover:text-blue-600'
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {getTranslation(language, `common.nav.${item.key}`)}
-                  </Link>
-                )
-              })}
+            {/* Mobile Navigation Card */}
+            <div className="p-5 relative z-10">
+              <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-3 space-y-2 border border-white/10 shadow-2xl">
+                {navigation.map((item, index) => {
+                  const isActive = isActiveRoute(item.href)
+                  return (
+                    <Link
+                      key={item.key}
+                      href={item.href}
+                      className={`group flex items-center space-x-4 px-5 py-4 rounded-2xl transition-all duration-300 transform hover:scale-[1.02] ${
+                        isActive 
+                          ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-xl shadow-blue-500/25' 
+                          : 'text-slate-200 hover:bg-white/20 hover:text-white hover:shadow-lg'
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      style={{animationDelay: `${index * 50}ms`}}
+                    >
+                      <div className={`p-2 rounded-xl transition-all duration-300 ${
+                        isActive ? 'bg-white/20' : 'bg-white/10 group-hover:bg-white/20'
+                      }`}>
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      <span className="text-sm font-semibold">{getTranslation(language, `common.nav.${item.key}`)}</span>
+                      {isActive && <div className="ml-auto w-2 h-2 bg-white rounded-full animate-pulse"></div>}
+                    </Link>
+                  )
+                })}
+              </div>
               
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false)
-                  if (isAuthenticated && isAdmin()) {
-                    router.push('/admin/dashboard')
-                  } else {
-                    router.push('/admin')
-                  }
-                }}
-                className={`w-full text-left block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
-                  pathname.startsWith('/admin')
-                    ? 'bg-red-50 text-red-600 font-semibold border-l-4 border-red-600'
-                    : 'text-red-600 hover:bg-red-50'
-                }`}
-              >
-                {getTranslation(language, 'admin.nav.dashboard')}
-              </button>
+              {/* Profile Card */}
+              <div className="mt-5 bg-white/15 backdrop-blur-xl rounded-3xl p-3 border border-white/10 shadow-2xl">
+                {isAuthenticated ? (
+                  <>
+                    <button
+                      onClick={() => {
+                        setMobileMenuOpen(false)
+                        router.push('/admin/dashboard')
+                      }}
+                      className="w-full group flex items-center space-x-4 px-5 py-4 rounded-2xl text-slate-200 hover:bg-white/20 hover:text-white transition-all duration-300 transform hover:scale-[1.02]"
+                    >
+                      <div className="p-2 rounded-xl bg-emerald-500/20 group-hover:bg-emerald-500/30 transition-all duration-300">
+                        <svg className="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                        </svg>
+                      </div>
+                      <span className="text-sm font-semibold">Dashboard</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        setMobileMenuOpen(false)
+                        router.push('/admin/login')
+                      }}
+                      className="w-full group flex items-center space-x-4 px-5 py-4 rounded-2xl text-red-300 hover:bg-red-500/20 hover:text-red-200 transition-all duration-300 transform hover:scale-[1.02] mt-2"
+                    >
+                      <div className="p-2 rounded-xl bg-red-500/20 group-hover:bg-red-500/30 transition-all duration-300">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span className="text-sm font-semibold">Logout</span>
+                    </button>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      router.push('/admin/login')
+                    }}
+                    className="w-full group flex items-center space-x-4 px-5 py-4 rounded-2xl text-blue-300 hover:bg-blue-500/20 hover:text-blue-200 transition-all duration-300 transform hover:scale-[1.02]"
+                  >
+                    <div className="p-2 rounded-xl bg-blue-500/20 group-hover:bg-blue-500/30 transition-all duration-300">
+                      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <span className="text-sm font-semibold">Login</span>
+                  </button>
+                )}
+              </div>
             </div>
             
             {/* Mobile Language Selection */}
-            <div className="px-6 py-4 border-t border-gray-200">
-              <p className="text-sm font-medium text-gray-500 mb-3">{getTranslation(language, 'common.language.english')}</p>
-              <div className="space-y-2">
-                {languages.map((lang) => (
-                  <button
-                    key={lang.code}
-                    onClick={() => handleLanguageChange(lang.code)}
-                    className={`w-full flex items-center space-x-3 px-4 py-3 text-sm rounded-lg transition-colors ${
-                      language === lang.code ? 'bg-blue-50 text-blue-600 font-medium' : 'text-gray-700 hover:bg-gray-50'
-                    }`}
-                  >
-                    <span className="text-lg">{lang.flag}</span>
-                    <div className="flex-1 text-left">
-                      <div className="font-medium">{lang.nativeName}</div>
-                      <div className="text-xs text-gray-500">{lang.name}</div>
-                    </div>
-                    {language === lang.code && (
-                      <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                    )}
-                  </button>
-                ))}
+            <div className="absolute bottom-0 left-0 right-0 p-5 relative z-10">
+              <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-4 border border-white/10 shadow-2xl">
+                <p className="text-white/80 text-xs font-semibold mb-3 text-center">Language</p>
+                <div className="flex space-x-3">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={`flex-1 py-3 px-4 rounded-2xl text-center text-sm font-bold transition-all duration-300 transform hover:scale-105 ${
+                        language === lang.code 
+                          ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-xl shadow-blue-500/25' 
+                          : 'text-slate-300 hover:bg-white/20 hover:text-white border border-white/10'
+                      }`}
+                    >
+                      <div className="text-lg mb-1">{lang.flag}</div>
+                      <div className="text-xs">{lang.code.toUpperCase()}</div>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
