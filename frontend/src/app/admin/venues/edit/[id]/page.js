@@ -23,6 +23,7 @@ export default function EditVenue() {
       type: 'text',
       required: true,
       placeholder: 'Enter venue name',
+      help: 'Official name of the cricket venue',
       section: 'Basic Information'
     },
     {
@@ -38,6 +39,7 @@ export default function EditVenue() {
       label: 'Country',
       type: 'text',
       required: true,
+      defaultValue: 'Afghanistan',
       placeholder: 'Enter country name',
       section: 'Basic Information'
     },
@@ -47,7 +49,7 @@ export default function EditVenue() {
       type: 'number',
       min: 1,
       placeholder: 'Enter seating capacity',
-      help: 'Maximum number of spectators',
+      help: 'Maximum number of spectators the venue can accommodate',
       section: 'Venue Details'
     },
     {
@@ -55,8 +57,9 @@ export default function EditVenue() {
       label: 'Full Address',
       type: 'textarea',
       rows: 3,
-      placeholder: 'Enter complete address',
+      placeholder: 'Enter complete address including postal code',
       fullWidth: true,
+      help: 'Complete physical address of the venue',
       section: 'Location Information'
     },
     {
@@ -65,7 +68,7 @@ export default function EditVenue() {
       type: 'number',
       step: 0.000001,
       placeholder: '34.5553',
-      help: 'GPS latitude coordinate',
+      help: 'GPS latitude coordinate for precise location',
       section: 'Location Information'
     },
     {
@@ -74,7 +77,7 @@ export default function EditVenue() {
       type: 'number',
       step: 0.000001,
       placeholder: '69.2075',
-      help: 'GPS longitude coordinate',
+      help: 'GPS longitude coordinate for precise location',
       section: 'Location Information'
     },
     {
@@ -82,7 +85,7 @@ export default function EditVenue() {
       label: 'Venue Image',
       type: 'file',
       accept: 'image/*',
-      help: 'Upload an image of the venue (recommended: 1200x800px)',
+      help: 'Upload a high-quality image of the venue (recommended: 1200x800px)',
       section: 'Media'
     }
   ]

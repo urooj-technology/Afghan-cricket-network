@@ -46,7 +46,8 @@ export default function EditTeamMember() {
       placeholder: 'Jersey number (1-999)'
     },
     {
-      name: 'photo',\n      label: 'Player Photo',
+      name: 'photo',
+      label: 'Player Photo',
       type: 'file',
       accept: 'image/*',
       help: 'Upload player headshot (recommended: 400x400px)'

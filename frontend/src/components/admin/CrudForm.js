@@ -89,7 +89,11 @@ export default function CrudForm({
     if (isEdit && existingData) {
       const initialData = {}
       fields.forEach(field => {
-        initialData[field.name] = existingData[field.name] || ''
+        let value = existingData[field.name]
+        if (field.type === 'select' && typeof value === 'object' && value?.id) {
+          value = value.id
+        }
+        initialData[field.name] = value !== undefined && value !== null ? value : (field.defaultValue || '')
       })
       setFormData(initialData)
     } else if (!isEdit) {
