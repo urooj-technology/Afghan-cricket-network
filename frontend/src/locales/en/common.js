@@ -142,6 +142,19 @@ export const common = {
     retry: 'Try Again',
     goHome: 'Go Home'
   },
+  search: {
+    placeholder: 'Search cricket news, events, players...',
+    noResults: 'No results found',
+    category: {
+      all: 'All',
+      news: 'News',
+      events: 'Events',
+      players: 'Players',
+      team: 'Team',
+      media: 'Media'
+    },
+    viewDetails: 'View Full Details'
+  },
   // Additional common terms
   description: 'Description',
   published: 'Published',
@@ -156,5 +169,16 @@ export const common = {
   endOfResults: 'You\'ve reached the end of the results',
   selected: 'Selected',
   entries: 'entries',
-  noChange: 'No change'
+  noChange: 'No change',
+  by: 'By',
+  price: 'Price',
+  freeEvent: 'Free Event',
+  position: 'Position',
+  jersey: 'Jersey',
+  matches: 'Matches',
+  captain: 'Captain',
+  featured: 'Featured',
+  details: 'Details',
+  noDescription: 'No description available.',
+  backToNews: 'Back to News'
 }

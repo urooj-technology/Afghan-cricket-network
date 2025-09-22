@@ -11,8 +11,10 @@ import {
   UserIcon, 
   LockClosedIcon,
   ExclamationCircleIcon,
-  CheckCircleIcon
+  CheckCircleIcon,
+  HomeIcon
 } from '@heroicons/react/24/outline'
+import Link from 'next/link'
 
 export default function AdminLogin() {
   const router = useRouter()
@@ -224,7 +226,14 @@ export default function AdminLogin() {
           </form>
         </div>
 
-        <div className="text-center">
+        <div className="text-center space-y-3">
+          <Link 
+            href="/"
+            className="inline-flex items-center justify-center px-6 py-2 text-sm font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-all duration-200 hover:shadow-sm"
+          >
+            <HomeIcon className="h-4 w-4 mr-2" />
+            Go to Home Page
+          </Link>
           <p className="text-xs text-gray-500">
             Afghan Cricket Network Admin Portal
           </p>

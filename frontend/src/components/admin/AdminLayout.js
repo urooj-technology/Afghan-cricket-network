@@ -107,6 +107,16 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
                   </Link>
                 )
               })}
+              
+              {/* Home page link for mobile */}
+              <Link
+                href="/"
+                className="group flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-200 text-indigo-600 bg-indigo-50 hover:bg-indigo-100 mt-4"
+                onClick={() => setSidebarOpen(false)}
+              >
+                <GlobeAltIcon className="h-5 w-5 mr-3 text-indigo-600" />
+                Go to Home Page
+              </Link>
             </nav>
           </div>
         </div>
@@ -167,13 +177,22 @@ export default function AdminLayout({ children, title = 'Admin Panel' }) {
                 <p className="text-xs text-gray-500 truncate">{user?.email || 'admin@acn.com'}</p>
               </div>
             </div>
-            <button
-              onClick={handleLogout}
-              className="w-full flex items-center justify-center px-4 py-2.5 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-xl transition-all duration-200 hover:shadow-sm"
-            >
-              <ArrowRightOnRectangleIcon className="h-4 w-4 mr-2" />
-              {getTranslation(language, 'admin.nav.logout')}
-            </button>
+            <div className="space-y-2">
+              <Link
+                href="/"
+                className="w-full flex items-center justify-center px-4 py-2.5 text-sm font-medium text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-all duration-200 hover:shadow-sm"
+              >
+                <GlobeAltIcon className="h-4 w-4 mr-2" />
+                Go to Home Page
+              </Link>
+              <button
+                onClick={handleLogout}
+                className="w-full flex items-center justify-center px-4 py-2.5 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-xl transition-all duration-200 hover:shadow-sm"
+              >
+                <ArrowRightOnRectangleIcon className="h-4 w-4 mr-2" />
+                {getTranslation(language, 'admin.nav.logout')}
+              </button>
+            </div>
           </div>
         </div>
       </div>

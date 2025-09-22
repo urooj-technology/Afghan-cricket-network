@@ -48,5 +48,22 @@ export const news = {
   discoverMore: 'د افغان کرکټ نورې کیسې وموندئ',
   articleNotFound: 'مقاله ونه موندل شوه',
   articleNotFoundDesc: 'هغه مقاله چې تاسو یې لټوي شتون نلري یا لرې شوی دی.',
-  contentNotAvailable: 'محتوا نه دی شته.'
+  contentNotAvailable: 'محتوا نه دی شته.',
+  authorRole: 'د سپورت ژورنالیست او د کرکټ تحلیلګر',
+  activeNow: 'اوس فعال',
+  keyHighlights: 'کلیدي مهم مطالب',
+  highlight1: 'د وروستیو لوبو پایلې او د فعالیت تحلیل',
+  highlight2: 'د لوبغاړو احصایې او د کریر مهم مرحلې',
+  highlight3: 'د ټیم ستراتیژي او راتلونکې لوبې',
+  published: 'خپاره شوی',
+  category: 'کټګوری',
+  readingTime: 'د لوستلو وخت',
+  stayUpdated: 'تازه پاتې شئ',
+  newsletterDesc: 'د کرکټ وروستي خبرونه او تازه معلومات ستاسو بریښنالیک ته ولیږئ.',
+  enterEmail: 'خپل بریښنالیک داخل کړئ',
+  subscribe: 'ګډون',
+  relatedArticles: 'اروندې مقالې',
+  relatedDesc: 'د افغان کرکټ نړۍ نورې جذابې کیسې او بصیرتونه وموندئ',
+  exploreAll: 'ټول مقالې وګورئ',
+  saveArticle: 'مقاله زغوره'
 }

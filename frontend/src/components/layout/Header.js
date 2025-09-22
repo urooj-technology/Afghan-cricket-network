@@ -188,7 +188,7 @@ export default function Header() {
           </div>
           
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:items-center lg:space-x-1">
+          <div className="hidden lg:flex lg:items-center gap-2">
             {navigation.map((item) => {
               const isActive = isActiveRoute(item.href)
               return (

@@ -48,5 +48,22 @@ export const news = {
   discoverMore: 'داستانهای بیشتری از کریکت افغانستان کشف کنید',
   articleNotFound: 'مقاله یافت نشد',
   articleNotFoundDesc: 'مقالهای که به دنبال آن هستید وجود ندارد یا حذف شده است.',
-  contentNotAvailable: 'محتوا در دسترس نیست.'
+  contentNotAvailable: 'محتوا در دسترس نیست.',
+  authorRole: 'روزنامه‌نگار ورزشی و تحلیلگر کریکت',
+  activeNow: 'اکنون فعال',
+  keyHighlights: 'نکات کلیدی',
+  highlight1: 'آخرین نتایج مسابقات و تحلیل عملکرد',
+  highlight2: 'آمار بازیکنان و نقاط عطف حرفه‌ای',
+  highlight3: 'استراتژی تیم و بازی‌های آینده',
+  published: 'منتشر شده',
+  category: 'دسته‌بندی',
+  readingTime: 'زمان مطالعه',
+  stayUpdated: 'به‌روز باشید',
+  newsletterDesc: 'آخرین اخبار و به‌روزرسانی‌های کریکت را در صندوق پستی خود دریافت کنید.',
+  enterEmail: 'ایمیل خود را وارد کنید',
+  subscribe: 'عضویت',
+  relatedArticles: 'مقالات مرتبط',
+  relatedDesc: 'داستان‌ها و بینش‌های جذاب بیشتری از دنیای کریکت افغانستان کشف کنید',
+  exploreAll: 'مشاهده همه مقالات',
+  saveArticle: 'ذخیره مقاله'
 }

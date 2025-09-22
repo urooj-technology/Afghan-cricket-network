@@ -143,7 +143,17 @@ export const common = {
     goHome: 'کور ته لاړ شه'
   },
   search: {
-    placeholder: 'د کرکټ خبرونه، پیښې، لوبغاړي لټول...'
+    placeholder: 'د کرکټ خبرونه، پیښې، لوبغاړي لټول...',
+    noResults: 'پایلې ونه موندل شوې',
+    category: {
+      all: 'ټول',
+      news: 'خبرونه',
+      events: 'پیښې',
+      players: 'لوبغاړي',
+      team: 'ټیم',
+      media: 'رسنۍ'
+    },
+    viewDetails: 'بشپړ جزئیات وګورئ'
   },
   description: 'تشریح',
   published: 'خپور شوی',
@@ -158,5 +168,16 @@ export const common = {
   endOfResults: 'تاسو د پایلو پای ته رسیدلي یاست',
   selected: 'ټاکل شوی',
   entries: 'ننوتنې',
-  noChange: 'بدلون نشته'
+  noChange: 'بدلون نشته',
+  by: 'له خوا',
+  price: 'بیه',
+  freeEvent: 'وریا پیښه',
+  position: 'دنده',
+  jersey: 'جرسی',
+  matches: 'لوبې',
+  captain: 'کپتان',
+  featured: 'ځانګړی',
+  details: 'جزئیات',
+  noDescription: 'تشریح شتون نلري.',
+  backToNews: 'خبرونو ته بیرته'
 }

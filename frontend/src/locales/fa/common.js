@@ -143,7 +143,17 @@ export const common = {
     goHome: 'برو به خانه'
   },
   search: {
-    placeholder: 'جستجوی اخبار کریکت، رویدادها، بازیکنان...'
+    placeholder: 'جستجوی اخبار کریکت، رویدادها، بازیکنان...',
+    noResults: 'نتیجه‌ای یافت نشد',
+    category: {
+      all: 'همه',
+      news: 'اخبار',
+      events: 'رویدادها',
+      players: 'بازیکنان',
+      team: 'تیم',
+      media: 'رسانه'
+    },
+    viewDetails: 'مشاهده جزئیات کامل'
   },
   description: 'توضیحات',
   published: 'منتشر شده',
@@ -158,5 +168,16 @@ export const common = {
   endOfResults: 'به انتهای نتایج رسیده‌اید',
   selected: 'انتخاب شده',
   entries: 'ورودی‌ها',
-  noChange: 'بدون تغییر'
+  noChange: 'بدون تغییر',
+  by: 'توسط',
+  price: 'قیمت',
+  freeEvent: 'رویداد رایگان',
+  position: 'موقعیت',
+  jersey: 'پیراهن',
+  matches: 'مسابقات',
+  captain: 'کاپیتان',
+  featured: 'ویژه',
+  details: 'جزئیات',
+  noDescription: 'توضیحی موجود نیست.',
+  backToNews: 'بازگشت به اخبار'
 }

@@ -48,5 +48,22 @@ export const news = {
   discoverMore: 'Discover more stories from Afghan cricket',
   articleNotFound: 'Article not found',
   articleNotFoundDesc: "The article you're looking for doesn't exist or has been removed.",
-  contentNotAvailable: 'Content not available.'
+  contentNotAvailable: 'Content not available.',
+  authorRole: 'Sports Journalist & Cricket Analyst',
+  activeNow: 'Active now',
+  keyHighlights: 'Key Highlights',
+  highlight1: 'Latest match results and performance analysis',
+  highlight2: 'Player statistics and career milestones',
+  highlight3: 'Team strategy and upcoming fixtures',
+  published: 'Published',
+  category: 'Category',
+  readingTime: 'Reading Time',
+  stayUpdated: 'Stay Updated',
+  newsletterDesc: 'Get the latest cricket news and updates delivered to your inbox.',
+  enterEmail: 'Enter your email',
+  subscribe: 'Subscribe',
+  relatedArticles: 'Related Articles',
+  relatedDesc: 'Discover more compelling stories and insights from the world of Afghan cricket',
+  exploreAll: 'Explore All Articles',
+  saveArticle: 'Save Article'
 }

@@ -33,7 +33,7 @@ class NewsViewSet(DataRootViewSet):
     filterset_fields = ['status', 'category', 'is_featured', 'author']
     ordering_fields = ['created_at', 'published_at', 'views', 'title']
     ordering = ['-created_at']
-    lookup_field = 'pk'
+    lookup_field = 'slug'
 
     def get_queryset(self):
         if self.action in ['list', 'retrieve']:
@@ -69,4 +69,12 @@ class NewsViewSet(DataRootViewSet):
     def popular(self, request):
         queryset = self.get_queryset().order_by('-views')[:10]
         serializer = NewsListSerializer(queryset, many=True)
+        return Response(serializer.data)
+    
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        # Increment view count
+        instance.views += 1
+        instance.save(update_fields=['views'])
+        serializer = self.get_serializer(instance)
         return Response(serializer.data)
