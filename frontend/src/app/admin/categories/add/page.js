@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import AdminLayout from '../../../../components/admin/AdminLayout'
 import CrudForm from '../../../../components/admin/CrudForm'
 
-export default function AddCategory() {
+function AddCategoryContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const type = searchParams.get('type') || 'news'
@@ -84,5 +84,13 @@ export default function AddCategory() {
         backPath="/admin/categories/"
       />
     </AdminLayout>
+  )
+}
+
+export default function AddCategory() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AddCategoryContent />
+    </Suspense>
   )
 }

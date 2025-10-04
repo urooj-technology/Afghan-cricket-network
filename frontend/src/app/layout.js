@@ -1,11 +1,8 @@
-import { Inter } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '../contexts/LanguageContext'
 import { AuthProvider } from '../contexts/AuthContext'
 import DynamicLayout from '../components/layout/DynamicLayout'
 import QueryProvider from '../providers/QueryProvider'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Afghan Cricket Network - د افغانستان کرکټ شبکه',
@@ -63,7 +60,7 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body className={`${inter.className} font-en`} suppressHydrationWarning>
+      <body className="font-en" suppressHydrationWarning>
         <QueryProvider>
           <AuthProvider>
             <LanguageProvider>

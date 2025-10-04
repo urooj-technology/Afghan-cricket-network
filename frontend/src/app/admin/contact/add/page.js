@@ -1,12 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import AdminLayout from '../../../../components/admin/AdminLayout'
 import CrudForm from '../../../../components/admin/CrudForm'
 import { useFetchData } from '../../../../hooks'
 
-export default function AddContact() {
+function AddContactContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const type = searchParams.get('type') || 'message'
@@ -237,5 +237,13 @@ export default function AddContact() {
         backPath="/admin/contact/"
       />
     </AdminLayout>
+  )
+}
+
+export default function AddContact() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AddContactContent />
+    </Suspense>
   )
 }
