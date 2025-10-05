@@ -159,7 +159,7 @@ export default function NewsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
                   {news.map((article) => (
                     <div key={article.id} className="h-full flex flex-col overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-white border-0 rounded-3xl">
-                      <div className="relative">
+                      <Link href={`/news/${article.id}`} className="relative cursor-pointer">
                         {article.image ? (
                           <img 
                             src={article.image} 
@@ -188,7 +188,7 @@ export default function NewsPage() {
                         </div>
                         
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                      </div>
+                      </Link>
                       
                       <div className="p-6 flex-1 flex flex-col">
                         <h3 className={`text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-blue-600 transition-colors leading-tight ${isRTL ? 'font-arabic text-right' : ''}`}>

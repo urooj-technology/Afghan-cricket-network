@@ -1,4 +1,21 @@
 export const admin = {
+  // Login
+  login: {
+    title: 'د ادارې ننوتل',
+    subtitle: 'خپل اداري حساب ته ننوزئ',
+    email: 'بریښنالیک',
+    password: 'پاسورډ',
+    emailPlaceholder: 'خپل بریښنالیک داخل کړئ',
+    passwordPlaceholder: 'خپل پاسورډ داخل کړئ',
+    signIn: 'ننوتل',
+    signingIn: 'ننوزي...',
+    loginSuccess: 'بریالی ننوتل! لیږدول کیږي...',
+    loginFailed: 'ننوتل ناکام شو',
+    emailRequired: 'بریښنالیک اړین دی',
+    passwordRequired: 'پاسورډ اړین دی',
+    goHome: 'کور ته لاړ شه'
+  },
+  
   // Navigation
   nav: {
     dashboard: 'کنټرول پینل',

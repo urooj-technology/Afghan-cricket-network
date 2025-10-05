@@ -23,7 +23,7 @@ const navigation = [
 const languages = [
   { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
   { code: 'ps', name: 'Pashto', nativeName: 'پښتو', flag: '🇦🇫' },
-  { code: 'fa', name: 'Farsi', nativeName: 'فارسی', flag: '🇮🇷' },
+  { code: 'fa', name: 'Farsi', nativeName: 'فارسی', flag: '🇦🇫' },
 ]
 
 export default function Header() {
@@ -80,7 +80,7 @@ export default function Header() {
   return (
     <>
       {/* Top Header Bar */}
-      <div className="fixed top-0 left-0 right-0 w-full z-50 bg-gradient-to-r from-slate-800 to-slate-900 text-white" dir={direction}>
+      <div className="fixed top-0 left-0 right-0 w-full z-[100] bg-gradient-to-r from-slate-800 to-slate-900 text-white" dir={direction}>
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-10 items-center justify-between text-sm">
             {/* Contact Info */}
@@ -101,7 +101,7 @@ export default function Header() {
             {/* Language Selector & Login */}
             <div className="flex items-center space-x-4">
               {/* Language Dropdown */}
-              <div className="relative z-50" ref={dropdownRef}>
+              <div className="relative z-[110]" ref={dropdownRef}>
                 <button
                   onClick={() => setLangDropdownOpen(!langDropdownOpen)}
                   className="flex items-center space-x-2 px-3 py-1.5 text-sm font-medium text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
@@ -112,7 +112,7 @@ export default function Header() {
                 </button>
                 
                 {langDropdownOpen && (
-                  <div className="absolute right-0 top-full mt-1 w-48 bg-white rounded-xl shadow-lg border border-gray-200 py-1 z-[60] overflow-hidden">
+                  <div className={`absolute ${isRTL ? 'right-0' : 'left-0'} top-full mt-1 w-48 bg-white rounded-xl shadow-xl border border-gray-200 py-1 overflow-hidden`}>
                     {languages.map((lang) => (
                       <button
                         key={lang.code}
@@ -158,7 +158,7 @@ export default function Header() {
       
       {/* Main Header */}
       <header 
-        className={`fixed top-10 left-0 right-0 w-full z-40 transition-all duration-300 ${
+        className={`fixed top-10 left-0 right-0 w-full z-[90] transition-all duration-300 ${
           scrolled 
             ? 'bg-white/95 backdrop-blur-xl shadow-lg border-b border-gray-200/50' 
             : 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100/50'
@@ -242,7 +242,7 @@ export default function Header() {
             className="fixed inset-0 bg-black/50 z-40 lg:hidden" 
             onClick={() => setMobileMenuOpen(false)} 
           />
-          <div className={`fixed top-0 bottom-0 z-50 w-80 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 shadow-2xl lg:hidden transform transition-transform duration-500 ease-out ${
+          <div className={`fixed top-0 bottom-0 z-50 w-80 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 shadow-2xl lg:hidden transform transition-transform duration-500 ease-out overflow-y-auto ${
             isRTL ? 'left-0' : 'right-0'
           }`}>
             {/* Animated Background Elements */}
@@ -301,6 +301,22 @@ export default function Header() {
                     </Link>
                   )
                 })}
+              </div>
+              
+              {/* Search Button */}
+              <div className="mt-3 bg-white/15 backdrop-blur-xl rounded-2xl p-2 border border-white/10 shadow-2xl">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false)
+                    setSearchModalOpen(true)
+                  }}
+                  className={`w-full group flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-200 hover:bg-white/20 hover:text-white transition-all duration-200 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}
+                >
+                  <div className="p-2 rounded-lg bg-blue-500/20 group-hover:bg-blue-500/30 transition-all duration-200">
+                    <MagnifyingGlassIcon className="w-4 h-4 text-blue-400" />
+                  </div>
+                  <span className={`text-sm font-semibold flex-1 ${isRTL ? 'font-arabic text-right' : 'text-left'}`}>{getTranslation(language, 'common.buttons.search') || 'Search'}</span>
+                </button>
               </div>
               
               {/* Profile Card */}

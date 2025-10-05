@@ -113,6 +113,7 @@ export const common = {
     emailPlaceholder: 'ایمیل خود را وارد کنید',
     madeWith: 'ساخته شده با',
     forAfghanistan: 'برای افغانستان',
+    madeBy: 'ساخته شده توسط تکنولوژی عروج',
     privacy: 'سیاست حریم خصوصی',
     terms: 'شرایط خدمات',
     cookies: 'سیاست کوکی',

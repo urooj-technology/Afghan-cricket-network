@@ -1,4 +1,21 @@
 export const admin = {
+  // Login
+  login: {
+    title: 'Admin Login',
+    subtitle: 'Sign in to your admin account',
+    email: 'Email',
+    password: 'Password',
+    emailPlaceholder: 'Enter your email',
+    passwordPlaceholder: 'Enter your password',
+    signIn: 'Sign In',
+    signingIn: 'Signing in...',
+    loginSuccess: 'Login successful! Redirecting...',
+    loginFailed: 'Login failed',
+    emailRequired: 'Email is required',
+    passwordRequired: 'Password is required',
+    goHome: 'Go to Home Page'
+  },
+  
   // Navigation
   nav: {
     dashboard: 'Dashboard',

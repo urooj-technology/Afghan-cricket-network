@@ -169,38 +169,46 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-purple-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            {/* Copyright */}
-            <div className="flex items-center space-x-2 text-sm text-gray-400">
-              <span>© 2024 Afghan Cricket Network.</span>
-              <span className="flex items-center">
-                {getTranslation(language, 'common.footer.madeWith')}
-                <HeartIcon className="w-4 h-4 text-red-500 mx-1" />
-                {getTranslation(language, 'common.footer.forAfghanistan')}
-              </span>
+          <div className="flex flex-col gap-5">
+            {/* Row 1: Made By Credit (centered on mobile) */}
+            <div className="flex justify-center">
+              <div className="flex items-center gap-2 text-sm bg-white/10 px-5 py-2.5 rounded-full backdrop-blur-sm border border-white/20">
+                <span className="text-xl">❤️</span>
+                <span className={`text-white font-semibold whitespace-nowrap ${isRTL ? 'font-arabic' : ''}`} dir={isRTL ? 'rtl' : 'ltr'}>
+                  {getTranslation(language, 'common.footer.madeBy')}
+                </span>
+              </div>
             </div>
 
-            {/* Legal Links */}
-            <div className="flex items-center space-x-6">
-              {footerLinks.legal.map((link) => (
-                <Link
-                  key={link.key}
-                  href={link.href}
-                  className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
-                >
-                  {getTranslation(language, `common.footer.${link.key}`)}
-                </Link>
-              ))}
+            {/* Row 2: Legal Links (centered, wrapping to multiple rows) */}
+            <div className="flex justify-center">
+              <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 max-w-md">
+                {footerLinks.legal.map((link) => (
+                  <Link
+                    key={link.key}
+                    href={link.href}
+                    className={`text-xs sm:text-sm text-gray-400 hover:text-white transition-colors duration-200 whitespace-nowrap hover:underline ${isRTL ? 'font-arabic' : ''}`}
+                  >
+                    {getTranslation(language, `common.footer.${link.key}`)}
+                  </Link>
+                ))}
+              </div>
             </div>
 
-            {/* Scroll to Top */}
-            <button
-              onClick={scrollToTop}
-              className="p-2 bg-white/20 backdrop-blur-md hover:bg-white/30 rounded-full transition-all duration-300 transform hover:scale-110 group"
-              aria-label="Scroll to top"
-            >
-              <ArrowUpIcon className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-            </button>
+            {/* Row 3: Copyright and Scroll Button */}
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3">
+              <div className="text-sm text-gray-300 text-center">
+                <span className="font-medium">© 2024 Afghan Cricket Network</span>
+              </div>
+
+              <button
+                onClick={scrollToTop}
+                className="p-2.5 bg-white/10 backdrop-blur-md hover:bg-white/20 rounded-full transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 group flex-shrink-0 border border-white/20 sm:absolute sm:right-4"
+                aria-label="Scroll to top"
+              >
+                <ArrowUpIcon className="w-5 h-5 text-white" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -113,6 +113,7 @@ export const common = {
     emailPlaceholder: 'Enter your email',
     madeWith: 'Made with',
     forAfghanistan: 'for Afghanistan',
+    madeBy: 'Made by Urooj Technology',
     privacy: 'Privacy Policy',
     terms: 'Terms of Service',
     cookies: 'Cookie Policy',

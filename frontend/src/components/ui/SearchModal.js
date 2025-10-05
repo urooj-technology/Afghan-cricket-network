@@ -85,17 +85,28 @@ export default function SearchModal({ isOpen, onClose }) {
     })
   }
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   if (!isOpen) return null
 
   return (
     <>
       {/* Search Modal */}
-      <div className="fixed inset-0 z-50 overflow-y-auto">
+      <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
         
-        <div className="fixed top-16 left-1/2 transform -translate-x-1/2 w-full max-w-4xl mx-4 bg-white rounded-2xl shadow-2xl" dir={direction}>
+        <div className="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl flex flex-col max-h-[85vh] overflow-hidden" dir={direction}>
             {/* Header */}
-            <div className="flex items-center p-6 border-b border-gray-200">
+            <div className="flex items-center p-6 border-b border-gray-200 flex-shrink-0">
               <div className="flex items-center gap-4 flex-1">
                 <MagnifyingGlassIcon className="h-6 w-6 text-gray-400 flex-shrink-0" />
                 <input
@@ -116,7 +127,7 @@ export default function SearchModal({ isOpen, onClose }) {
             </div>
 
             {/* Categories */}
-            <div className="flex flex-wrap gap-2 p-4 border-b border-gray-100">
+            <div className="flex flex-wrap gap-2 p-4 border-b border-gray-100 flex-shrink-0">
               {categories.map((cat) => (
                 <button
                   key={cat.key}
@@ -133,7 +144,14 @@ export default function SearchModal({ isOpen, onClose }) {
             </div>
 
             {/* Results */}
-            <div className="max-h-96 overflow-y-auto p-4">
+            <div className="overflow-y-auto p-4 flex-1" onWheel={(e) => {
+              const element = e.currentTarget
+              const atTop = element.scrollTop === 0
+              const atBottom = element.scrollHeight - element.scrollTop === element.clientHeight
+              if ((atTop && e.deltaY < 0) || (atBottom && e.deltaY > 0)) {
+                e.preventDefault()
+              }
+            }}>
               {loading && (
                 <div className="flex items-center justify-center py-8">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>

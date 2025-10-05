@@ -1,4 +1,21 @@
 export const admin = {
+  // Login
+  login: {
+    title: 'ورود مدیر',
+    subtitle: 'وارد حساب مدیریتی خود شوید',
+    email: 'ایمیل',
+    password: 'رمز عبور',
+    emailPlaceholder: 'ایمیل خود را وارد کنید',
+    passwordPlaceholder: 'رمز عبور خود را وارد کنید',
+    signIn: 'ورود',
+    signingIn: 'در حال ورود...',
+    loginSuccess: 'ورود موفق! در حال هدایت...',
+    loginFailed: 'ورود ناموفق',
+    emailRequired: 'ایمیل ضروری است',
+    passwordRequired: 'رمز عبور ضروری است',
+    goHome: 'برو به خانه'
+  },
+  
   // Navigation
   nav: {
     dashboard: 'داشبورد',
