@@ -459,6 +459,147 @@ header {
   -webkit-backdrop-filter: blur(8px);
 }
 
+/* Login Page Enhancements */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center text alignment for all languages */
+.text-center-all {
+  text-align: center !important;
+}
+
+[dir="rtl"] .text-center-all,
+[dir="ltr"] .text-center-all {
+  text-align: center !important;
+}
+
+/* Input field center alignment */
+input.text-center {
+  text-align: center;
+}
+
+[dir="rtl"] input.text-center,
+[dir="ltr"] input.text-center {
+  text-align: center;
+}
+
+/* Flex center for all directions */
+.flex-center-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[dir="rtl"] .flex-center-all,
+[dir="ltr"] .flex-center-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Login card animations */
+.login-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Login icon pulse */
+.login-icon {
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 40px -10px rgba(79, 70, 229, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 15px 50px -10px rgba(79, 70, 229, 0.6);
+  }
+}
+
+/* Enhanced button hover effect */
+.btn-login {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-login::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-login:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Input focus glow effect */
+input:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Placeholder alignment based on direction */
+input[dir="rtl"]::placeholder {
+  text-align: right !important;
+}
+
+input[dir="ltr"]::placeholder {
+  text-align: left !important;
+}
+
+/* Input text alignment */
+input[dir="rtl"] {
+  text-align: right !important;
+}
+
+input[dir="ltr"] {
+  text-align: left !important;
+}
+
+/* Label alignment */
+label.text-right {
+  text-align: right !important;
+}
+
+label.text-left {
+  text-align: left !important;
+}
+
+/* Error shake animation */
+.error-shake {
+  animation: errorShake 0.5s ease-in-out;
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
 /* Language dropdown animations */
 .lang-dropdown {
   animation: slideDown 0.2s ease-out;
@@ -474,6 +615,12 @@ header {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+/* Backdrop blur for login */
+.backdrop-blur-login {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
 }
 
 /* Active navigation indicator */
