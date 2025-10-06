@@ -589,6 +589,14 @@ label.text-left {
   text-align: left !important;
 }
 
+/* Remove all borders from search modal input */
+input[type="text"]:focus {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  ring: none !important;
+}
+
 /* Error shake animation */
 .error-shake {
   animation: errorShake 0.5s ease-in-out;

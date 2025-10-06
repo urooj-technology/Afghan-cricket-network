@@ -115,7 +115,8 @@ export default function SearchModal({ isOpen, onClose }) {
                   placeholder={getTranslation(language, 'common.search.placeholder') || 'Search...'}
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  className={`flex-1 text-lg border-none outline-none placeholder-gray-400 ${direction === 'rtl' ? 'text-right font-arabic' : 'text-left'}`}
+                  style={{ border: 'none', outline: 'none', boxShadow: 'none', background: 'transparent' }}
+                  className={`flex-1 text-lg placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-0 ${direction === 'rtl' ? 'text-right font-arabic' : 'text-left'}`}
                 />
               </div>
               <button
@@ -184,7 +185,7 @@ export default function SearchModal({ isOpen, onClose }) {
                           }
                         }}
                       >
-                        <div className={`flex items-start ${direction === 'rtl' ? 'space-x-reverse' : ''} space-x-4`}>
+                        <div className={`flex items-start gap-4`}>
                           {item.image && (
                             <div className="flex-shrink-0">
                               <img
@@ -195,7 +196,7 @@ export default function SearchModal({ isOpen, onClose }) {
                             </div>
                           )}
                           <div className="flex-1 min-w-0">
-                            <div className={`flex items-center mb-2 ${direction === 'rtl' ? 'space-x-reverse' : ''} space-x-2`}>
+                            <div className={`flex items-center mb-2 gap-2`}>
                               <div className={`p-1.5 rounded-lg bg-gradient-to-r ${getTypeColor(item.type)}`}>
                                 <IconComponent className="w-4 h-4 text-white" />
                               </div>
@@ -212,22 +213,22 @@ export default function SearchModal({ isOpen, onClose }) {
                               </p>
                             )}
                             <div className={`flex items-center justify-between text-xs text-gray-500`}>
-                              <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse' : ''} space-x-3`}>
+                              <div className={`flex items-center gap-3`}>
                                 {item.date && (
-                                  <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse' : ''} space-x-1`}>
+                                  <div className={`flex items-center gap-1.5`}>
                                     <ClockIcon className="w-3 h-3" />
                                     <span className={direction === 'rtl' ? 'font-arabic' : ''}>{formatDate(item.date)}</span>
                                   </div>
                                 )}
                                 {item.views && (
-                                  <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse' : ''} space-x-1`}>
+                                  <div className={`flex items-center gap-1.5`}>
                                     <EyeIcon className="w-3 h-3" />
                                     <span className={direction === 'rtl' ? 'font-arabic' : ''}>{item.views}</span>
                                   </div>
                                 )}
                               </div>
                               {item.is_featured && (
-                                <div className={`flex items-center ${direction === 'rtl' ? 'space-x-reverse' : ''} space-x-1`}>
+                                <div className={`flex items-center gap-1.5`}>
                                   <TrophyIcon className="w-3 h-3 text-yellow-500" />
                                   <span className={`text-yellow-600 ${direction === 'rtl' ? 'font-arabic' : ''}`}>{getTranslation(language, 'common.featured') || 'Featured'}</span>
                                 </div>
