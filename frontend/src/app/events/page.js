@@ -187,7 +187,7 @@ export default function EventsPage() {
                   const StatusIcon = getStatusIcon(event.status)
                   return (
                     <div key={event.id} className="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                      <div className="relative">
+                      <Link href={`/events/${event.id}`} className="block relative">
                         {event.image ? (
                           <img 
                             src={event.image} 
@@ -217,7 +217,7 @@ export default function EventsPage() {
                             <span>{getTranslation(language, `events.${event.status}`) || event.status}</span>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                       
                       <div className="p-6">
                         <div className={`flex items-center justify-between mb-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
@@ -270,7 +270,7 @@ export default function EventsPage() {
                 const StatusIcon = getStatusIcon(event.status)
                 return (
                   <div key={event.id} className="bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                    <div className="relative">
+                    <Link href={`/events/${event.id}`} className="block relative">
                       {event.image ? (
                         <img 
                           src={event.image} 
@@ -304,7 +304,7 @@ export default function EventsPage() {
                           </div>
                         </div>
                       )}
-                    </div>
+                    </Link>
                     
                     <div className="p-6">
                       <div className={`flex items-center justify-between mb-3 ${isRTL ? 'flex-row-reverse' : ''}`}>

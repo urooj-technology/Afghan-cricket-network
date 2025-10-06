@@ -161,7 +161,7 @@ export default function Media() {
                 const IconComponent = getMediaIcon(item.media_type)
                 return (
                   <div key={item.id} className="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full flex flex-col">
-                    <div className="relative aspect-[4/3] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center overflow-hidden flex-shrink-0">
+                    <Link href={`/media/${item.id}`} className="relative aspect-[4/3] bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center overflow-hidden flex-shrink-0">
                       <div className="absolute inset-0 bg-black/10"></div>
                       {item.image || item.thumbnail ? (
                         <img 
@@ -214,7 +214,7 @@ export default function Media() {
                           <span className={`${isRTL ? 'mr-1 font-arabic' : 'ml-1'}`}>{String(getTranslation(language, 'common.views') || 'views')}</span>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                     
                     <div className="p-5 sm:p-6 flex-1 flex flex-col">
                       <h3 className={`font-bold text-xl mb-4 text-gray-900 line-clamp-2 leading-tight ${isRTL ? 'font-arabic text-right' : ''}`}>
@@ -283,7 +283,7 @@ export default function Media() {
                   const IconComponent = getMediaIcon(item.media_type)
                   return (
                     <div key={item.id} className="group bg-white rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 h-full flex flex-col">
-                      <div className="relative aspect-[4/3] bg-gradient-to-br from-blue-500 via-purple-500 to-blue-600 flex items-center justify-center overflow-hidden flex-shrink-0">
+                      <Link href={`/media/${item.id}`} className="relative aspect-[4/3] bg-gradient-to-br from-blue-500 via-purple-500 to-blue-600 flex items-center justify-center overflow-hidden flex-shrink-0">
                         <div className="absolute inset-0 bg-black/10"></div>
                         {item.image || item.thumbnail ? (
                           <img 
@@ -335,7 +335,7 @@ export default function Media() {
                             </div>
                           </div>
                         )}
-                      </div>
+                      </Link>
                       
                       <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col">
                         {/* Category and Date */}
