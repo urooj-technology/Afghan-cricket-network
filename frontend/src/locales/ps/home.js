@@ -115,5 +115,13 @@ export const home = {
       title: 'د کرکټ ټولنه',
       description: 'د کرکټ مینه والو سره اړیکه ونیسئ، خپله مینه شریکه کړئ او د افغان کرکټ سره یوځای ولمانځئ.'
     }
+  },
+  cricketStats: {
+    title: 'د افغانستان کرکټ لاسته راوړنې',
+    subtitle: 'په نړیوال کرکټ کې زموږ د سفر لمانځنه',
+    worldCupMatches: 'د نړیوال جام لوبې',
+    internationalMatches: 'نړیوالې لوبې',
+    activeFans: 'فعال مینه وال',
+    teamPlayers: 'د ټیم لوبغاړي'
   }
 }

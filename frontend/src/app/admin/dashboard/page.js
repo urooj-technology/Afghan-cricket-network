@@ -39,9 +39,10 @@ export default function AdminDashboard() {
 
   const stats = [
     { name: 'Total Articles', value: '24', change: '+12%', icon: NewspaperIcon, color: 'blue' },
-    { name: 'Active Events', value: '8', change: '+3%', icon: CalendarDaysIcon, color: 'green' },
-    { name: 'Team Members', value: '25', change: '+2', icon: UsersIcon, color: 'purple' },
-    { name: 'Media Files', value: '156', change: '+18%', icon: PhotoIcon, color: 'orange' },
+    // Hidden stats - will be added in future
+    // { name: 'Active Events', value: '8', change: '+3%', icon: CalendarDaysIcon, color: 'green' },
+    // { name: 'Team Members', value: '25', change: '+2', icon: UsersIcon, color: 'purple' },
+    // { name: 'Media Files', value: '156', change: '+18%', icon: PhotoIcon, color: 'orange' },
   ]
 
   const sections = [
@@ -53,14 +54,15 @@ export default function AdminDashboard() {
       description: 'Create and manage news articles',
       color: 'blue'
     },
-    { 
-      name: 'Events Management', 
-      path: '/admin/events', 
-      icon: CalendarDaysIcon, 
-      count: '8 events',
-      description: 'Schedule and manage cricket events',
-      color: 'green'
-    },
+    // Hidden sections - will be added in future
+    // { 
+    //   name: 'Events Management', 
+    //   path: '/admin/events', 
+    //   icon: CalendarDaysIcon, 
+    //   count: '8 events',
+    //   description: 'Schedule and manage cricket events',
+    //   color: 'green'
+    // },
     { 
       name: 'Rankings', 
       path: '/admin/rankings', 
@@ -69,22 +71,22 @@ export default function AdminDashboard() {
       description: 'Update team and player rankings',
       color: 'yellow'
     },
-    { 
-      name: 'Team Management', 
-      path: '/admin/team', 
-      icon: UsersIcon, 
-      count: '25 players',
-      description: 'Manage team roster and profiles',
-      color: 'purple'
-    },
-    { 
-      name: 'Media Library', 
-      path: '/admin/media', 
-      icon: PhotoIcon, 
-      count: '45 files',
-      description: 'Upload and organize media content',
-      color: 'pink'
-    },
+    // { 
+    //   name: 'Team Management', 
+    //   path: '/admin/team', 
+    //   icon: UsersIcon, 
+    //   count: '25 players',
+    //   description: 'Manage team roster and profiles',
+    //   color: 'purple'
+    // },
+    // { 
+    //   name: 'Media Library', 
+    //   path: '/admin/media', 
+    //   icon: PhotoIcon, 
+    //   count: '45 files',
+    //   description: 'Upload and organize media content',
+    //   color: 'pink'
+    // },
     { 
       name: 'Contact Messages', 
       path: '/admin/contact', 
@@ -151,7 +153,8 @@ export default function AdminDashboard() {
               </div>
             </div>
           </Link>
-          <Link href="/admin/events/add/" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
+          {/* Hidden quick actions - will be added in future */}
+          {/* <Link href="/admin/events/add/" className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 p-6 hover:shadow-xl hover:scale-105 transition-all duration-300 group">
             <div className="flex items-center">
               <div className="bg-gradient-to-r from-purple-100 to-pink-100 p-3 rounded-xl group-hover:from-purple-200 group-hover:to-pink-200 transition-all duration-300 shadow-lg">
                 <CalendarDaysIcon className="w-6 h-6 text-purple-600" />
@@ -172,7 +175,7 @@ export default function AdminDashboard() {
                 <p className="text-sm text-gray-600">Expand team roster</p>
               </div>
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
 

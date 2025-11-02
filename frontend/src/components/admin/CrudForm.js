@@ -93,6 +93,7 @@ export default function CrudForm({
         if (field.type === 'select' && typeof value === 'object' && value?.id) {
           value = value.id
         }
+        // For file fields, keep the URL string from existing data
         initialData[field.name] = value !== undefined && value !== null ? value : (field.defaultValue || '')
       })
       setFormData(initialData)
@@ -157,17 +158,22 @@ export default function CrudForm({
       return
     }
 
-    // Check if form has files
-    const hasFiles = fields.some(field => field.type === 'file' && formData[field.name] instanceof File)
+    // Check if form has new files to upload
+    const hasNewFiles = fields.some(field => field.type === 'file' && formData[field.name] instanceof File)
     
     let submitData
-    if (hasFiles) {
-      // Use FormData for file uploads
+    if (hasNewFiles || isEdit) {
+      // Use FormData for file uploads or when editing (to support partial updates)
       submitData = new FormData()
       fields.forEach(field => {
         const value = formData[field.name]
-        if (field.type === 'file' && value instanceof File) {
-          submitData.append(field.name, value)
+        if (field.type === 'file') {
+          // Only append file if it's a new File object
+          if (value instanceof File) {
+            submitData.append(field.name, value)
+          }
+          // If it's a string (existing file URL) and we're editing, don't append it
+          // The backend will keep the existing file
         } else if (field.type === 'checkbox') {
           submitData.append(field.name, value ? 'true' : 'false')
         } else if (value !== undefined && value !== null && value !== '') {
@@ -268,8 +274,33 @@ export default function CrudForm({
         )
 
       case 'file':
+        const existingFileUrl = typeof value === 'string' && value ? value : null
+        const isImage = field.accept?.includes('image')
         return (
           <div className="space-y-3">
+            {/* Show existing file preview if editing */}
+            {isEdit && existingFileUrl && !(value instanceof File) && (
+              <div className="mb-3">
+                <p className="text-sm font-medium text-gray-700 mb-2">Current file:</p>
+                {isImage ? (
+                  <img 
+                    src={existingFileUrl} 
+                    alt="Current" 
+                    className="max-h-40 rounded-lg border border-gray-300"
+                  />
+                ) : (
+                  <a 
+                    href={existingFileUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline text-sm"
+                  >
+                    View current file
+                  </a>
+                )}
+              </div>
+            )}
+            
             <div className="flex items-center justify-center w-full">
               <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-xl cursor-pointer bg-gradient-to-br from-gray-50 to-gray-100 hover:from-gray-100 hover:to-gray-200 transition-all duration-200">
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -281,17 +312,17 @@ export default function CrudForm({
                   ) : (
                     <>
                       <div className="p-3 bg-blue-50 rounded-full mb-3">
-                        {field.accept?.includes('image') ? (
+                        {isImage ? (
                           <PhotoIcon className="w-8 h-8 text-blue-500" />
                         ) : (
                           <DocumentIcon className="w-8 h-8 text-blue-500" />
                         )}
                       </div>
                       <p className="mb-2 text-sm text-gray-700">
-                        <span className="font-semibold text-blue-600">Click to upload</span> or drag and drop
+                        <span className="font-semibold text-blue-600">Click to upload</span> {isEdit && 'new file'}
                       </p>
                       <p className="text-xs text-gray-500">
-                        {field.accept?.includes('image') ? 'PNG, JPG, GIF up to 10MB' : field.accept || 'Any file type'}
+                        {isImage ? 'PNG, JPG, GIF up to 10MB' : field.accept || 'Any file type'}
                       </p>
                     </>
                   )}
@@ -313,11 +344,11 @@ export default function CrudForm({
                 />
               </label>
             </div>
-            {value && (
+            {value instanceof File && (
               <div className="flex items-center space-x-2 p-3 bg-green-50 border border-green-200 rounded-lg">
                 <CheckIcon className="w-5 h-5 text-green-500" />
                 <p className="text-sm text-green-700 font-medium">
-                  Selected: {value instanceof File ? value.name : value}
+                  New file selected: {value.name}
                 </p>
               </div>
             )}

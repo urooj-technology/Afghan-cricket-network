@@ -115,5 +115,13 @@ export const home = {
       title: 'Cricket Community',
       description: 'Connect with fellow cricket enthusiasts, share your passion, and celebrate Afghan cricket together.'
     }
+  },
+  cricketStats: {
+    title: 'Afghanistan Cricket Achievements',
+    subtitle: 'Celebrating our journey in international cricket',
+    worldCupMatches: 'World Cup Matches',
+    internationalMatches: 'International Matches',
+    activeFans: 'Active Fans',
+    teamPlayers: 'Team Players'
   }
 }

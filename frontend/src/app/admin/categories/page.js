@@ -35,9 +35,10 @@ export default function CategoriesAdmin() {
 
   const tabs = [
     { id: 'news', name: getTranslation(language, 'admin.categories.news'), icon: TagIcon },
-    { id: 'events', name: getTranslation(language, 'admin.categories.events'), icon: CalendarDaysIcon },
-    { id: 'media', name: getTranslation(language, 'admin.categories.media'), icon: PhotoIcon },
-    { id: 'rankings', name: getTranslation(language, 'admin.categories.rankings'), icon: TrophyIcon },
+    // Hidden tabs - will be added in future
+    // { id: 'events', name: getTranslation(language, 'admin.categories.events'), icon: CalendarDaysIcon },
+    // { id: 'media', name: getTranslation(language, 'admin.categories.media'), icon: PhotoIcon },
+    // { id: 'rankings', name: getTranslation(language, 'admin.categories.rankings'), icon: TrophyIcon },
     { id: 'contact', name: getTranslation(language, 'admin.categories.contact'), icon: EnvelopeIcon }
   ]
 
@@ -78,7 +79,8 @@ export default function CategoriesAdmin() {
         />
       )}
 
-      {activeTab === 'events' && (
+      {/* Hidden category tabs - will be added in future */}
+      {/* {activeTab === 'events' && (
         <CrudTable
           endpoint="/event-categories/"
           title={getTranslation(language, 'admin.categories.events')}
@@ -112,7 +114,7 @@ export default function CategoriesAdmin() {
           addPath="/admin/categories/add?type=ranking/"
           editPath="/admin/categories/edit/:id?type=ranking/"
         />
-      )}
+      )} */}
 
       {activeTab === 'contact' && (
         <CrudTable

@@ -7,7 +7,7 @@ export const useEdit = (endpoint, options = {}) => {
     onSuccess,
     onError,
     invalidateQueries = [endpoint],
-    method = 'PUT',
+    method = 'PATCH',
     ...mutationOptions
   } = options
 

@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
+import { useState } from 'react'
 import Header from '../../../components/layout/Header'
 import Footer from '../../../components/layout/Footer'
 import LoadingSpinner from '../../../components/ui/LoadingSpinner'
@@ -35,6 +36,7 @@ import {
 export default function EventDetailPage() {
   const { id } = useParams()
   const { language, isRTL } = useLanguage()
+  const [copied, setCopied] = useState(false)
 
   const { data: event, isLoading, error } = useFetchData(`/events/${id}/`, {
     queryKey: ['event', id],
@@ -46,6 +48,44 @@ export default function EventDetailPage() {
     params: { page_size: 3, is_published: true },
     enabled: !!event
   })
+
+  // Function to handle sharing
+  const handleShare = (platform) => {
+    const url = window.location.href;
+    const title = event?.title || 'Cricket Event';
+    
+    if (platform === 'facebook') {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+    } else if (platform === 'twitter') {
+      window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+    } else if (platform === 'whatsapp') {
+      window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(`${title}: ${url}`)}`, '_blank');
+    } else if (platform === 'copy') {
+      navigator.clipboard.writeText(url).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      });
+    }
+  }
+
+  // Function to handle native share (for mobile devices)
+  const handleNativeShare = () => {
+    const url = window.location.href;
+    const title = event?.title || 'Cricket Event';
+    
+    if (navigator.share) {
+      navigator.share({
+        title: title,
+        url: url,
+      }).catch(console.error);
+    } else {
+      // Fallback to copying link
+      navigator.clipboard.writeText(url).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      });
+    }
+  }
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -289,7 +329,10 @@ export default function EventDetailPage() {
                     <HeartIcon className="w-5 h-5" />
                     <span className={`font-semibold ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'events.like') || 'Like'}</span>
                   </button>
-                  <button className={`flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}>
+                  <button 
+                    onClick={handleNativeShare}
+                    className={`flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-300 ${isRTL ? 'flex-row-reverse space-x-reverse' : ''}`}
+                  >
                     <ShareIcon className="w-5 h-5" />
                     <span className={`font-semibold ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'events.share') || 'Share'}</span>
                   </button>
@@ -387,16 +430,28 @@ export default function EventDetailPage() {
                   </h3>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  <button className="flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-xl hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                  <button 
+                    onClick={() => handleShare('facebook')}
+                    className="flex items-center justify-center space-x-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-xl hover:from-blue-700 hover:to-blue-800 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                  >
                     <span className={`font-semibold ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'events.facebook') || 'Facebook'}</span>
                   </button>
-                  <button className="flex items-center justify-center space-x-2 bg-gradient-to-r from-sky-500 to-sky-600 text-white py-3 px-4 rounded-xl hover:from-sky-600 hover:to-sky-700 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                  <button 
+                    onClick={() => handleShare('twitter')}
+                    className="flex items-center justify-center space-x-2 bg-gradient-to-r from-sky-500 to-sky-600 text-white py-3 px-4 rounded-xl hover:from-sky-600 hover:to-sky-700 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                  >
                     <span className={`font-semibold ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'events.twitter') || 'Twitter'}</span>
                   </button>
-                  <button className="flex items-center justify-center space-x-2 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-4 rounded-xl hover:from-green-700 hover:to-green-800 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                  <button 
+                    onClick={() => handleShare('whatsapp')}
+                    className="flex items-center justify-center space-x-2 bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-4 rounded-xl hover:from-green-700 hover:to-green-800 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                  >
                     <span className={`font-semibold ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'events.whatsapp') || 'WhatsApp'}</span>
                   </button>
-                  <button className="flex items-center justify-center space-x-2 bg-gradient-to-r from-gray-600 to-gray-700 text-white py-3 px-4 rounded-xl hover:from-gray-700 hover:to-gray-800 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                  <button 
+                    onClick={() => handleShare('copy')}
+                    className="flex items-center justify-center space-x-2 bg-gradient-to-r from-gray-600 to-gray-700 text-white py-3 px-4 rounded-xl hover:from-gray-700 hover:to-gray-800 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                  >
                     <span className={`font-semibold ${isRTL ? 'font-arabic' : ''}`}>{getTranslation(language, 'events.copyLink') || 'Copy Link'}</span>
                   </button>
                 </div>
@@ -489,6 +544,13 @@ export default function EventDetailPage() {
               </div>
             </div>
           </section>
+        )}
+
+        {/* Copy Link Notification */}
+        {copied && (
+          <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg z-50">
+            {getTranslation(language, 'events.linkCopied') || 'Link copied to clipboard!'}
+          </div>
         )}
 
         <Footer />

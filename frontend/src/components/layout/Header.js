@@ -12,10 +12,11 @@ import SearchModal from '../ui/SearchModal'
 const navigation = [
   { key: 'home', href: '/', icon: HomeIcon },
   { key: 'news', href: '/news', icon: NewspaperIcon },
-  { key: 'rankings', href: '/rankings', icon: TrophyIcon },
-  { key: 'events', href: '/events', icon: CalendarIcon },
-  { key: 'media', href: '/media', icon: PhotoIcon },
-  { key: 'team', href: '/team', icon: UserGroupIcon },
+  // Hidden sections - will be added in future
+  // { key: 'rankings', href: '/rankings', icon: TrophyIcon },
+  // { key: 'events', href: '/events', icon: CalendarIcon },
+  // { key: 'media', href: '/media', icon: PhotoIcon },
+  // { key: 'team', href: '/team', icon: UserGroupIcon },
   { key: 'about', href: '/about', icon: InformationCircleIcon },
   { key: 'contact', href: '/contact', icon: PhoneIcon },
 ]
