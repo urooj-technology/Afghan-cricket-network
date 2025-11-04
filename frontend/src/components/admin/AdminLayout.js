@@ -29,9 +29,9 @@ const getNavigation = (language) => [
   { key: 'dashboard', href: '/admin/dashboard', icon: HomeIcon, badge: null },
   { key: 'news', href: '/admin/news', icon: NewspaperIcon, badge: '12' },
   // Hidden sections - will be added in future
+  // { key: 'team', href: '/admin/team', icon: UsersIcon, badge: '25' },
   // { key: 'events', href: '/admin/events', icon: CalendarDaysIcon, badge: '3' },
   // { key: 'rankings', href: '/admin/rankings', icon: TrophyIcon, badge: null },
-  // { key: 'team', href: '/admin/team', icon: UsersIcon, badge: '25' },
   // { key: 'media', href: '/admin/media', icon: PhotoIcon, badge: '45' },
   // { key: 'venues', href: '/admin/venues', icon: MapPinIcon, badge: null },
   { key: 'categories', href: '/admin/categories', icon: TagIcon, badge: null },
