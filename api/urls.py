@@ -9,6 +9,7 @@ from api.views.data.viewsets import (
     ContactViewSet, ContactCategoryViewSet, ContactInfoViewSet,
     CricketStatsViewSet
 )
+from api.views.data.about_team import AboutTeamViewSet
 from api.views.data.search import GlobalSearchView
 
 
@@ -47,6 +48,9 @@ router.register(r'contact-info', ContactInfoViewSet, basename='contact-info')
 
 # Cricket Stats endpoints
 router.register(r'cricket-stats', CricketStatsViewSet, basename='cricket-stats')
+
+# About Team endpoints
+router.register(r'about-team', AboutTeamViewSet, basename='about-team')
 
 urlpatterns = [
     path('v1/', include(router.urls)),

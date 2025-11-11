@@ -113,7 +113,7 @@ export const common = {
     emailPlaceholder: 'خپل بریښنالیک داخل کړئ',
     madeWith: 'جوړ شوی د',
     forAfghanistan: 'د افغانستان لپاره',
-    madeBy: 'جوړ شوی د عروج ټېکنالوژي',
+    madeBy: 'ډیزاین او ترتیب ♥ : عروج ټېکنالوژي',
     privacy: 'د محرمیت پالیسي',
     terms: 'د خدماتو شرایط',
     cookies: 'د کوکي پالیسي',

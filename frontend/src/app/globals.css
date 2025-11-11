@@ -154,7 +154,7 @@ html {
   direction: ltr;
 }
 
-.font-ps, .font-fa {
+.font-ps, .font-fa, .font-arabic {
   font-family: 'Noto Sans Arabic', 'Tahoma', 'Arial Unicode MS', sans-serif;
   direction: rtl;
 }

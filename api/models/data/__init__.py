@@ -5,6 +5,7 @@ from .team import TeamRole, Player, TeamMember
 from .rankings import RankingCategory, TeamRanking, PlayerRanking, GeneralRanking
 from .media import MediaCategory, Media, MediaGallery
 from .contact import ContactCategory, Contact, ContactInfo
+from .about_team import AboutTeam
 
 __all__ = [
     'BaseModel',
@@ -14,4 +15,5 @@ __all__ = [
     'RankingCategory', 'TeamRanking', 'PlayerRanking', 'GeneralRanking',
     'MediaCategory', 'Media', 'MediaGallery',
     'ContactCategory', 'Contact', 'ContactInfo',
+    'AboutTeam',
 ]

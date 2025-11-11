@@ -28,6 +28,7 @@ import {
 const getNavigation = (language) => [
   { key: 'dashboard', href: '/admin/dashboard', icon: HomeIcon, badge: null },
   { key: 'news', href: '/admin/news', icon: NewspaperIcon, badge: '12' },
+  { key: 'aboutTeam', href: '/admin/about-team', icon: UsersIcon, badge: null },
   // Hidden sections - will be added in future
   // { key: 'team', href: '/admin/team', icon: UsersIcon, badge: '25' },
   // { key: 'events', href: '/admin/events', icon: CalendarDaysIcon, badge: '3' },

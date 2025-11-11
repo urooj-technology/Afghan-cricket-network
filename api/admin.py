@@ -4,7 +4,8 @@ from .models.data import (
     TeamRole, Player, TeamMember, RankingCategory,
     TeamRanking, PlayerRanking, GeneralRanking,
     MediaCategory, Media, MediaGallery,
-    ContactCategory, Contact, ContactInfo
+    ContactCategory, Contact, ContactInfo,
+    AboutTeam
 )
 
 
@@ -160,3 +161,13 @@ class ContactInfoAdmin(admin.ModelAdmin):
     list_filter = ['contact_type', 'is_active', 'created_at']
     search_fields = ['title', 'address']
     ordering = ['order', 'contact_type']
+
+
+# About Team Admin
+@admin.register(AboutTeam)
+class AboutTeamAdmin(admin.ModelAdmin):
+    list_display = ['name', 'position', 'is_active', 'order', 'created_at']
+    list_filter = ['is_active', 'created_at']
+    search_fields = ['name', 'position']
+    prepopulated_fields = {'slug': ('name',)}
+    ordering = ['order', 'name']
